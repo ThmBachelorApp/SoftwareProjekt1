@@ -103,38 +103,178 @@
                 cntMenu As groupContainer.verticalAutoLayoutContainer:
                     Height: =Parent.Height
                     LayoutDirection: =LayoutDirection.Vertical
+                    LayoutGap: =50
                     LayoutMode: =LayoutMode.Auto
                     Width: =Parent.Width    
                     ZIndex: =1
 
                     lblHeadline As label:
+                        Align: =Align.Center
                         AutoHeight: =true
-                        FillPortions: =1
-                        Text: ="Text"
+                        Color: =RGBA(45, 128, 40, 1)
+                        FillPortions: |
+                            =If(
+                                App.Width < App.Height,
+                                If(
+                                    ScreenHome.Size = ScreenSize.Small,
+                                    0.1,  // Geringerer Wert für Hochformat bei kleinem Bildschirm
+                                    ScreenHome.Size = ScreenSize.Medium,
+                                    0.1, // Geringerer Wert für Hochformat bei mittlerem Bildschirm
+                                    0.1  // Standardwert für Hochformat bei anderen Größen
+                                ),
+                                If(
+                                    ScreenHome.Size = ScreenSize.Small,
+                                    0.1, // Ursprünglicher Wert für Querformat bei kleinem Bildschirm
+                                    ScreenHome.Size = ScreenSize.Medium,
+                                    0.125,   // Ursprünglicher Wert für Querformat bei mittlerem Bildschirm
+                                    0.125    // Standardwert für Querformat bei anderen Größen
+                                )
+                            )
+                        FontWeight: =FontWeight.Bold
+                        PaddingTop: =25
+                        Size: =If(ScreenTemplate.Size = ScreenSize.Small, 14, ScreenSize.Medium, 22, 24)
+                        Text: ="Dein BPP Assistent"
                         Width: =Parent.Width
                         ZIndex: =1
 
                     cntButtons As groupContainer.horizontalAutoLayoutContainer:
+                        FillPortions: |
+                            =If(
+                                App.Width < App.Height,
+                                If(
+                                    ScreenHome.Size = ScreenSize.Small,
+                                    0.5,  // Geringerer Wert für Hochformat bei kleinem Bildschirm
+                                    ScreenHome.Size = ScreenSize.Medium,
+                                    0.5, // Geringerer Wert für Hochformat bei mittlerem Bildschirm
+                                    0.5  // Standardwert für Hochformat bei anderen Größen
+                                ),
+                                If(
+                                    ScreenHome.Size = ScreenSize.Small,
+                                    0.4, // Ursprünglicher Wert für Querformat bei kleinem Bildschirm
+                                    ScreenHome.Size = ScreenSize.Medium,
+                                    0.5,   // Ursprünglicher Wert für Querformat bei mittlerem Bildschirm
+                                    0.5    // Standardwert für Querformat bei anderen Größen
+                                )
+                            )
+                        LayoutDirection: =If(ScreenHome.Size = ScreenSize.Small, LayoutDirection.Vertical, LayoutDirection.Horizontal)
+                        LayoutGap: =10
                         LayoutMinHeight: =100
-                        LayoutMinWidth: =250
+                        LayoutMinWidth: =200
                         LayoutMode: =LayoutMode.Auto
+                        PaddingLeft: =5
+                        PaddingRight: =5
+                        Width: =Parent.Width
                         ZIndex: =2
 
                         cntButtonsLeft As groupContainer.verticalAutoLayoutContainer:
                             AlignInContainer: =AlignInContainer.SetByContainer
                             Height: =Parent.Height
                             LayoutDirection: =LayoutDirection.Vertical
+                            LayoutGap: =5
                             LayoutMinHeight: =100
-                            LayoutMinWidth: =250
+                            LayoutMinWidth: =200
                             LayoutMode: =LayoutMode.Auto
+                            Width: =Parent.Width - cntButtons.LayoutGap
                             ZIndex: =1
+
+                            lblLeft As label:
+                                Align: =Align.Center
+                                AlignInContainer: =AlignInContainer.Start
+                                FillPortions: =0.5
+                                FontWeight: =FontWeight.Bold
+                                Size: =btn1.Size
+                                Text: |-
+                                    ="Überschrift
+                                    "
+                                Width: =btn1.Width
+                                ZIndex: =1
+
+                            btn1 As button:
+                                BorderThickness: =0
+                                Fill: =RGBA(128, 186, 36, 1)
+                                FillPortions: =1
+                                Height: =Parent.Height
+                                LayoutMinHeight: =30
+                                Size: =If(ScreenTemplate.Size = ScreenSize.Small, 12, ScreenSize.Medium, 18, 20)
+                                Text: ="Schaltfläche"
+                                Width: =Parent.Width - cntButtonsLeft.PaddingLeft
+                                ZIndex: =2
+
+                            btn2 As button:
+                                BorderThickness: =0
+                                Fill: =RGBA(128, 186, 36, 1)
+                                FillPortions: =1
+                                Height: =Parent.Height
+                                LayoutMinHeight: =30
+                                Size: =If(ScreenTemplate.Size = ScreenSize.Small, 12, ScreenSize.Medium, 18, 20)
+                                Text: ="Schaltfläche"
+                                Width: =btn1.Width  
+                                ZIndex: =3
+
+                            btn3 As button:
+                                BorderThickness: =0
+                                Fill: =RGBA(128, 186, 36, 1)
+                                FillPortions: =1
+                                Height: =Parent.Height
+                                LayoutMinHeight: =30
+                                Size: =If(ScreenTemplate.Size = ScreenSize.Small, 12, ScreenSize.Medium, 18, 20)
+                                Text: ="Schaltfläche"
+                                Width: =btn1.Width  
+                                ZIndex: =4
 
                         cntButtonsRight As groupContainer.verticalAutoLayoutContainer:
                             AlignInContainer: =AlignInContainer.SetByContainer
                             Height: =Parent.Height
                             LayoutDirection: =LayoutDirection.Vertical
+                            LayoutGap: =5
                             LayoutMinHeight: =100
-                            LayoutMinWidth: =250
+                            LayoutMinWidth: =200
                             LayoutMode: =LayoutMode.Auto
+                            Width: =Parent.Width - cntButtons.LayoutGap
                             ZIndex: =2
+
+                            lblRight As label:
+                                Align: =Align.Center
+                                AlignInContainer: =AlignInContainer.Start
+                                FillPortions: =0.5
+                                FontWeight: =FontWeight.Bold
+                                Size: =btn1.Size
+                                Text: |-
+                                    ="Überschrift
+                                    "
+                                Width: =btn1.Width
+                                ZIndex: =1
+
+                            btn4 As button:
+                                BorderThickness: =0
+                                Fill: =RGBA(128, 186, 36, 1)
+                                FillPortions: =1
+                                Height: =Parent.Height
+                                LayoutMinHeight: =30
+                                Size: =If(ScreenTemplate.Size = ScreenSize.Small, 12, ScreenSize.Medium, 18, 20)
+                                Text: ="Schaltfläche"
+                                Width: =Parent.Width - cntButtonsRight.PaddingRight
+                                ZIndex: =2
+
+                            btn5 As button:
+                                BorderThickness: =0
+                                Fill: =RGBA(128, 186, 36, 1)
+                                FillPortions: =1
+                                Height: =Parent.Height
+                                LayoutMinHeight: =30
+                                Size: =If(ScreenTemplate.Size = ScreenSize.Small, 12, ScreenSize.Medium, 18, 20)
+                                Text: ="Schaltfläche"
+                                Width: =btn4.Width
+                                ZIndex: =3
+
+                            btn6 As button:
+                                BorderThickness: =0
+                                Fill: =RGBA(128, 186, 36, 1)
+                                FillPortions: =1
+                                Height: =Parent.Height
+                                LayoutMinHeight: =30
+                                Size: =If(ScreenTemplate.Size = ScreenSize.Small, 12, ScreenSize.Medium, 18, 20)
+                                Text: ="Schaltfläche"
+                                Width: =btn4.Width
+                                ZIndex: =4
 
