@@ -1,0 +1,14 @@
+{
+  "Themes": [
+    {
+      "EntityName": "PowerAppsTheme",
+      "ThemeName": "PowerAppsTheme"
+    },
+    {
+      "BasePaletteColor": "#80ba24",
+      "EntityName": "THM Design",
+      "Font": "Segoe UI",
+      "ThemeName": "THM Design"
+    }
+  ]
+}

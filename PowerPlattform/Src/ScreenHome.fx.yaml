@@ -1,0 +1,102 @@
+"ScreenHome As screen.'autoLayout_HeaderFooter_ver1.0'":
+
+    cntHome As groupContainer.verticalAutoLayoutContainer:
+        Fill: =RGBA(245, 245, 245, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        Width: =Parent.Width
+        ZIndex: =1
+
+        cntHeaderHome As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: |
+                =If(
+                    App.Width < App.Height,
+                    If(
+                        ScreenHome.Size = ScreenSize.Small,
+                        0.075,  // Geringerer Wert für Hochformat bei kleinem Bildschirm
+                        ScreenHome.Size = ScreenSize.Medium,
+                        0.075, // Geringerer Wert für Hochformat bei mittlerem Bildschirm
+                        0.075  // Standardwert für Hochformat bei anderen Größen
+                    ),
+                    If(
+                        ScreenHome.Size = ScreenSize.Small,
+                        0.075, // Ursprünglicher Wert für Querformat bei kleinem Bildschirm
+                        ScreenHome.Size = ScreenSize.Medium,
+                        0.1,   // Ursprünglicher Wert für Querformat bei mittlerem Bildschirm
+                        0.1    // Standardwert für Querformat bei anderen Größen
+                    )
+                )
+            Height: =75
+            LayoutMinHeight: =35
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            Width: =Parent.Width
+            ZIndex: =2
+
+            icnBackHome As icon.BackArrow:
+                BorderColor: =RGBA(128, 186, 36, 1)
+                Color: =RGBA(141, 198, 63, 1)
+                Height: =Parent.Height
+                Icon: =Icon.Support
+                PaddingBottom: =5
+                PaddingLeft: =5
+                PaddingTop: =5
+                ZIndex: =1
+
+            imgLogoHome As image:
+                FillPortions: =1
+                Height: =Parent.Height
+                Image: =THM_Logo_184x75
+                Width: =
+                ZIndex: =2
+
+            icnForwordHome As icon.NextArrow:
+                BorderColor: =RGBA(128, 186, 36, 1)
+                Color: =RGBA(141, 198, 63, 1)
+                FillPortions: =0.125
+                Height: =Parent.Height
+                Icon: =Icon.Information
+                LayoutMinWidth: =50
+                PaddingBottom: =5
+                PaddingRight: =5
+                PaddingTop: =5
+                ZIndex: =3
+
+        cntMainHome As groupContainer.verticalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =Parent.Height
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            Width: =Parent.Width
+            ZIndex: =3
+
+            cntContentHome As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                Height: =Parent.Height
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                Width: =Parent.Width
+                ZIndex: =1
+
