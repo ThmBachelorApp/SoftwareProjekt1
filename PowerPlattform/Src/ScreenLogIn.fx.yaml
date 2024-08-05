@@ -100,37 +100,72 @@
                 Width: =Parent.Width
                 ZIndex: =1
 
-                TextInputCanvas1 As Texteingabe:
-                    DisplayMode: =DisplayMode.Edit
-                    Height: =32
-                    Width: =320
-                    X: =328
-                    Y: =149
-                    ZIndex: =1
+                cntInputLogin As groupContainer.verticalAutoLayoutContainer:
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutGap: =20
+                    LayoutMode: =LayoutMode.Auto
+                    Width: =Switch(ScreenLogIn.Size,4,Parent.Width/2,3,Parent.Width/2,2,Parent.Width/1.5,1,Parent.Width/1.1)
+                    X: =Parent.Width / 2 - Self.Width / 2 
+                    Y: =(Parent.Height - Self.Height )/ 2 
+                    ZIndex: =5
 
-                TextInputCanvas1_1 As Texteingabe:
-                    DisplayMode: =DisplayMode.Edit
-                    Height: =32
-                    Width: =320
-                    X: =328
-                    Y: =262
-                    ZIndex: =2
+                    lblUsername As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        AutoHeight: =true
+                        DisplayMode: =DisplayMode.Edit
+                        FillPortions: =1
+                        Height: =35
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Size: =Switch(ScreenLogIn.Size,4,20,3,18,2,15,1,13)
+                        Text: ="Benutzername/E-Mail"
+                        VerticalAlign: ='TextCanvas.VerticalAlign'.Middle
+                        Weight: ='TextCanvas.Weight'.Bold
+                        Width: =Parent.Width
+                        X: =328
+                        Y: =114
+                        ZIndex: =1
 
-                TextCanvas1 As Text:
-                    DisplayMode: =DisplayMode.Edit
-                    Height: =35
-                    Width: =352
-                    X: =328
-                    Y: =114
-                    ZIndex: =3
+                    txtUsername As Texteingabe:
+                        DisplayMode: =DisplayMode.Edit
+                        FillPortions: =1
+                        FontWeight: =FontWeight.Semibold
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =320
+                        Width: =Parent.Width
+                        X: =328
+                        Y: =35
+                        ZIndex: =2
 
-                TextCanvas1_1 As Text:
-                    DisplayMode: =DisplayMode.Edit
-                    Height: =35
-                    Width: =352
-                    X: =312
-                    Y: =219
-                    ZIndex: =4
+                    lblPassword As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        AutoHeight: =true
+                        DisplayMode: =DisplayMode.Edit
+                        FillPortions: =1
+                        Height: =35
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Size: =lblUsername.Size
+                        Text: ="Passwort"
+                        Weight: ='TextCanvas.Weight'.Bold
+                        Width: =Parent.Width
+                        X: =328
+                        Y: =102
+                        ZIndex: =3
+
+                    txtPassword As Texteingabe:
+                        DisplayMode: =DisplayMode.Edit
+                        FillPortions: =1
+                        FontWeight: =FontWeight.Semibold
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =320
+                        Type: ='TextInputCanvas.Type'.Password
+                        Width: =Parent.Width
+                        X: =328
+                        Y: =148
+                        ZIndex: =4
 
         cntFooterLogIn As groupContainer.horizontalAutoLayoutContainer:
             AlignInContainer: =AlignInContainer.SetByContainer

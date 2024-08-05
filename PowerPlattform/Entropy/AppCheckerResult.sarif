@@ -14,19 +14,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "ScreenLogIn.cntLogIn.cntMainLogIn.cntContentLogIn.TextInputCanvas1.AccessibleLabel"
+                  "fullyQualifiedName": "ScreenLogIn.cntLogIn.cntMainLogIn.cntContentLogIn.cntInputLogin.txtUsername.AccessibleLabel"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "ScreenLogIn.cntLogIn.cntMainLogIn.cntContentLogIn.TextInputCanvas1.AccessibleLabel",
+                  "fullyQualifiedName": "ScreenLogIn.cntLogIn.cntMainLogIn.cntContentLogIn.cntInputLogin.txtUsername.AccessibleLabel",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "AccessibleLabel",
                 "module": "ScreenLogIn",
-                "type": "ScreenLogIn.cntLogIn.cntMainLogIn.cntContentLogIn.TextInputCanvas1"
+                "type": "ScreenLogIn.cntLogIn.cntMainLogIn.cntContentLogIn.cntInputLogin.txtUsername"
               }
             }
           ],
@@ -44,19 +44,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "ScreenLogIn.cntLogIn.cntMainLogIn.cntContentLogIn.TextInputCanvas1_1.AccessibleLabel"
+                  "fullyQualifiedName": "ScreenLogIn.cntLogIn.cntMainLogIn.cntContentLogIn.cntInputLogin.txtPassword.AccessibleLabel"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "ScreenLogIn.cntLogIn.cntMainLogIn.cntContentLogIn.TextInputCanvas1_1.AccessibleLabel",
+                  "fullyQualifiedName": "ScreenLogIn.cntLogIn.cntMainLogIn.cntContentLogIn.cntInputLogin.txtPassword.AccessibleLabel",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "AccessibleLabel",
                 "module": "ScreenLogIn",
-                "type": "ScreenLogIn.cntLogIn.cntMainLogIn.cntContentLogIn.TextInputCanvas1_1"
+                "type": "ScreenLogIn.cntLogIn.cntMainLogIn.cntContentLogIn.cntInputLogin.txtPassword"
               }
             }
           ],
