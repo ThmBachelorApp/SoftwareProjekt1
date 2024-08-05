@@ -8,7 +8,9 @@
       "BasePaletteColor": "#80ba24",
       "EntityName": "THM Design",
       "Font": "Segoe UI",
-      "ThemeName": "THM Design"
+      "HueTorsion": 0,
+      "ThemeName": "THM Design",
+      "Vibrancy": 50
     }
   ]
 }

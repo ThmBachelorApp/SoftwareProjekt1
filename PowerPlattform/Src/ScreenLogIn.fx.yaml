@@ -1,0 +1,169 @@
+"ScreenLogIn As screen.'autoLayout_HeaderFooter_ver1.0'":
+
+    cntLogIn As groupContainer.verticalAutoLayoutContainer:
+        Fill: =RGBA(245, 245, 245, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        Width: =Parent.Width
+        ZIndex: =1
+
+        cntHeaderLogIn As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: |
+                =If(
+                    App.Width < App.Height,
+                    If(
+                        ScreenLogIn.Size = ScreenSize.Small,
+                        0.075,  // Geringerer Wert für Hochformat bei kleinem Bildschirm
+                        ScreenLogIn.Size = ScreenSize.Medium,
+                        0.075, // Geringerer Wert für Hochformat bei mittlerem Bildschirm
+                        0.075  // Standardwert für Hochformat bei anderen Größen
+                    ),
+                    If(
+                        ScreenLogIn.Size = ScreenSize.Small,
+                        0.075, // Ursprünglicher Wert für Querformat bei kleinem Bildschirm
+                        ScreenLogIn.Size = ScreenSize.Medium,
+                        0.1,   // Ursprünglicher Wert für Querformat bei mittlerem Bildschirm
+                        0.1    // Standardwert für Querformat bei anderen Größen
+                    )
+                )
+            Height: =75
+            LayoutMinHeight: =35
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            Width: =Parent.Width
+            ZIndex: =2
+
+            icnBack_1 As icon.BackArrow:
+                BorderColor: =RGBA(128, 186, 36, 1)
+                Color: =RGBA(141, 198, 63, 1)
+                FillPortions: =0.125
+                Height: =Parent.Height
+                Icon: =Icon.BackArrow
+                PaddingBottom: =5
+                PaddingLeft: =5
+                PaddingTop: =5
+                ZIndex: =1
+
+            imgLogo_1 As image:
+                FillPortions: =1
+                Height: =Parent.Height
+                Image: =THM_Logo_184x75
+                Width: =
+                ZIndex: =2
+
+            icnForword_1 As icon.NextArrow:
+                BorderColor: =RGBA(128, 186, 36, 1)
+                Color: =RGBA(141, 198, 63, 1)
+                FillPortions: =0.125
+                Height: =Parent.Height
+                Icon: =Icon.NextArrow
+                LayoutMinWidth: =50
+                PaddingBottom: =5
+                PaddingRight: =5
+                PaddingTop: =5
+                ZIndex: =3
+
+        cntMainLogIn As groupContainer.verticalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =Parent.Height
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            Width: =Parent.Width
+            ZIndex: =3
+
+            cntContentLogIn As groupContainer.manualLayoutContainer:
+                Height: =Parent.Height
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                Width: =Parent.Width
+                ZIndex: =1
+
+                TextInputCanvas1 As Texteingabe:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    Width: =320
+                    X: =328
+                    Y: =149
+                    ZIndex: =1
+
+                TextInputCanvas1_1 As Texteingabe:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    Width: =320
+                    X: =328
+                    Y: =262
+                    ZIndex: =2
+
+                TextCanvas1 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =35
+                    Width: =352
+                    X: =328
+                    Y: =114
+                    ZIndex: =3
+
+                TextCanvas1_1 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =35
+                    Width: =352
+                    X: =312
+                    Y: =219
+                    ZIndex: =4
+
+        cntFooterLogIn As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =cntHeaderLogIn.FillPortions
+            Height: =75
+            LayoutGap: =5
+            LayoutMinHeight: =40
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            Width: =Parent.Width
+            ZIndex: =4
+
+            btnRegister As button:
+                BorderThickness: =0
+                Fill: =RGBA(128, 186, 36, 1)
+                FillPortions: =1
+                Height: =Parent.Height
+                Size: =If(ScreenLogIn.Size = ScreenSize.Small, 12, ScreenSize.Medium, 18, 20)
+                Text: ="Registrieren"
+                ZIndex: =1
+
+            btnLogin As button:
+                BorderThickness: =0
+                Fill: =btnRegister.Fill
+                FillPortions: =1
+                Height: =Parent.Height
+                Size: =btnRegister.Size
+                Text: ="Anmelden"
+                ZIndex: =2
+
