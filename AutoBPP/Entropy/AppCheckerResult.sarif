@@ -2493,6 +2493,186 @@
             {
               "logicalLocations": [
                 {
+                  "fullyQualifiedName": "ScreenTeilnehmerListe.cntTemplate.cntMainTemplate.cntContent.Gallery2.AccessibleLabel"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "ScreenTeilnehmerListe.cntTemplate.cntMainTemplate.cntContent.Gallery2.AccessibleLabel",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "AccessibleLabel",
+                "module": "ScreenTeilnehmerListe",
+                "type": "ScreenTeilnehmerListe.cntTemplate.cntMainTemplate.cntContent.Gallery2"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-AccessibleLabelNeeded",
+          "ruleIndex": 2
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ScreenTeilnehmerListe.cntTemplate.cntMainTemplate.cntContent.Gallery2.TabIndex"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "ScreenTeilnehmerListe.cntTemplate.cntMainTemplate.cntContent.Gallery2.TabIndex",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "TabIndex",
+                "module": "ScreenTeilnehmerListe",
+                "type": "ScreenTeilnehmerListe.cntTemplate.cntMainTemplate.cntContent.Gallery2"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
+          "ruleIndex": 3
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ScreenEditEvent.cntEditEvent.cntMainEditEvent.cntContentEditEvent.GalleryEvents.Icon2.AccessibleLabel"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "ScreenEditEvent.cntEditEvent.cntMainEditEvent.cntContentEditEvent.GalleryEvents.Icon2.AccessibleLabel",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "AccessibleLabel",
+                "module": "ScreenEditEvent",
+                "type": "ScreenEditEvent.cntEditEvent.cntMainEditEvent.cntContentEditEvent.GalleryEvents.Icon2"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-AccessibleLabelNeeded",
+          "ruleIndex": 2
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ScreenEditEvent.cntEditEvent.cntMainEditEvent.cntContentEditEvent.GalleryEvents.Icon2.TabIndex"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "ScreenEditEvent.cntEditEvent.cntMainEditEvent.cntContentEditEvent.GalleryEvents.Icon2.TabIndex",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "TabIndex",
+                "module": "ScreenEditEvent",
+                "type": "ScreenEditEvent.cntEditEvent.cntMainEditEvent.cntContentEditEvent.GalleryEvents.Icon2"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
+          "ruleIndex": 3
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ScreenTeilnehmerListe.cntTemplate.cntHeaderTemplate.icnBack.AccessibleLabel"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "ScreenTeilnehmerListe.cntTemplate.cntHeaderTemplate.icnBack.AccessibleLabel",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "AccessibleLabel",
+                "module": "ScreenTeilnehmerListe",
+                "type": "ScreenTeilnehmerListe.cntTemplate.cntHeaderTemplate.icnBack"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-AccessibleLabelNeeded",
+          "ruleIndex": 2
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ScreenTeilnehmerListe.cntTemplate.cntHeaderTemplate.icnBack.TabIndex"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "ScreenTeilnehmerListe.cntTemplate.cntHeaderTemplate.icnBack.TabIndex",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "TabIndex",
+                "module": "ScreenTeilnehmerListe",
+                "type": "ScreenTeilnehmerListe.cntTemplate.cntHeaderTemplate.icnBack"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
+          "ruleIndex": 3
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
                   "fullyQualifiedName": "App.varBorderColor"
                 }
               ],
@@ -2697,6 +2877,36 @@
           },
           "ruleId": "app-CollectDelegatableDataSource",
           "ruleIndex": 6
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ScreenTeilnehmerListe.cntTemplate.cntMainTemplate.btnStudentInfo_1.Size"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "ScreenTeilnehmerListe.cntTemplate.cntMainTemplate.btnStudentInfo_1.Size",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "Size",
+                "module": "ScreenTeilnehmerListe",
+                "type": "ScreenTeilnehmerListe.cntTemplate.cntMainTemplate.btnStudentInfo_1"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-InefficientDelayLoading",
+          "ruleIndex": 7
         }
       ],
       "tool": {
@@ -2826,6 +3036,23 @@
                 "level": "Medium",
                 "primaryCategory": "performance",
                 "whyFix": "Bei Verwendung der Collect-Funktion zum Erstellen einer Sammlung direkt aus einer verbundenen Datenquelle wird möglicherweise nicht jede Zeile geladen, wenn die Datenquelle zu groß ist."
+              }
+            },
+            {
+              "id": "app-InefficientDelayLoading",
+              "messageStrings": {
+                "issue": {
+                  "text": "Ineffizientes verzögertes Laden"
+                }
+              },
+              "properties": {
+                "componentType": "app",
+                "howToFix": [
+                  "Verwenden Sie Variablen, Sammlungen und Navigationskontext, um den Zustand stattdessen bildschirmübergreifend freizugeben."
+                ],
+                "level": "Medium",
+                "primaryCategory": "performance",
+                "whyFix": "Steuerelemente, die auf Steuerelemente in anderen Bildschirmen verweisen, können das Laden von Apps und das Navigieren darin verlangsamen. In diesen Fällen ist die App möglicherweise gezwungen, die anderen Bildschirme sofort zu laden, statt zu warten, bis der Benutzer zum jeweiligen Bildschirm navigiert."
               }
             }
           ],
