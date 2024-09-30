@@ -255,7 +255,26 @@
                                 HoverBorderColor: =App.Theme.Colors.Darker10
                                 HoverColor: =App.Theme.Colors.PrimaryForeground
                                 HoverFill: =App.Theme.Colors.Darker10
-                                OnSelect: =Navigate(ScreenAllAntraege)
+                                OnSelect: |
+                                    =// Button für Admin
+                                    
+                                    // Schritt 1: Alle Anträge ohne Betreuer-Filter abrufen
+                                    Set(allAntraege, 'BPP Assistent - Antrag');
+                                    
+                                    // Schritt 2: Holen der Studierenden-IDs direkt aus der Spalte "StudierendeID" in allen Anträgen
+                                    Set(studierendeIDs, ForAll(allAntraege, StudierendeID));
+                                    
+                                    // Schritt 3: Filtern der Teilnahmebestätigung basierend auf den Studierenden-IDs
+                                    Set(confirmationList, Filter('BPP Assistent - Teilnahmebestätigung', StudierendeID in studierendeIDs && Info_x002d_Veranstaltung = false));
+                                    Set(infoList, Filter('BPP Assistent - Teilnahmebestätigung', StudierendeID in studierendeIDs && Info_x002d_Veranstaltung = true));
+                                    
+                                    // Schritt 4: Spezifische Teilnahmebestätigung für Info-Veranstaltungen (Info 1 und Info 2)
+                                    Set(infoVeranstaltung1, LookUp(infoList, BitteInfoveranstaltungausw_x00e4.Value = "Info 1"));
+                                    Set(infoVeranstaltung2, LookUp(infoList, BitteInfoveranstaltungausw_x00e4.Value = "Info 2"));
+                                    Set(confirmationCount, CountRows(confirmationList));
+                                    
+                                    // Navigation zu einem Screen, der alle Anträge anzeigt
+                                    Navigate(ScreenAllAntraege)
                                 PressedBorderColor: =App.Theme.Colors.Darker40
                                 PressedColor: =Self.Color
                                 PressedFill: =App.Theme.Colors.Darker40

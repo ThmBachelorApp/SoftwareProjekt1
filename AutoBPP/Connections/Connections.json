@@ -5,6 +5,9 @@
       "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1697/1.0.1697.3784/logicflows/icon.png",
       "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
       "parameterHints": {
+        "dd05f6e3-b3c3-4d10-b6ca-fd464d408ee8": {
+          "value": "shared_sharepointonline"
+        },
         "workflowDisplayName": {
           "value": "PDFErstellen"
         },
@@ -14,6 +17,9 @@
         }
       },
       "parameterHintsV2": {
+        "shared_sharepointonline": {
+          "value": "dd05f6e3-b3c3-4d10-b6ca-fd464d408ee8"
+        },
         "workflowDisplayName": {
           "value": "PDFErstellen"
         },
@@ -85,7 +91,7 @@
       "executionRestrictions": {
         "apiId": "unknown",
         "appVer": "3.24092.17",
-        "modifiedOn": "2024-09-30 21:21:05",
+        "modifiedOn": "2024-09-30 21:21:37",
         "policy": "{\"type\":\"invalid\"}",
         "version": 1
       },
@@ -367,7 +373,7 @@
       "executionRestrictions": {
         "apiId": "unknown",
         "appVer": "3.24092.17",
-        "modifiedOn": "2024-09-30 21:21:05",
+        "modifiedOn": "2024-09-30 21:21:37",
         "policy": "{\"type\":\"invalid\"}",
         "version": 1
       },

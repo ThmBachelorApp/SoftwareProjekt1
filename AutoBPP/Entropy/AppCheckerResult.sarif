@@ -174,6 +174,166 @@
             {
               "logicalLocations": [
                 {
+                  "fullyQualifiedName": "ScreenAdmin.cntAdmin.cntMainAdmin.cntContentAdmin.cntMenuAdmin.cntButtons_1.cntButtonsLeft_1.btn1_1.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "ScreenAdmin.cntAdmin.cntMainAdmin.cntContentAdmin.cntMenuAdmin.cntButtons_1.cntButtonsLeft_1.btn1_1.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 2,
+                  "charOffset": 453,
+                  "snippet": {
+                    "text": "in"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "ScreenAdmin",
+                "type": "ScreenAdmin.cntAdmin.cntMainAdmin.cntContentAdmin.cntMenuAdmin.cntButtons_1.cntButtonsLeft_1.btn1_1"
+              }
+            }
+          ],
+          "message": {
+            "arguments": [
+              "Filter"
+            ],
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-SuggestRemoteExecutionHint-InOpRhs",
+          "ruleIndex": 1
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ScreenAdmin.cntAdmin.cntMainAdmin.cntContentAdmin.cntMenuAdmin.cntButtons_1.cntButtonsLeft_1.btn1_1.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "ScreenAdmin.cntAdmin.cntMainAdmin.cntContentAdmin.cntMenuAdmin.cntButtons_1.cntButtonsLeft_1.btn1_1.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 2,
+                  "charOffset": 471,
+                  "snippet": {
+                    "text": "&&"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "ScreenAdmin",
+                "type": "ScreenAdmin.cntAdmin.cntMainAdmin.cntContentAdmin.cntMenuAdmin.cntButtons_1.cntButtonsLeft_1.btn1_1"
+              }
+            }
+          ],
+          "message": {
+            "arguments": [
+              "Filter"
+            ],
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-SuggestRemoteExecutionHint",
+          "ruleIndex": 0
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ScreenAdmin.cntAdmin.cntMainAdmin.cntContentAdmin.cntMenuAdmin.cntButtons_1.cntButtonsLeft_1.btn1_1.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "ScreenAdmin.cntAdmin.cntMainAdmin.cntContentAdmin.cntMenuAdmin.cntButtons_1.cntButtonsLeft_1.btn1_1.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 2,
+                  "charOffset": 587,
+                  "snippet": {
+                    "text": "in"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "ScreenAdmin",
+                "type": "ScreenAdmin.cntAdmin.cntMainAdmin.cntContentAdmin.cntMenuAdmin.cntButtons_1.cntButtonsLeft_1.btn1_1"
+              }
+            }
+          ],
+          "message": {
+            "arguments": [
+              "Filter"
+            ],
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-SuggestRemoteExecutionHint-InOpRhs",
+          "ruleIndex": 1
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ScreenAdmin.cntAdmin.cntMainAdmin.cntContentAdmin.cntMenuAdmin.cntButtons_1.cntButtonsLeft_1.btn1_1.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "ScreenAdmin.cntAdmin.cntMainAdmin.cntContentAdmin.cntMenuAdmin.cntButtons_1.cntButtonsLeft_1.btn1_1.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 2,
+                  "charOffset": 605,
+                  "snippet": {
+                    "text": "&&"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "ScreenAdmin",
+                "type": "ScreenAdmin.cntAdmin.cntMainAdmin.cntContentAdmin.cntMenuAdmin.cntButtons_1.cntButtonsLeft_1.btn1_1"
+              }
+            }
+          ],
+          "message": {
+            "arguments": [
+              "Filter"
+            ],
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-SuggestRemoteExecutionHint",
+          "ruleIndex": 0
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
                   "fullyQualifiedName": "ScreenBPP.cntBPP.cntMainBPP.cntContentBPP.cntMenuBPP.cntButtonsBPP.cntButtonsLeft_2.btn1_2.OnSelect"
                 }
               ],
