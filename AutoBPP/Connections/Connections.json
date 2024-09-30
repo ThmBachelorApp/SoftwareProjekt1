@@ -1,4 +1,38 @@
 {
+  "2775a4f4-b57f-4509-8f5d-7a9bf5286b5c": {
+    "connectionRef": {
+      "displayName": "Logik-Flows",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1697/1.0.1697.3784/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "workflowDisplayName": {
+          "value": "PDFErstellen"
+        },
+        "workflowEntityId": {},
+        "workflowName": {
+          "value": "12ae9537-50b9-4fac-8781-166c329442c4"
+        }
+      },
+      "parameterHintsV2": {
+        "workflowDisplayName": {
+          "value": "PDFErstellen"
+        },
+        "workflowEntityId": {},
+        "workflowName": {
+          "value": "12ae9537-50b9-4fac-8781-166c329442c4"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "PDFErstellen"
+    ],
+    "dependencies": {
+      "shared_sharepointonline": "dd05f6e3-b3c3-4d10-b6ca-fd464d408ee8"
+    },
+    "dependents": [],
+    "id": "2775a4f4-b57f-4509-8f5d-7a9bf5286b5c"
+  },
   "504f9439-7727-4576-9c98-6d575a91a118": {
     "appActions": [
       "Run"
@@ -51,7 +85,7 @@
       "executionRestrictions": {
         "apiId": "unknown",
         "appVer": "3.24092.17",
-        "modifiedOn": "2024-09-30 20:46:52",
+        "modifiedOn": "2024-09-30 21:21:05",
         "policy": "{\"type\":\"invalid\"}",
         "version": 1
       },
@@ -276,7 +310,9 @@
       "BPP Assistent - Teilnehmerliste"
     ],
     "dependencies": {},
-    "dependents": [],
+    "dependents": [
+      "2775a4f4-b57f-4509-8f5d-7a9bf5286b5c"
+    ],
     "id": "dd05f6e3-b3c3-4d10-b6ca-fd464d408ee8"
   },
   "e5876c8b-394a-4b76-9aac-767aa9ebe43c": {
@@ -331,7 +367,7 @@
       "executionRestrictions": {
         "apiId": "unknown",
         "appVer": "3.24092.17",
-        "modifiedOn": "2024-09-30 20:46:52",
+        "modifiedOn": "2024-09-30 21:21:05",
         "policy": "{\"type\":\"invalid\"}",
         "version": 1
       },
