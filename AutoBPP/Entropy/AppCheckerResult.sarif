@@ -2643,19 +2643,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "ScreenEditEvent.cntEditEvent.cntMainEditEvent.cntContentEditEvent.GalleryEvents.icnBooking.OnSelect"
+                  "fullyQualifiedName": "ScreenEditEvent.OnVisible"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "ScreenEditEvent.cntEditEvent.cntMainEditEvent.cntContentEditEvent.GalleryEvents.icnBooking.OnSelect",
+                  "fullyQualifiedName": "ScreenEditEvent.OnVisible",
                   "relativeAddress": 0
                 }
               },
               "properties": {
-                "member": "OnSelect",
+                "member": "OnVisible",
                 "module": "ScreenEditEvent",
-                "type": "ScreenEditEvent.cntEditEvent.cntMainEditEvent.cntContentEditEvent.GalleryEvents.icnBooking"
+                "type": "ScreenEditEvent"
               }
             }
           ],
@@ -2673,19 +2673,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "ScreenEditEvent.OnVisible"
+                  "fullyQualifiedName": "ScreenEditEvent.cntEditEvent.cntMainEditEvent.cntContentEditEvent.GalleryEvents.icnBooking.OnSelect"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "ScreenEditEvent.OnVisible",
+                  "fullyQualifiedName": "ScreenEditEvent.cntEditEvent.cntMainEditEvent.cntContentEditEvent.GalleryEvents.icnBooking.OnSelect",
                   "relativeAddress": 0
                 }
               },
               "properties": {
-                "member": "OnVisible",
+                "member": "OnSelect",
                 "module": "ScreenEditEvent",
-                "type": "ScreenEditEvent"
+                "type": "ScreenEditEvent.cntEditEvent.cntMainEditEvent.cntContentEditEvent.GalleryEvents.icnBooking"
               }
             }
           ],

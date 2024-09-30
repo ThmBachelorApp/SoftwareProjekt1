@@ -166,26 +166,3 @@
                 Text: ="Schaltfläche"
                 ZIndex: =1
 
-            btnSubmit As button:
-                BorderColor: =App.Theme.Colors.Primary
-                BorderThickness: =0
-                Color: =App.Theme.Colors.PrimaryForeground
-                DisabledBorderColor: =RGBA(244, 244, 244, 1)
-                DisabledColor: =RGBA(166, 166, 166, 1)
-                DisabledFill: =RGBA(244, 244, 244, 1)
-                Fill: =btnSave.Fill
-                FillPortions: =1
-                Font: =App.Theme.Font
-                FontWeight: =FontWeight.Semibold
-                Height: =Parent.Height
-                HoverBorderColor: =App.Theme.Colors.Darker10
-                HoverColor: =App.Theme.Colors.PrimaryForeground
-                HoverFill: =App.Theme.Colors.Darker10
-                OnSelect: =
-                PressedBorderColor: =App.Theme.Colors.Darker40
-                PressedColor: =Self.Color
-                PressedFill: =App.Theme.Colors.Darker40
-                Size: =btnSave.Size
-                Text: ="Abschicken"
-                ZIndex: =2
-
