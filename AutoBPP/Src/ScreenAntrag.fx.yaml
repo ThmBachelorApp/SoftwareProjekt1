@@ -1,0 +1,1476 @@
+"ScreenAntrag As screen.'autoLayout_HeaderFooter_ver1.0'":
+    Fill: =Color.White
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+    OnVisible: =Set(varStudent,LookUp('BPP Assistent - Studierende', currentUser = THME_x002d_Mail))
+
+    cntAntrag As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(245, 245, 245, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =Parent.Width
+        ZIndex: =1
+
+        cntHeaderAntrag As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: |
+                =// Prüfe die Bildschirmorientierung und passe die Werte basierend auf der Bildschirmgröße an
+                If(
+                    App.Width < App.Height,  // Hochformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Geringerer Wert für Hochformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.075,  // Geringerer Wert für Hochformat bei mittlerem Bildschirm
+                        0.075   // Standardwert für Hochformat bei anderen Größen
+                    ),
+                    // Querformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Ursprünglicher Wert für Querformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.1,    // Ursprünglicher Wert für Querformat bei mittlerem Bildschirm
+                        0.1     // Standardwert für Querformat bei anderen Größen
+                    )
+                )
+            Height: =75
+            LayoutMinHeight: =35
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =2
+
+            icnBack_3 As icon.BackArrow:
+                BorderColor: =RGBA(128, 186, 36, 1)
+                Color: =RGBA(141, 198, 63, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                FillPortions: =0.1
+                Height: =Parent.Height
+                Icon: =Icon.BackArrow
+                LayoutMinWidth: =50
+                OnSelect: |
+                    =If(
+                        !IsBlank(returnScreenAntrag), // Überprüft, ob returnScreen gesetzt wurde
+                        Navigate(returnScreenAntrag, ScreenTransition.Fade), // Navigiert zurück zum gespeicherten Screen
+                        Navigate(ScreenStudenInfo) // Standardmäßig zum vorherigen Bildschirm navigieren, falls keine Variable gesetzt ist
+                    )
+                PaddingBottom: =5
+                PaddingLeft: =5
+                PaddingTop: =5
+                ZIndex: =1
+
+            imgLogo_3 As image:
+                BorderColor: =App.Theme.Colors.Darker40
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                FillPortions: =1
+                Height: =Parent.Height
+                Image: =THM_Logo_184x75
+                PaddingRight: =64
+                Width: =
+                ZIndex: =2
+
+        cntMainAntrag As groupContainer.verticalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =Parent.Height
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =3
+
+            cntContentAntrag As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Light
+                Height: =Parent.Height
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Width: =Parent.Width
+                ZIndex: =1
+
+                cntfrmAntrag As groupContainer.verticalAutoLayoutContainer:
+                    DropShadow: =DropShadow.Light
+                    Height: =Parent.Height
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutMode: =LayoutMode.Auto
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    Width: =Parent.Width - 10
+                    X: =5
+                    Y: =5
+                    ZIndex: =2
+
+                    btnEvent_1 As button:
+                        BorderColor: =App.Theme.Colors.Primary
+                        BorderThickness: =0
+                        Color: =App.Theme.Colors.PrimaryForeground
+                        DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        DisabledFill: =RGBA(244, 244, 244, 1)
+                        DisplayMode: =DisplayMode.View
+                        Fill: =RGBA(128, 186, 36, 1)
+                        FillPortions: =0.075
+                        Font: =App.Theme.Font
+                        FontWeight: =FontWeight.Semibold
+                        Height: =Parent.Height
+                        HoverBorderColor: =App.Theme.Colors.Darker10
+                        HoverColor: =App.Theme.Colors.PrimaryForeground
+                        HoverFill: =App.Theme.Colors.Darker10
+                        LayoutMinHeight: =30
+                        PressedBorderColor: =App.Theme.Colors.Darker40
+                        PressedColor: =Self.Color
+                        PressedFill: =App.Theme.Colors.Darker40
+                        Size: =If(ScreenAntrag.Size = ScreenSize.Small, 12, ScreenSize.Medium, 18, 20)
+                        Text: ="Neuen Antrag anlegen"
+                        Width: =Parent.Width 
+                        ZIndex: =1
+
+                    frmAntrag As form.PowerApps_CoreControls_Form:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        DataSource: ='BPP Assistent - Antrag'
+                        DefaultMode: |
+                            =If(IsBlank(antragsItem), FormMode.New, FormMode.Edit)
+                        Height: =Parent.Height
+                        Item: =antragsItem
+                        LayoutMinHeight: =250
+                        LayoutMinWidth: =300
+                        NumberOfColumns: =2
+                        UseFluentV9Cards: =true
+                        Width: =Parent.Width - 10 
+                        ZIndex: =2
+
+                        "'E-Mail Betreuende/r Dozent/in der THM_DataCard1' As typedDataCard.fluentV9TextualEditCard":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="E_x002d_MailBetreuende_x002f_rDo"
+                            Default: =ThisItem.E_x002d_MailBetreuende_x002f_rDo
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Antrag'],DataSourceInfo.DisplayName,E_x002d_MailBetreuende_x002f_rDo)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =70
+                            MaxLength: =DataSourceInfo([@'BPP Assistent - Antrag'], DataSourceInfo.MaxLength, E_x002d_MailBetreuende_x002f_rDo)
+                            Required: =false
+                            Update: =DataCardValue35.Value
+                            Width: ='Meine Zulassung liegt vor_DataCard1'.Width
+                            WidthFit: ='Meine Zulassung liegt vor_DataCard1'.WidthFit
+                            X: =2
+                            Y: =1
+                            ZIndex: =1
+
+                            DataCardKey36 As Text:
+                                DisplayMode: =DisplayMode.Edit
+                                Height: =30
+                                Size: =DataCardKey3.Size
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue35 As Texteingabe:
+                                AccessibleLabel: =Parent.DisplayName
+                                DisplayMode: =Parent.DisplayMode
+                                Height: =32
+                                Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                                Required: =Parent.Required
+                                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                                Value: =Parent.Default
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey36.Y + DataCardKey36.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage36 As Text:
+                                DisplayMode: =DisplayMode.Edit
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue35.Y + DataCardValue35.Height
+                                ZIndex: =3
+
+                            StarVisible36 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                DisplayMode: =DisplayMode.Edit
+                                Height: =30
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey36.Y
+                                ZIndex: =4
+
+                        "'Meine Zulassung liegt vor_DataCard1' As typedDataCard.fluentV9ToggleEditCard":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="MeineZulassungliegtvor"
+                            Default: =ThisItem.MeineZulassungliegtvor
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Antrag'],DataSourceInfo.DisplayName,MeineZulassungliegtvor)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =70
+                            Required: =false
+                            Update: =DataCardValue3.Checked
+                            Width: =If(ScreenAntrag.Size = 1,Parent.Width,Parent.Width/2)
+                            WidthFit: =If(ScreenAntrag.Size = 1,true,false)
+                            X: =0
+                            Y: =0
+                            ZIndex: =2
+
+                            DataCardKey3 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =22
+                                Size: |
+                                    =Switch(
+                                        App.ActiveScreen.Size,
+                                        1, 12, // Kleine Bildschirme, Schriftgröße 12
+                                        2, 14, // Mittlere Bildschirme, Schriftgröße 14
+                                        3, 16, // Große Bildschirme, Schriftgröße 16
+                                        4, 18  // Extra große Bildschirme, Schriftgröße 18
+                                    )
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue3 As Umschalten:
+                                AccessibleLabel: =If(Parent.Required, Substitute("{0}. Erforderlich.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                                BasePaletteColor: =
+                                Checked: =Parent.Default
+                                DisplayMode: =Parent.DisplayMode
+                                FontColor: =
+                                Height: =32
+                                Label: =""
+                                OnCheck: =false
+                                OnUncheck: =false
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey3.Y + DataCardKey3.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage3 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue3.Y + DataCardValue3.Height
+                                ZIndex: =3
+
+                            StarVisible3 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey3.Y
+                                ZIndex: =4
+
+                        "'Zulassung unter Vorbehalt_DataCard1' As typedDataCard.fluentV9ToggleEditCard":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="ZulassungunterVorbehalt"
+                            Default: =ThisItem.ZulassungunterVorbehalt
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Antrag'],DataSourceInfo.DisplayName,ZulassungunterVorbehalt)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =140
+                            Required: =false
+                            Update: =DataCardValue4.Checked
+                            Width: =Parent.Width
+                            WidthFit: =true
+                            X: =0
+                            Y: =1
+                            ZIndex: =2
+
+                            DataCardKey4 As Text:
+                                AutoHeight: =true
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =120
+                                Size: =DataCardKey3.Size
+                                Text: |-
+                                    ="Ich beantrage eine Zulassung unter Vorbehalt zum Datum der Antragstellung.
+                                    Mir fehlt für die Zulassung nur noch das Wirtschaftsinformatik-Seminar II (WIS2).
+                                    Meine schriftliche Ausarbeitung zu WIS2 habe ich abgegeben."
+                                VerticalAlign: ='TextCanvas.VerticalAlign'.Top
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue4 As Umschalten:
+                                AccessibleLabel: =If(Parent.Required, Substitute("{0}. Erforderlich.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                                BasePaletteColor: =
+                                Checked: =Parent.Default
+                                DisplayMode: =Parent.DisplayMode
+                                FontColor: =
+                                Height: =32
+                                Label: =""
+                                OnCheck: =false
+                                OnUncheck: =false
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey4.Y + DataCardKey4.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage4 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue4.Y + DataCardValue4.Height
+                                ZIndex: =3
+
+                            StarVisible4 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey4.Y
+                                ZIndex: =4
+
+                        "'Zulassung unter Vorbehalt - Vortragsdatum_DataCard1' As typedDataCard.fluentV9DateEditCard":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="ZulassungunterVorbehalt_x002d_Vo"
+                            Default: =ThisItem.ZulassungunterVorbehalt_x002d_Vo
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Antrag'],DataSourceInfo.DisplayName,ZulassungunterVorbehalt_x002d_Vo)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =70
+                            Required: =false
+                            Update: =DataCardValue5.SelectedDate
+                            Visible: =DataCardValue4.Checked
+                            Width: ='Meine Zulassung liegt vor_DataCard1'.Width
+                            WidthFit: ='Meine Zulassung liegt vor_DataCard1'.WidthFit
+                            X: =0
+                            Y: =2
+                            ZIndex: =2
+
+                            DataCardKey5 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =22
+                                Size: =DataCardKey3.Size
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue5 As Datumsauswahl:
+                                AccessibleLabel: =If(Parent.Required, Substitute("{0}. Erforderlich.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                                BasePaletteColor: =
+                                BorderColor: =
+                                DisplayMode: =Parent.DisplayMode
+                                EndDate: =Date(Year(Today())+100, 12, 31)
+                                Fill: =
+                                FontColor: =
+                                Height: =32
+                                SelectedDate: =Parent.Default
+                                StartDate: =Date(1900, 1, 1)
+                                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey5.Y + DataCardKey5.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage5 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue5.Y + DataCardValue5.Height
+                                ZIndex: =3
+
+                            StarVisible5 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey5.Y
+                                ZIndex: =4
+
+                        "'BPP Stelle - Name_DataCard1' As typedDataCard.fluentV9TextualEditCard":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="BPPStelle_x002d_Name"
+                            Default: =ThisItem.BPPStelle_x002d_Name
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Antrag'],DataSourceInfo.DisplayName,BPPStelle_x002d_Name)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =70
+                            MaxLength: =DataSourceInfo([@'BPP Assistent - Antrag'], DataSourceInfo.MaxLength, BPPStelle_x002d_Name)
+                            Required: =false
+                            Update: =DataCardValue6.Value
+                            Width: ='Meine Zulassung liegt vor_DataCard1'.Width
+                            WidthFit: ='Meine Zulassung liegt vor_DataCard1'.WidthFit
+                            X: =0
+                            Y: =3
+                            ZIndex: =2
+
+                            DataCardKey6 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Size: =DataCardKey3.Size
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue6 As Texteingabe:
+                                AccessibleLabel: =Parent.DisplayName
+                                BasePaletteColor: =
+                                BorderColor: =
+                                DisplayMode: =Parent.DisplayMode
+                                Fill: =
+                                FontColor: =
+                                Height: =32
+                                Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                                Required: =Parent.Required
+                                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                                Value: =Parent.Default
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey6.Y + DataCardKey6.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage6 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue6.Y + DataCardValue6.Height
+                                ZIndex: =3
+
+                            StarVisible6 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey6.Y
+                                ZIndex: =4
+
+                        "'BPP Stelle - Abteilung_DataCard1' As typedDataCard.fluentV9TextualEditCard":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="BPPStelle_x002d_Abteilung"
+                            Default: =ThisItem.BPPStelle_x002d_Abteilung
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Antrag'],DataSourceInfo.DisplayName,BPPStelle_x002d_Abteilung)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =70
+                            MaxLength: =DataSourceInfo([@'BPP Assistent - Antrag'], DataSourceInfo.MaxLength, BPPStelle_x002d_Abteilung)
+                            Required: =false
+                            Update: =DataCardValue7.Value
+                            Width: ='Meine Zulassung liegt vor_DataCard1'.Width
+                            WidthFit: ='Meine Zulassung liegt vor_DataCard1'.WidthFit
+                            X: =0
+                            Y: =3
+                            ZIndex: =2
+
+                            DataCardKey7 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Size: =DataCardKey3.Size
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue7 As Texteingabe:
+                                AccessibleLabel: =Parent.DisplayName
+                                BasePaletteColor: =
+                                BorderColor: =
+                                DisplayMode: =Parent.DisplayMode
+                                Fill: =
+                                FontColor: =
+                                Height: =32
+                                Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                                Required: =Parent.Required
+                                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                                Value: =Parent.Default
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey7.Y + DataCardKey7.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage7 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue7.Y + DataCardValue7.Height
+                                ZIndex: =3
+
+                            StarVisible7 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey7.Y
+                                ZIndex: =4
+
+                        "'Betreuer/in in der BPP-Stelle_DataCard1' As typedDataCard.fluentV9TextualEditCard":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="Betreuer_x002f_ininderBPP_x002d_"
+                            Default: =ThisItem.Betreuer_x002f_ininderBPP_x002d_
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Antrag'],DataSourceInfo.DisplayName,Betreuer_x002f_ininderBPP_x002d_)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =70
+                            MaxLength: =DataSourceInfo([@'BPP Assistent - Antrag'], DataSourceInfo.MaxLength, Betreuer_x002f_ininderBPP_x002d_)
+                            Required: =false
+                            Update: =DataCardValue8.Value
+                            Width: ='Meine Zulassung liegt vor_DataCard1'.Width
+                            WidthFit: ='Meine Zulassung liegt vor_DataCard1'.WidthFit
+                            X: =1
+                            Y: =3
+                            ZIndex: =2
+
+                            DataCardKey8 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Size: =DataCardKey3.Size
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue8 As Texteingabe:
+                                AccessibleLabel: =Parent.DisplayName
+                                BasePaletteColor: =
+                                BorderColor: =
+                                DisplayMode: =Parent.DisplayMode
+                                Fill: =
+                                FontColor: =
+                                Height: =32
+                                Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                                Required: =Parent.Required
+                                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                                Value: =Parent.Default
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey8.Y + DataCardKey8.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage8 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue8.Y + DataCardValue8.Height
+                                ZIndex: =3
+
+                            StarVisible8 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey8.Y
+                                ZIndex: =4
+
+                        "'BPP Stelle - Straße_DataCard1' As typedDataCard.fluentV9TextualEditCard":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="BPPStelle_x002d_Stra_x00df_e"
+                            Default: =ThisItem.BPPStelle_x002d_Stra_x00df_e
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Antrag'],DataSourceInfo.DisplayName,BPPStelle_x002d_Stra_x00df_e)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =70
+                            MaxLength: =DataSourceInfo([@'BPP Assistent - Antrag'], DataSourceInfo.MaxLength, BPPStelle_x002d_Stra_x00df_e)
+                            Required: =false
+                            Update: =DataCardValue9.Value
+                            Width: ='Meine Zulassung liegt vor_DataCard1'.Width
+                            WidthFit: ='Meine Zulassung liegt vor_DataCard1'.WidthFit
+                            X: =0
+                            Y: =4
+                            ZIndex: =2
+
+                            DataCardKey9 As Text:
+                                AutoHeight: =false
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Size: =DataCardKey3.Size
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue9 As Texteingabe:
+                                AccessibleLabel: =Parent.DisplayName
+                                BasePaletteColor: =
+                                BorderColor: =
+                                DisplayMode: =Parent.DisplayMode
+                                Fill: =
+                                FontColor: =
+                                Height: =32
+                                Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                                Required: =Parent.Required
+                                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                                Value: =Parent.Default
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey9.Y + DataCardKey9.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage9 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue9.Y + DataCardValue9.Height
+                                ZIndex: =3
+
+                            StarVisible9 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey9.Y
+                                ZIndex: =4
+
+                        "'BPP Stelle - Postfach_DataCard1' As typedDataCard.fluentV9TextualEditCard":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="BPPStelle_x002d_Postfach"
+                            Default: =ThisItem.BPPStelle_x002d_Postfach
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Antrag'],DataSourceInfo.DisplayName,BPPStelle_x002d_Postfach)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =70
+                            MaxLength: =DataSourceInfo([@'BPP Assistent - Antrag'], DataSourceInfo.MaxLength, BPPStelle_x002d_Postfach)
+                            Required: =false
+                            Update: =DataCardValue10.Value
+                            Width: ='Meine Zulassung liegt vor_DataCard1'.Width
+                            WidthFit: ='Meine Zulassung liegt vor_DataCard1'.WidthFit
+                            X: =0
+                            Y: =4
+                            ZIndex: =2
+
+                            DataCardKey10 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Size: =DataCardKey3.Size
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue10 As Texteingabe:
+                                AccessibleLabel: =Parent.DisplayName
+                                BasePaletteColor: =
+                                BorderColor: =
+                                DisplayMode: =Parent.DisplayMode
+                                Fill: =
+                                FontColor: =
+                                Height: =32
+                                Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                                Required: =Parent.Required
+                                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                                Value: =Parent.Default
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey10.Y + DataCardKey10.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage10 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue10.Y + DataCardValue10.Height
+                                ZIndex: =3
+
+                            StarVisible10 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey10.Y
+                                ZIndex: =4
+
+                        "'BPP Stelle - PLZ_DataCard1' As typedDataCard.fluentV9TextualEditCard":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="BPPStelle_x002d_PLZ"
+                            Default: =ThisItem.BPPStelle_x002d_PLZ
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Antrag'],DataSourceInfo.DisplayName,BPPStelle_x002d_PLZ)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =70
+                            MaxLength: =DataSourceInfo([@'BPP Assistent - Antrag'], DataSourceInfo.MaxLength, BPPStelle_x002d_PLZ)
+                            Required: =false
+                            Update: =DataCardValue11.Value
+                            Width: ='Meine Zulassung liegt vor_DataCard1'.Width
+                            WidthFit: ='Meine Zulassung liegt vor_DataCard1'.WidthFit
+                            X: =1
+                            Y: =4
+                            ZIndex: =2
+
+                            DataCardKey11 As Text:
+                                AutoHeight: =true
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Size: =DataCardKey3.Size
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue11 As Texteingabe:
+                                AccessibleLabel: =Parent.DisplayName
+                                BasePaletteColor: =
+                                BorderColor: =
+                                DisplayMode: =Parent.DisplayMode
+                                Fill: =
+                                FontColor: =
+                                Height: =32
+                                Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                                Required: =Parent.Required
+                                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                                Value: =Parent.Default
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey11.Y + DataCardKey11.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage11 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue11.Y + DataCardValue11.Height
+                                ZIndex: =3
+
+                            StarVisible11 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey11.Y
+                                ZIndex: =4
+
+                        "'BPP Stelle - Ort_DataCard1' As typedDataCard.fluentV9TextualEditCard":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="BPPStelle_x002d_Ort"
+                            Default: =ThisItem.BPPStelle_x002d_Ort
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Antrag'],DataSourceInfo.DisplayName,BPPStelle_x002d_Ort)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =70
+                            MaxLength: =DataSourceInfo([@'BPP Assistent - Antrag'], DataSourceInfo.MaxLength, BPPStelle_x002d_Ort)
+                            Required: =false
+                            Update: =DataCardValue12.Value
+                            Width: ='Meine Zulassung liegt vor_DataCard1'.Width
+                            WidthFit: ='Meine Zulassung liegt vor_DataCard1'.WidthFit
+                            X: =1
+                            Y: =4
+                            ZIndex: =2
+
+                            DataCardKey12 As Text:
+                                AutoHeight: =true
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Size: =DataCardKey3.Size
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue12 As Texteingabe:
+                                AccessibleLabel: =Parent.DisplayName
+                                BasePaletteColor: =
+                                BorderColor: =
+                                DisplayMode: =Parent.DisplayMode
+                                Fill: =
+                                FontColor: =
+                                Height: =32
+                                Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                                Required: =Parent.Required
+                                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                                Value: =Parent.Default
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey12.Y + DataCardKey12.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage12 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue12.Y + DataCardValue12.Height
+                                ZIndex: =3
+
+                            StarVisible12 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey12.Y
+                                ZIndex: =4
+
+                        "'BPP - Stelle Telefon_DataCard1' As typedDataCard.fluentV9TextualEditCard":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="BPP_x002d_StelleTelefon"
+                            Default: =ThisItem.BPP_x002d_StelleTelefon
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Antrag'],DataSourceInfo.DisplayName,BPP_x002d_StelleTelefon)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =70
+                            MaxLength: =DataSourceInfo([@'BPP Assistent - Antrag'], DataSourceInfo.MaxLength, BPP_x002d_StelleTelefon)
+                            Required: =false
+                            Update: =DataCardValue13.Value
+                            Width: ='Meine Zulassung liegt vor_DataCard1'.Width
+                            WidthFit: ='Meine Zulassung liegt vor_DataCard1'.WidthFit
+                            X: =0
+                            Y: =5
+                            ZIndex: =2
+
+                            DataCardKey13 As Text:
+                                AutoHeight: =true
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Size: =DataCardKey3.Size
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue13 As Texteingabe:
+                                AccessibleLabel: =Parent.DisplayName
+                                BasePaletteColor: =
+                                BorderColor: =
+                                DisplayMode: =Parent.DisplayMode
+                                Fill: =
+                                FontColor: =
+                                Height: =32
+                                Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                                Required: =Parent.Required
+                                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                                Value: =Parent.Default
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey13.Y + DataCardKey13.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage13 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue13.Y + DataCardValue13.Height
+                                ZIndex: =3
+
+                            StarVisible13 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey13.Y
+                                ZIndex: =4
+
+                        "'Inhalt der praktischen Tätigkeit_DataCard1' As typedDataCard.fluentV9TextualEditCard":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="InhaltderpraktischenT_x00e4_tigk"
+                            Default: =ThisItem.InhaltderpraktischenT_x00e4_tigk
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Antrag'],DataSourceInfo.DisplayName,InhaltderpraktischenT_x00e4_tigk)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =70
+                            MaxLength: =DataSourceInfo([@'BPP Assistent - Antrag'], DataSourceInfo.MaxLength, InhaltderpraktischenT_x00e4_tigk)
+                            Required: =false
+                            Update: =DataCardValue14.Value
+                            Width: =Parent.Width
+                            WidthFit: =true
+                            X: =0
+                            Y: =6
+                            ZIndex: =2
+
+                            DataCardKey14 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Size: =DataCardKey3.Size
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue14 As Texteingabe:
+                                AccessibleLabel: =Parent.DisplayName
+                                BasePaletteColor: =
+                                BorderColor: =
+                                DisplayMode: =Parent.DisplayMode
+                                Fill: =
+                                FontColor: =
+                                Height: =180
+                                Mode: ='TextInputCanvas.Mode'.Multiline
+                                Required: =Parent.Required
+                                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                                Value: =Parent.Default
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey14.Y + DataCardKey14.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage14 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue14.Y + DataCardValue14.Height
+                                ZIndex: =3
+
+                            StarVisible14 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey14.Y
+                                ZIndex: =4
+
+                        "'Beginn der BPP_DataCard1' As typedDataCard.fluentV9DateEditCard":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="BeginnderBPP"
+                            Default: =ThisItem.BeginnderBPP
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Antrag'],DataSourceInfo.DisplayName,BeginnderBPP)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =70
+                            Required: =false
+                            Update: =DataCardValue15.SelectedDate
+                            Width: ='Meine Zulassung liegt vor_DataCard1'.Width
+                            WidthFit: ='Meine Zulassung liegt vor_DataCard1'.WidthFit
+                            X: =0
+                            Y: =7
+                            ZIndex: =2
+
+                            DataCardKey15 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Size: =DataCardKey3.Size
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue15 As Datumsauswahl:
+                                AccessibleLabel: =If(Parent.Required, Substitute("{0}. Erforderlich.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                                BasePaletteColor: =
+                                BorderColor: =
+                                DisplayMode: =Parent.DisplayMode
+                                EndDate: =Date(Year(Today())+100, 12, 31)
+                                Fill: =
+                                FontColor: =
+                                Format: ='DatePickerCanvas.Format'.LongAbbreviated
+                                Height: =32
+                                SelectedDate: =Parent.Default
+                                StartDate: =Date(1900, 1, 1)
+                                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey15.Y + DataCardKey15.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage15 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue15.Y + DataCardValue15.Height
+                                ZIndex: =3
+
+                            StarVisible15 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey15.Y
+                                ZIndex: =4
+
+                        "'Ende der BPP_DataCard1' As typedDataCard.fluentV9DateEditCard":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="EndederBPP"
+                            Default: =ThisItem.EndederBPP
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Antrag'],DataSourceInfo.DisplayName,EndederBPP)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =70
+                            Required: =false
+                            Update: =DataCardValue16.SelectedDate
+                            Width: ='Meine Zulassung liegt vor_DataCard1'.Width
+                            WidthFit: ='Meine Zulassung liegt vor_DataCard1'.WidthFit
+                            X: =1
+                            Y: =7
+                            ZIndex: =2
+
+                            DataCardKey16 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Size: =DataCardKey3.Size
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue16 As Datumsauswahl:
+                                AccessibleLabel: =If(Parent.Required, Substitute("{0}. Erforderlich.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                                BasePaletteColor: =
+                                BorderColor: =
+                                DisplayMode: =Parent.DisplayMode
+                                EndDate: =Date(Year(Today())+100, 12, 31)
+                                Fill: =
+                                FontColor: =
+                                Height: =32
+                                SelectedDate: =Parent.Default
+                                StartDate: =Date(1900, 1, 1)
+                                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey16.Y + DataCardKey16.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage16 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue16.Y + DataCardValue16.Height
+                                ZIndex: =3
+
+                            StarVisible16 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey16.Y
+                                ZIndex: =4
+
+                        "'800 Stunden - Variante_DataCard1' As typedDataCard.fluentV9ToggleEditCard":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="OData__x0038_00Stunden_x002d_Variante"
+                            Default: =ThisItem.OData__x0038_00Stunden_x002d_Variante
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Antrag'],DataSourceInfo.DisplayName,OData__x0038_00Stunden_x002d_Variante)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =70
+                            Required: =false
+                            Update: =DataCardValue17.Checked
+                            Width: ='Meine Zulassung liegt vor_DataCard1'.Width
+                            WidthFit: ='Meine Zulassung liegt vor_DataCard1'.WidthFit
+                            X: =0
+                            Y: =8
+                            ZIndex: =2
+
+                            DataCardKey17 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Size: =DataCardKey3.Size
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue17 As Umschalten:
+                                AccessibleLabel: =If(Parent.Required, Substitute("{0}. Erforderlich.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                                BasePaletteColor: =
+                                Checked: =Parent.Default
+                                DisplayMode: =Parent.DisplayMode
+                                FontColor: =
+                                Height: =32
+                                Label: =""
+                                OnCheck: =false
+                                OnUncheck: =false
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey17.Y + DataCardKey17.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage17 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue17.Y + DataCardValue17.Height
+                                ZIndex: =3
+
+                            StarVisible17 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey17.Y
+                                ZIndex: =4
+
+        cntFooterAntrag As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: |
+                =// Prüfe die Bildschirmorientierung und passe die Werte basierend auf der Bildschirmgröße an
+                If(
+                    App.Width < App.Height,  // Hochformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Geringerer Wert für Hochformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.075,  // Geringerer Wert für Hochformat bei mittlerem Bildschirm
+                        0.075   // Standardwert für Hochformat bei anderen Größen
+                    ),
+                    // Querformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Ursprünglicher Wert für Querformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.1,    // Ursprünglicher Wert für Querformat bei mittlerem Bildschirm
+                        0.1     // Standardwert für Querformat bei anderen Größen
+                    )
+                )
+            Height: =75
+            LayoutGap: =5
+            LayoutMinHeight: =40
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =4
+
+            btnSave_1 As button:
+                BorderColor: =App.Theme.Colors.Primary
+                BorderThickness: =0
+                Color: =App.Theme.Colors.PrimaryForeground
+                DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                DisplayMode: =If(IsBlank(antragsItem.SignaturID_x002d_Studierende),DisplayMode.Edit,DisplayMode.Disabled)
+                Fill: =RGBA(128, 186, 36, 1)
+                FillPortions: =1
+                Font: =App.Theme.Font
+                FontWeight: =FontWeight.Semibold
+                Height: =Parent.Height
+                HoverBorderColor: =App.Theme.Colors.Darker10
+                HoverColor: =App.Theme.Colors.PrimaryForeground
+                HoverFill: =App.Theme.Colors.Darker10
+                OnSelect: |-
+                    =
+                    Navigate(ScreenSignatur);
+                    Set(BetreuerEmail, DataCardValue35.Value);
+                    NewForm(frmSignatur)
+                PressedBorderColor: =App.Theme.Colors.Darker40
+                PressedColor: =Self.Color
+                PressedFill: =App.Theme.Colors.Darker40
+                Size: =If(ScreenAntrag.Size = ScreenSize.Small, 12, ScreenSize.Medium, 18, 20)
+                Text: ="Antrag unterschreiben"
+                ZIndex: =1
+

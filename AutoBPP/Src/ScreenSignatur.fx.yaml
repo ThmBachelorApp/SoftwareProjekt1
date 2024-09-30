@@ -1,0 +1,531 @@
+"ScreenSignatur As screen.'autoLayout_HeaderFooter_ver1.0'":
+    Fill: =Color.White
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+    OnVisible: |
+        =// Abrufen der bestehenden Unterschrift basierend auf der User-ID
+        Set(
+            existingSignature,
+            LookUp(
+                'BPP Assistent - Signatur',
+                Zugeh_x00f6_rigeID = LookUp('BPP - Registrierung', E_x002d_Mail = User().Email).ID
+            )
+        );
+        
+        // Setze die Unterschrift als Default im PenInput, falls vorhanden
+        If(
+            !IsBlank(existingSignature.Unterschrift),
+            PenInput2.Image = Substitute(existingSignature.Unterschrift, """", ""),
+            PenInput2.Image = Blank() // Leerer Wert, falls keine Unterschrift vorhanden ist
+        );
+
+    cntSignatur As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(245, 245, 245, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =Parent.Width
+        ZIndex: =1
+
+        cntHeaderSignatur As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: |
+                =// Prüfe die Bildschirmorientierung und passe die Werte basierend auf der Bildschirmgröße an
+                If(
+                    App.Width < App.Height,  // Hochformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Geringerer Wert für Hochformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.075,  // Geringerer Wert für Hochformat bei mittlerem Bildschirm
+                        0.075   // Standardwert für Hochformat bei anderen Größen
+                    ),
+                    // Querformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Ursprünglicher Wert für Querformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.1,    // Ursprünglicher Wert für Querformat bei mittlerem Bildschirm
+                        0.1     // Standardwert für Querformat bei anderen Größen
+                    )
+                )
+            Height: =75
+            LayoutMinHeight: =35
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =1
+
+            icnBack_12 As icon.BackArrow:
+                BorderColor: =RGBA(128, 186, 36, 1)
+                Color: =RGBA(141, 198, 63, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                FillPortions: =0.125
+                Height: =Parent.Height
+                Icon: =Icon.BackArrow
+                OnSelect: = Back()
+                PaddingBottom: =5
+                PaddingLeft: =5
+                PaddingTop: =5
+                ZIndex: =2
+
+            imgLogo_12 As image:
+                BorderColor: =App.Theme.Colors.Darker40
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                FillPortions: =1
+                Height: =Parent.Height
+                Image: =THM_Logo_184x75
+                Width: =
+                ZIndex: =3
+
+        cntMainSignatur As groupContainer.verticalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =Parent.Height
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =5
+
+            cntContent_1 As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Light
+                Height: =Parent.Height
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Width: =Parent.Width
+                ZIndex: =6
+
+                cntPenInput As groupContainer.verticalAutoLayoutContainer:
+                    Height: =458
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutGap: =5
+                    LayoutMode: =LayoutMode.Auto
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    Width: =Min(Max(Parent.Width / 1.5,300), 500)
+                    X: =(Parent.Width - Self.Width) / 2
+                    Y: |
+                        =(Parent.Height - Self.Height) / 2
+                    ZIndex: =2
+
+                    Container5 As groupContainer.manualLayoutContainer:
+                        DropShadow: =DropShadow.Light
+                        FillPortions: =0.1
+                        LayoutMinHeight: =50
+                        LayoutMinWidth: =250
+                        RadiusBottomLeft: =4
+                        RadiusBottomRight: =4
+                        RadiusTopLeft: =4
+                        RadiusTopRight: =4
+                        ZIndex: =1
+
+                        lblPenInput As button:
+                            BorderColor: =App.Theme.Colors.Primary
+                            BorderThickness: =0
+                            Color: =App.Theme.Colors.PrimaryForeground
+                            DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            Fill: =btnSave_6.Fill
+                            Font: =App.Theme.Font
+                            FontWeight: =FontWeight.Semibold
+                            Height: =50
+                            HoverBorderColor: =App.Theme.Colors.Darker10
+                            HoverColor: =App.Theme.Colors.PrimaryForeground
+                            HoverFill: =App.Theme.Colors.Darker10
+                            PressedBorderColor: =App.Theme.Colors.Darker40
+                            PressedColor: =Self.Color
+                            PressedFill: =App.Theme.Colors.Darker40
+                            Size: =btnSave_6.Size
+                            Text: ="Bitter hier unterschreiben"
+                            Width: =Parent.Width - icnSignaturEdit.Width - 20
+                            ZIndex: =1
+
+                        icnSignaturEdit As icon.Edit:
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: =App.Theme.Colors.Darker30
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledColor: =RGBA(244, 244, 244, 1)
+                            Height: =40
+                            Icon: =Icon.Edit
+                            OnSelect: |-
+                                =ResetForm(frmSignatur);
+                                NewForm(frmSignatur)
+                            PaddingTop: =10
+                            Width: =40
+                            X: =lblPenInput.Width + 10
+                            ZIndex: =2
+
+                    Container4 As groupContainer.manualLayoutContainer:
+                        DropShadow: =DropShadow.Light
+                        LayoutMinHeight: =100
+                        LayoutMinWidth: =250
+                        RadiusBottomLeft: =4
+                        RadiusBottomRight: =4
+                        RadiusTopLeft: =4
+                        RadiusTopRight: =4
+                        Width: =Min(Max(Parent.Width/1.5,300),400)
+                        ZIndex: =3
+
+                        frmSignatur As form.PowerApps_CoreControls_Form:
+                            BorderColor: =App.Theme.Colors.Darker40
+                            DataSource: ='BPP Assistent - Signatur'
+                            DefaultMode: =FormMode.New
+                            Height: =345
+                            NumberOfColumns: =1
+                            OnSuccess: =
+                            UseFluentV9Cards: =true
+                            Width: =Parent.Width
+                            ZIndex: =1
+
+                            Titel_DataCard1 As typedDataCard.fluentV9TextualEditCard:
+                                BorderColor: =App.Theme.Colors.Darker40
+                                BorderStyle: =BorderStyle.Solid
+                                DataField: ="Title"
+                                Default: =ThisItem.Title
+                                DisplayMode: =Parent.DisplayMode
+                                DisplayName: =DataSourceInfo([@'BPP Assistent - Signatur'],DataSourceInfo.DisplayName,Title)
+                                Fill: =RGBA(0, 0, 0, 0)
+                                Height: =70
+                                MaxLength: =DataSourceInfo([@'BPP Assistent - Signatur'], DataSourceInfo.MaxLength, Title)
+                                Required: =false
+                                Update: =DataCardValue34.Value
+                                Width: =500
+                                WidthFit: =true
+                                X: =0
+                                Y: =0
+                                ZIndex: =2
+
+                                DataCardKey35 As Text:
+                                    AutoHeight: =true
+                                    DisplayMode: =DisplayMode.Edit
+                                    Height: =22
+                                    Size: |
+                                        =Switch(
+                                            App.ActiveScreen.Size,
+                                            1, 14, // Kleine Bildschirme, Schriftgröße 12
+                                            2, 16, // Mittlere Bildschirme, Schriftgröße 14
+                                            3, 18, // Große Bildschirme, Schriftgröße 16
+                                            4, 20  // Extra große Bildschirme, Schriftgröße 18
+                                        )
+                                    Text: ="Vor- und Nachname"
+                                    Weight: ='TextCanvas.Weight'.Semibold
+                                    Width: =Parent.Width - 48
+                                    Wrap: =false
+                                    X: =24
+                                    Y: =10
+                                    ZIndex: =1
+
+                                DataCardValue34 As Texteingabe:
+                                    AccessibleLabel: =Parent.DisplayName
+                                    DisplayMode: =Parent.DisplayMode
+                                    Height: =32
+                                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                                    Required: =Parent.Required
+                                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                                    Value: =Parent.Default
+                                    Width: =Parent.Width - 48
+                                    X: =24
+                                    Y: =DataCardKey35.Y + DataCardKey35.Height + 4
+                                    ZIndex: =2
+
+                                ErrorMessage35 As Text:
+                                    DisplayMode: =DisplayMode.Edit
+                                    Height: =30
+                                    Text: =Parent.Error
+                                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                    Width: =Parent.Width - 48
+                                    Wrap: =true
+                                    X: =24
+                                    Y: =DataCardValue34.Y + DataCardValue34.Height
+                                    ZIndex: =3
+
+                                StarVisible35 As Text:
+                                    Align: ='TextCanvas.Align'.Center
+                                    DisplayMode: =DisplayMode.Edit
+                                    Height: =30
+                                    Text: ="*"
+                                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                    Width: =30
+                                    X: =0
+                                    Y: =DataCardKey35.Y
+                                    ZIndex: =4
+
+                            Unterschrift_DataCard1 As typedDataCard.fluentV9TextualEditCard:
+                                BorderColor: =App.Theme.Colors.Darker40
+                                BorderStyle: =BorderStyle.Solid
+                                DataField: ="Unterschrift"
+                                Default: =ThisItem.Unterschrift
+                                DisplayMode: =Parent.DisplayMode
+                                DisplayName: =DataSourceInfo([@'BPP Assistent - Signatur'],DataSourceInfo.DisplayName,Unterschrift)
+                                Fill: =RGBA(0, 0, 0, 0)
+                                Height: =223
+                                MaxLength: =DataSourceInfo([@'BPP Assistent - Signatur'], DataSourceInfo.MaxLength, Unterschrift)
+                                Required: =true
+                                Update: =varBlob
+                                Width: =500
+                                WidthFit: =true
+                                X: =0
+                                Y: =1
+                                ZIndex: =2
+
+                                DataCardKey37 As Text:
+                                    AutoHeight: =true
+                                    DisplayMode: =DisplayMode.Edit
+                                    Height: =22
+                                    Size: |
+                                        =Switch(
+                                            App.ActiveScreen.Size,
+                                            1, 14, // Kleine Bildschirme, Schriftgröße 12
+                                            2, 16, // Mittlere Bildschirme, Schriftgröße 14
+                                            3, 18, // Große Bildschirme, Schriftgröße 16
+                                            4, 20  // Extra große Bildschirme, Schriftgröße 18
+                                        )
+                                    Text: =Parent.DisplayName
+                                    Weight: ='TextCanvas.Weight'.Semibold
+                                    Width: =Parent.Width - 88
+                                    Wrap: =false
+                                    X: =24
+                                    Y: =10
+                                    ZIndex: =1
+
+                                ErrorMessage37 As Text:
+                                    DisplayMode: =DisplayMode.Edit
+                                    Height: =30
+                                    Text: =Parent.Error
+                                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                    Width: =Parent.Width - 48
+                                    Wrap: =true
+                                    X: =24
+                                    Y: =PenInput2.Y + PenInput2.Height
+                                    ZIndex: =3
+
+                                StarVisible37 As Text:
+                                    Align: ='TextCanvas.Align'.Center
+                                    DisplayMode: =DisplayMode.Edit
+                                    Height: =30
+                                    Text: ="*"
+                                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                    Width: =30
+                                    X: =0
+                                    Y: =DataCardKey37.Y
+                                    ZIndex: =4
+
+                                PenInput2 As inkControl:
+                                    BorderColor: =App.Theme.Colors.Darker40
+                                    Height: =211
+                                    Width: =Parent.Width
+                                    X: =
+                                    Y: =58
+                                    ZIndex: =5
+
+        cntFooterSignatur As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: |
+                =// Prüfe die Bildschirmorientierung und passe die Werte basierend auf der Bildschirmgröße an
+                If(
+                    App.Width < App.Height,  // Hochformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Geringerer Wert für Hochformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.075,  // Geringerer Wert für Hochformat bei mittlerem Bildschirm
+                        0.075   // Standardwert für Hochformat bei anderen Größen
+                    ),
+                    // Querformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Ursprünglicher Wert für Querformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.1,    // Ursprünglicher Wert für Querformat bei mittlerem Bildschirm
+                        0.1     // Standardwert für Querformat bei anderen Größen
+                    )
+                )
+            Height: =75
+            LayoutGap: =5
+            LayoutMinHeight: =40
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =7
+
+            btnSave_6 As button:
+                BorderColor: =App.Theme.Colors.Primary
+                BorderThickness: =0
+                Color: =App.Theme.Colors.PrimaryForeground
+                DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Fill: =RGBA(128, 186, 36, 1)
+                FillPortions: =1
+                Font: =App.Theme.Font
+                FontWeight: =FontWeight.Semibold
+                Height: =Parent.Height
+                HoverBorderColor: =App.Theme.Colors.Darker10
+                HoverColor: =App.Theme.Colors.PrimaryForeground
+                HoverFill: =App.Theme.Colors.Darker10
+                OnSelect: |
+                    =// Blob der Unterschrift als JSON speichern und User ID setzen
+                    Set(
+                        varBlob,
+                        JSON(
+                            PenInput2.Image,
+                            JSONFormat.IncludeBinaryData
+                        )
+                    );
+                    // Überprüfen, ob der Benutzer ein Studierender oder ein Betreuer ist, und User ID setzen
+                    If(
+                        currentUserRole = "BPP",
+                        Set(
+                            userID,
+                            LookUp(
+                                'BPP Assistent - Lehrende',
+                                E_x002d_Mail = varAktuelleEmail
+                            ).ID
+                        ),
+                        currentUserRole = "Student",
+                        
+                        Set(
+                            userID,
+                            LookUp(
+                                'BPP Assistent - Studierende',
+                                THME_x002d_Mail = varAktuelleEmail
+                            ).ID
+                        )
+                    );
+                    // Variable für Signatur-ID setzen
+                    Set(
+                        varSignaturID,
+                        Blank()
+                    );
+                    // Überprüfen, ob bereits ein Eintrag in der Signaturliste vorhanden ist
+                    If(
+                        IsBlank(
+                            LookUp(
+                                'BPP Assistent - Signatur',
+                                Zugeh_x00f6_rigeID = userID
+                            )
+                        ),
+                        // Neuen Eintrag erstellen, wenn keine Signatur vorhanden ist
+                        Patch(
+                            'BPP Assistent - Signatur',
+                            Defaults('BPP Assistent - Signatur'),
+                            {
+                                Unterschrift: varBlob,
+                                Zugeh_x00f6_rigeID: userID,
+                                Title: DataCardValue34.Value
+                            }
+                        ),
+                        // Bestehenden Eintrag aktualisieren, wenn bereits eine Signatur vorhanden ist
+                        Patch(
+                            'BPP Assistent - Signatur',
+                            LookUp(
+                                'BPP Assistent - Signatur',
+                                Zugeh_x00f6_rigeID = userID
+                            ),
+                            {
+                                Unterschrift: varBlob,
+                                Title: DataCardValue34.Value
+                            }
+                        )
+                    );
+                    // Erfolgsmeldung anzeigen
+                    Notify(
+                        "Unterschrift erfolgreich gespeichert",
+                        NotificationType.Success
+                    );
+                    // Signatur-ID abrufen
+                    Set(
+                        varSignaturID,
+                        LookUp(
+                            'BPP Assistent - Signatur',
+                            Zugeh_x00f6_rigeID = userID
+                        ).ID
+                    );
+                    // Falls der Benutzer ein Betreuer (BPP) ist, wird der Signatur-Patch auf Basis von `ThisItem` durchgeführt
+                    If(
+                        currentUserRole = "BPP",
+                        Patch(
+                            'BPP Assistent - Antrag',
+                            antragsItem,// Hier wird der aktuelle Antragseintrag gepatcht, der vom Betreuer bearbeitet wird
+                            {SignaturIDBetreuer: varSignaturID// Signatur-ID des Betreuers wird eingefügt
+                    }
+                        );
+                        Navigate(ScreenBPP),
+                        // Falls der Benutzer ein Studierender ist
+                        currentUserRole = "Student",
+                        If(
+                            IsBlank(antragsItem),
+                            SubmitForm(frmAntrag);
+                            Patch(
+                                'BPP Assistent - Antrag',
+                                frmAntrag.LastSubmit,// Wenn kein antragsItem gesetzt ist, dann nutze LastSubmit
+                                {
+                                    Matrikelnummer: LookUp(
+                                        'BPP Assistent - Studierende',
+                                        THME_x002d_Mail = varAktuelleEmail
+                                    ).Matrikelnummer,
+                                    BetreuerID: LookUp(
+                                        'BPP Assistent - Lehrende',
+                                        E_x002d_Mail = BetreuerEmail
+                                    ).ID,
+                                    SignaturID_x002d_Studierende: varSignaturID,
+                                    StudierendeID: userID// Hier wird die ID des Studierenden eingefügt
+                                }
+                            ); Navigate(ScreenStudent),
+                            Patch(
+                                'BPP Assistent - Antrag',
+                                antragsItem,// Wenn antragsItem gesetzt ist, dann nutze antragsItem
+                                {
+                                  
+                                    SignaturID_x002d_Studierende: varSignaturID,
+                                    StudierendeID: userID// Hier wird die ID des Studierenden eingefügt
+                                }
+                            )
+                        );
+                        Navigate(ScreenStudent)
+                    );
+                PressedBorderColor: =App.Theme.Colors.Darker40
+                PressedColor: =Self.Color
+                PressedFill: =App.Theme.Colors.Darker40
+                Size: =If(ScreenSignatur.Size = ScreenSize.Small, 12, ScreenSize.Medium, 18, 20)
+                Text: ="Unterschrift bestätigen"
+                ZIndex: =8
+

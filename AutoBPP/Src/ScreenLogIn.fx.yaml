@@ -1,0 +1,479 @@
+"ScreenLogIn As screen.'autoLayout_HeaderFooter_ver1.0'":
+    Fill: =Color.White
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+    OnVisible: |-
+        =Set(currentUser,User().Email);
+        Set(varBestätigungscode,Blank());
+        
+        
+        ClearCollect(BPP_Veranstaltungen, 'BPP Assistent - Veranstaltungen');
+
+    cntLogIn As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(245, 245, 245, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =Parent.Width
+        ZIndex: =1
+
+        cntHeaderLogIn As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: |
+                =// Prüfe die Bildschirmorientierung und passe die Werte basierend auf der Bildschirmgröße an
+                If(
+                    App.Width < App.Height,  // Hochformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Geringerer Wert für Hochformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.075,  // Geringerer Wert für Hochformat bei mittlerem Bildschirm
+                        0.075   // Standardwert für Hochformat bei anderen Größen
+                    ),
+                    // Querformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Ursprünglicher Wert für Querformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.1,    // Ursprünglicher Wert für Querformat bei mittlerem Bildschirm
+                        0.1     // Standardwert für Querformat bei anderen Größen
+                    )
+                )
+            Height: =75
+            LayoutMinHeight: =35
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =2
+
+            icnSupport As icon.BackArrow:
+                BorderColor: =RGBA(128, 186, 36, 1)
+                Color: =RGBA(141, 198, 63, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                FillPortions: =0.1
+                Height: =Parent.Height
+                Icon: =Icon.Support
+                LayoutMinWidth: =50
+                PaddingBottom: =5
+                PaddingLeft: =5
+                PaddingTop: =5
+                ZIndex: =1
+
+            imgLogoLogin As image:
+                BorderColor: =App.Theme.Colors.Darker40
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                FillPortions: =1
+                Height: =Parent.Height
+                Image: =THM_Logo_184x75
+                PaddingRight: =65
+                Width: =
+                ZIndex: =2
+
+        cntMainLogIn As groupContainer.verticalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =Parent.Height
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =3
+
+            cntContentLogIn As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Light
+                Height: =Parent.Height
+                LayoutMinHeight: =200
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Width: =Parent.Width
+                ZIndex: =1
+
+                cntInputLogin As groupContainer.verticalAutoLayoutContainer:
+                    Height: |-
+                        =Switch(
+                            ScreenLogIn.Size,
+                            1,// Kleine Bildschirme
+                            If(
+                                App.Width > App.Height,
+                                Parent.Height,// Konstante Höhe im horizontalen Modus
+                                Parent.Height * 0.5// 60% der Parent-Höhe im vertikalen Modus
+                            ),
+                            2,// Mittlere Bildschirme
+                            If(
+                                App.Width > App.Height,
+                                Parent.Height,// Konstante Höhe im horizontalen Modus
+                                Parent.Height * 0.6 // 70% der Parent-Höhe im vertikalen Modus
+                            ),
+                            3,// Große Bildschirme
+                            If(
+                                App.Width > App.Height,
+                                Parent.Height,// Konstante Höhe im horizontalen Modus
+                                Parent.Height * 0.7 // 80% der Parent-Höhe im vertikalen Modus
+                            ),
+                            4,// Extra große Bildschirme
+                            If(
+                                App.Width > App.Height,
+                                Parent.Height,// Konstante Höhe im horizontalen Modus
+                                Parent.Height * 0.8// 90% der Parent-Höhe im vertikalen Modus
+                            )
+                        )
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutMode: =LayoutMode.Auto
+                    LayoutOverflowY: =LayoutOverflow.Scroll
+                    LayoutWrap: =true
+                    PaddingBottom: =Switch(ScreenLogIn.Size,1,50,2,5,3,50,4,100)
+                    PaddingTop: =Switch(ScreenLogIn.Size,1,50,2,5,3,50,4,100)
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    Width: =Switch(ScreenLogIn.Size,4,Parent.Width/2,3,Parent.Width/2,2,Parent.Width/1.5,1,Parent.Width/1.1)
+                    X: =Parent.Width / 2 - Self.Width / 2 
+                    Y: =(Parent.Height - Self.Height )/ 3
+                    ZIndex: =5
+
+                    btnWelcome As button:
+                        BorderColor: =App.Theme.Colors.Primary
+                        BorderThickness: =0
+                        Color: =App.Theme.Colors.PrimaryForeground
+                        DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        DisabledFill: =RGBA(244, 244, 244, 1)
+                        DisplayMode: =DisplayMode.View
+                        Fill: =RGBA(128, 186, 36, 1)
+                        FillPortions: =0.5
+                        Font: =App.Theme.Font
+                        FontWeight: =FontWeight.Semibold
+                        Height: =Parent.Height
+                        HoverBorderColor: =App.Theme.Colors.Darker10
+                        HoverColor: =App.Theme.Colors.PrimaryForeground
+                        HoverFill: =App.Theme.Colors.Darker10
+                        LayoutMinHeight: =20
+                        PressedBorderColor: =App.Theme.Colors.Darker40
+                        PressedColor: =Self.Color
+                        PressedFill: =App.Theme.Colors.Darker40
+                        Size: =lblUsername.Size
+                        Text: ="Willkommen"
+                        Width: =Parent.Width
+                        ZIndex: =1
+
+                    lblUsername As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        AutoHeight: =true
+                        BorderColor: =
+                        BorderRadiusBottomLeft: =2
+                        BorderRadiusBottomRight: =2
+                        BorderRadiusTopLeft: =2
+                        BorderRadiusTopRight: =2
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FillPortions: =0.5
+                        FontColor: =
+                        Height: =35
+                        LayoutMinHeight: =20
+                        LayoutMinWidth: =96
+                        Size: =Switch(App.ActiveScreen.Size,4,20,3,18,2,15,1,13)
+                        Text: ="E-Mail Adresse"
+                        VerticalAlign: ='TextCanvas.VerticalAlign'.Middle
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width
+                        X: =328
+                        Y: =114
+                        ZIndex: =2
+
+                    txtUsername As Texteingabe:
+                        Align: ='TextInputCanvas.Align'.Center
+                        AlignInContainer: =AlignInContainer.Start
+                        BasePaletteColor: =
+                        BorderColor: =
+                        BorderRadius: =4
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FillPortions: =0.5
+                        FontColor: =
+                        FontSize: =lblUsername.Size
+                        FontWeight: =FontWeight.Semibold
+                        Height: =32
+                        LayoutMinHeight: =20
+                        LayoutMinWidth: =320
+                        Width: =Parent.Width
+                        X: =328
+                        Y: =35
+                        ZIndex: =3
+
+                    lblPassword As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        AutoHeight: =true
+                        BorderColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FillPortions: =0.5
+                        FontColor: =
+                        Height: =35
+                        LayoutMinHeight: =20
+                        LayoutMinWidth: =96
+                        Size: =lblUsername.Size
+                        Text: ="Passwort"
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width
+                        X: =328
+                        Y: =102
+                        ZIndex: =4
+
+                    txtPassword As Texteingabe:
+                        Align: ='TextInputCanvas.Align'.Center
+                        BasePaletteColor: =
+                        BorderColor: =
+                        BorderRadius: =4
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FillPortions: =0.5
+                        FontColor: =
+                        FontSize: =lblUsername.Size
+                        FontWeight: =FontWeight.Semibold
+                        Height: =32
+                        LayoutMinHeight: =20
+                        LayoutMinWidth: =320
+                        Type: ='TextInputCanvas.Type'.Password
+                        Width: =Parent.Width
+                        X: =328
+                        Y: =148
+                        ZIndex: =5
+
+                    btnPasswordReset As Schaltfläche:
+                        Appearance: ='ButtonCanvas.Appearance'.Transparent
+                        BasePaletteColor: =
+                        BorderColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        FillPortions: =0.35
+                        FontColor: =RGBA(52, 152, 47, 1)
+                        Height: =32
+                        IconStyle: ='ButtonCanvas.IconStyle'.Outline
+                        LayoutMinHeight: =20
+                        LayoutMinWidth: =96
+                        OnSelect: =Navigate(ScreenReset)
+                        Text: ="Passwort vergessen"
+                        Width: =Parent.Width
+                        X: =0
+                        Y: =0
+                        ZIndex: =7
+
+        cntFooterLogIn As groupContainer.horizontalAutoLayoutContainer:
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: |
+                =// Prüfe die Bildschirmorientierung und passe die Werte basierend auf der Bildschirmgröße an
+                If(
+                    App.Width < App.Height,  // Hochformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Geringerer Wert für Hochformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.075,  // Geringerer Wert für Hochformat bei mittlerem Bildschirm
+                        0.075   // Standardwert für Hochformat bei anderen Größen
+                    ),
+                    // Querformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Ursprünglicher Wert für Querformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.1,    // Ursprünglicher Wert für Querformat bei mittlerem Bildschirm
+                        0.1     // Standardwert für Querformat bei anderen Größen
+                    )
+                )
+            Height: =75
+            LayoutGap: =5
+            LayoutMinHeight: =35
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width - Self.LayoutGap * 6
+            ZIndex: =4
+
+            btnRegister As button:
+                BorderColor: =App.Theme.Colors.Primary
+                BorderThickness: =0
+                Color: =App.Theme.Colors.PrimaryForeground
+                DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Fill: =RGBA(128, 186, 36, 1)
+                FillPortions: =1
+                Font: =App.Theme.Font
+                FontWeight: =FontWeight.Semibold
+                Height: =Parent.Height
+                HoverBorderColor: =App.Theme.Colors.Darker10
+                HoverColor: =App.Theme.Colors.PrimaryForeground
+                HoverFill: =App.Theme.Colors.Darker10
+                OnSelect: |-
+                    =Navigate(ScreenRegister,ScreenTransition.CoverRight);
+                    Set(varBorderColor, Color.Black)
+                PressedBorderColor: =App.Theme.Colors.Darker40
+                PressedColor: =Self.Color
+                PressedFill: =App.Theme.Colors.Darker40
+                Size: =If(ScreenLogIn.Size = ScreenSize.Small, 12, ScreenSize.Medium, 18, 20)
+                Text: ="Registrieren"
+                Width: =Parent.Width / 2 - 10
+                ZIndex: =1
+
+            btnLogin As button:
+                BorderColor: =App.Theme.Colors.Primary
+                BorderThickness: =0
+                Color: =App.Theme.Colors.PrimaryForeground
+                DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Fill: =btnRegister.Fill
+                FillPortions: =1
+                Font: =App.Theme.Font
+                FontWeight: =FontWeight.Semibold
+                Height: =Parent.Height
+                HoverBorderColor: =App.Theme.Colors.Darker10
+                HoverColor: =App.Theme.Colors.PrimaryForeground
+                HoverFill: =App.Theme.Colors.Darker10
+                OnSelect: |-
+                    =// Passwort überprüfen und Hashwert in varLogin speichern
+                    // Überprüfen, ob Benutzername und Passwort eingegeben wurden
+                    If(
+                        IsBlank(txtUsername.Value) || IsBlank(txtPassword.Value),
+                        // Benachrichtigung anzeigen, wenn eines der Felder leer ist
+                        Notify(
+                            "Bitte Benutzername und Passwort eingeben",
+                            NotificationType.Error
+                        ),
+                        // Überprüfen, ob ein Datensatz mit dem Benutzernamen und dem Hashwert existiert
+                        Set(
+                            varLogin,
+                            'BPPAssistent-PasswortHash'.Run(txtPassword.Value).output
+                        );
+                        If(
+                            !IsBlank(
+                                LookUp(
+                                    'BPP - Registrierung',
+                                    E_x002d_Mail = txtUsername.Value && Passwort = varLogin
+                                )
+                            ),
+                            // Benutzerstatus abrufen
+                            Set(
+                                varAktuelleEmail,
+                                LookUp(
+                                    'BPP - Registrierung',
+                                    E_x002d_Mail = txtUsername.Value
+                                ).E_x002d_Mail
+                            );
+                            Set(
+                                currentUserRole,
+                                LookUp(
+                                    'BPP - Registrierung',
+                                    E_x002d_Mail = txtUsername.Value
+                                ).Status
+                            );
+                            Set(
+                                returnScreen,
+                                Switch(
+                                    currentUserRole,
+                                    "Student",
+                                    ScreenStudent,// Studierende werden zu ScreenStudent zurückgeleitet
+                                    "BPP",
+                                    ScreenBPP,// BPP-Verantwortliche (Profs) werden zu ScreenBPP zurückgeleitet
+                                    "Admin",
+                                    ScreenAdmin,// Admins werden zu ScreenAdmin zurückgeleitet
+                                    ScreenLogIn// Standardwert, falls Rolle nicht erkannt wird
+                                )
+                            );
+                            // Navigieren basierend auf dem Status
+                    Switch(
+                                currentUserRole,// Konvertiert den Status in Kleinbuchstaben zum Vergleichen
+                                Blank(),
+                                Navigate(
+                                    ScreenStatus,
+                                    ScreenTransition.Cover
+                                ),
+                                "Student",
+                                Notify(
+                                    "Anmeldung erfolgreich",
+                                    NotificationType.Success
+                                );
+                                Navigate(
+                                    ScreenStudent,
+                                    ScreenTransition.Cover
+                                ),
+                                "BPP",
+                                Notify(
+                                    "Anmeldung erfolgreich",
+                                    NotificationType.Success
+                                );
+                                If(
+                                    LookUp(
+                                        'BPP - Registrierung',
+                                        E_x002d_Mail = varAktuelleEmail
+                                    ).NeueRegistrierung = true,
+                                    Navigate(ScreenBPPInfo);
+                                    NewForm(frmBPP),
+                                    Navigate(
+                                        ScreenBPP,
+                                        ScreenTransition.Cover
+                                    )
+                                ),
+                                "Admin",
+                                Notify(
+                                    "Anmeldung erfolgreich",
+                                    NotificationType.Success
+                                );
+                                Navigate(
+                                    ScreenAdmin,
+                                    ScreenTransition.Fade),
+                                "Pending",// Kleinbuchstabenvergleich
+                                Notify(
+                                    "Ihre Registrierung wurde eingereicht und wartet auf Genehmigung durch den Admin.",
+                                    NotificationType.Warning
+                                );
+                                Navigate(
+                                    ScreenLogIn,
+                                    ScreenTransition.Fade
+                                )// Zurück zum Login-Screen
+                            ),
+                        // Wenn der Benutzername oder das Passwort falsch ist, Benachrichtigung anzeigen
+                            Notify(
+                                "Benutzername oder Passwort falsch",
+                                NotificationType.Error
+                            )
+                        )
+                    )
+                PressedBorderColor: =App.Theme.Colors.Darker40
+                PressedColor: =Self.Color
+                PressedFill: =App.Theme.Colors.Darker40
+                Size: =btnRegister.Size
+                Text: ="Anmelden"
+                Width: =Parent.Width / 2 - 20
+                ZIndex: =2
+

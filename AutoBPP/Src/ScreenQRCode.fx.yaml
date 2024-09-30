@@ -1,0 +1,143 @@
+"ScreenQRCode As screen.'autoLayout_HeaderFooter_ver1.0'":
+    Fill: =Color.White
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+    OnVisible: |
+        =Set(secretKey, "BPPSchlüssel12345");
+        Set(qrContent, eventItem.ID & "|" & secretKey);
+        Set(qrUrl, "https://quickchart.io/qr?text=" & qrContent);
+
+    cntQRCode As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(245, 245, 245, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =Parent.Width
+        ZIndex: =1
+
+        cntHeaderQRCode As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: |
+                =// Prüfe die Bildschirmorientierung und passe die Werte basierend auf der Bildschirmgröße an
+                If(
+                    App.Width < App.Height,  // Hochformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Geringerer Wert für Hochformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.075,  // Geringerer Wert für Hochformat bei mittlerem Bildschirm
+                        0.075   // Standardwert für Hochformat bei anderen Größen
+                    ),
+                    // Querformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Ursprünglicher Wert für Querformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.1,    // Ursprünglicher Wert für Querformat bei mittlerem Bildschirm
+                        0.1     // Standardwert für Querformat bei anderen Größen
+                    )
+                )
+            Height: =75
+            LayoutMinHeight: =35
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =1
+
+            icnBack_10 As icon.BackArrow:
+                BorderColor: =RGBA(128, 186, 36, 1)
+                Color: =RGBA(141, 198, 63, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                FillPortions: =0.125
+                Height: =Parent.Height
+                Icon: =Icon.BackArrow
+                OnSelect: =Navigate(ScreenEditEvent)
+                PaddingBottom: =5
+                PaddingLeft: =5
+                PaddingTop: =5
+                ZIndex: =2
+
+            imgLogo_10 As image:
+                BorderColor: =App.Theme.Colors.Darker40
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                FillPortions: =1
+                Height: =Parent.Height
+                Image: =THM_Logo_184x75
+                PaddingRight: =65
+                Width: =
+                ZIndex: =3
+
+        cntMainQRCode As groupContainer.verticalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =Parent.Height
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =5
+
+            cntContentQRCode As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Light
+                Height: =Parent.Height
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Width: =Parent.Width
+                ZIndex: =6
+
+                imgQrCode As image:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Height: =Self.Width
+                    Image: =qrUrl
+                    Width: |
+                        =If(App.Width < App.Height,
+                        Max(Parent.Width /2, 100),Max(Parent.Height /2, 100))
+                    X: =(Parent.Width - Self.Width )/ 2 
+                    Y: =(Parent.Height - Self.Height )/ 2 
+                    ZIndex: =1
+
+                TextCanvas1 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    AutoHeight: =true
+                    DisplayMode: =DisplayMode.Edit
+                    Font: =Font.'Lato Black'
+                    Height: =32
+                    Size: =If(App.ActiveScreen.Size = ScreenSize.Small, 14, ScreenSize.Medium, 22, 25)
+                    Text: ="Bitte QR Code zur Teilnahmebestätigung scannen."
+                    VerticalAlign: ='TextCanvas.VerticalAlign'.Top
+                    Weight: ='TextCanvas.Weight'.Bold
+                    Width: =Parent.Width 
+                    X: =(Parent.Width - Self.Width ) / 2
+                    Y: =imgQrCode.Y - Self.Height - 10 
+                    ZIndex: =2
+

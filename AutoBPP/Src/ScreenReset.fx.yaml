@@ -1,0 +1,312 @@
+"ScreenReset As screen.'autoLayout_HeaderFooter_ver1.0'":
+    Fill: =Color.White
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+    OnVisible: =Set(currentUser,User().Email)
+
+    cntReset As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(245, 245, 245, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =Parent.Width
+        ZIndex: =1
+
+        cntHeaderReset As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: |
+                =// Prüfe die Bildschirmorientierung und passe die Werte basierend auf der Bildschirmgröße an
+                If(
+                    App.Width < App.Height,  // Hochformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Geringerer Wert für Hochformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.075,  // Geringerer Wert für Hochformat bei mittlerem Bildschirm
+                        0.075   // Standardwert für Hochformat bei anderen Größen
+                    ),
+                    // Querformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Ursprünglicher Wert für Querformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.1,    // Ursprünglicher Wert für Querformat bei mittlerem Bildschirm
+                        0.1     // Standardwert für Querformat bei anderen Größen
+                    )
+                )
+            Height: =75
+            LayoutMinHeight: =35
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =2
+
+            icnBackReset As icon.BackArrow:
+                BorderColor: =RGBA(128, 186, 36, 1)
+                Color: =RGBA(141, 198, 63, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                FillPortions: =0.1
+                Height: =Parent.Height
+                Icon: =Icon.BackArrow
+                LayoutMinWidth: =50
+                OnSelect: =Navigate(ScreenLogIn)
+                PaddingBottom: =5
+                PaddingLeft: =5
+                PaddingTop: =5
+                ZIndex: =1
+
+            imgLogoReset As image:
+                BorderColor: =App.Theme.Colors.Darker40
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                FillPortions: =1
+                Height: =Parent.Height
+                Image: =THM_Logo_184x75
+                PaddingRight: =64
+                Width: =
+                ZIndex: =2
+
+        cntMainReset As groupContainer.verticalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =Parent.Height
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =3
+
+            cntContenReset As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Light
+                Height: =Parent.Height
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Width: =Parent.Width
+                ZIndex: =1
+
+                cntInputReset As groupContainer.verticalAutoLayoutContainer:
+                    DropShadow: =DropShadow.Light
+                    Height: =Switch(ScreenReset.Size,4,Parent.Height/4,3,Parent.Height/4,2,Parent.Height/2,1,Parent.Height/4)
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutGap: =10
+                    LayoutMode: =LayoutMode.Auto
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    Width: =Switch(ScreenReset.Size,4,Parent.Width/2,3,Parent.Width/2,2,Parent.Width/1.5,1,Parent.Width/1.1)
+                    X: =Parent.Width / 2 - Self.Width / 2 
+                    Y: =(Parent.Height - Self.Height )/ 2
+                    ZIndex: =5
+
+                    btnReset As button:
+                        BorderColor: =App.Theme.Colors.Primary
+                        BorderThickness: =0
+                        Color: =App.Theme.Colors.PrimaryForeground
+                        DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        DisabledFill: =RGBA(244, 244, 244, 1)
+                        DisplayMode: =DisplayMode.View
+                        Fill: =RGBA(128, 186, 36, 1)
+                        FillPortions: =1
+                        Font: =App.Theme.Font
+                        FontWeight: =FontWeight.Semibold
+                        Height: =Parent.Height
+                        HoverBorderColor: =App.Theme.Colors.Darker10
+                        HoverColor: =App.Theme.Colors.PrimaryForeground
+                        HoverFill: =App.Theme.Colors.Darker10
+                        LayoutMinHeight: =25
+                        PressedBorderColor: =App.Theme.Colors.Darker40
+                        PressedColor: =Self.Color
+                        PressedFill: =App.Theme.Colors.Darker40
+                        Size: =lblUsername_1.Size
+                        Text: ="Passwort zurücksetzen"
+                        Width: =Parent.Width
+                        ZIndex: =1
+
+                    lblUsername_1 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        AutoHeight: =true
+                        BorderColor: =
+                        BorderRadiusBottomLeft: =2
+                        BorderRadiusBottomRight: =2
+                        BorderRadiusTopLeft: =2
+                        BorderRadiusTopRight: =2
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FillPortions: =1
+                        FontColor: =
+                        Height: =35
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Size: =Switch(ScreenReset.Size,4,20,3,18,2,15,1,13)
+                        Text: ="E-Mail Adresse"
+                        VerticalAlign: ='TextCanvas.VerticalAlign'.Middle
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width
+                        X: =328
+                        Y: =114
+                        ZIndex: =2
+
+                    txtEMailNewPW As Texteingabe:
+                        Align: ='TextInputCanvas.Align'.Center
+                        AlignInContainer: =AlignInContainer.Start
+                        BasePaletteColor: =
+                        BorderColor: =
+                        BorderRadius: =4
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FillPortions: =1
+                        FontColor: =
+                        FontSize: =lblUsername_1.Size
+                        FontWeight: =FontWeight.Semibold
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =320
+                        PaddingBottom: =5
+                        Placeholder: ="@mnd.thm.de"
+                        Width: =Parent.Width
+                        X: =328
+                        Y: =35
+                        ZIndex: =3
+
+        cntFooterLogIn_1 As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: |
+                =// Prüfe die Bildschirmorientierung und passe die Werte basierend auf der Bildschirmgröße an
+                If(
+                    App.Width < App.Height,  // Hochformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Geringerer Wert für Hochformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.075,  // Geringerer Wert für Hochformat bei mittlerem Bildschirm
+                        0.075   // Standardwert für Hochformat bei anderen Größen
+                    ),
+                    // Querformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Ursprünglicher Wert für Querformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.1,    // Ursprünglicher Wert für Querformat bei mittlerem Bildschirm
+                        0.1     // Standardwert für Querformat bei anderen Größen
+                    )
+                )
+            Height: =75
+            LayoutGap: =5
+            LayoutMinHeight: =50
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width - Self.LayoutGap * 6
+            ZIndex: =4
+
+            btnLogin_1 As button:
+                BorderColor: =App.Theme.Colors.Primary
+                BorderThickness: =0
+                Color: =App.Theme.Colors.PrimaryForeground
+                DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Fill: =RGBA(128, 186, 36, 1)
+                FillPortions: =1
+                Font: =App.Theme.Font
+                FontWeight: =FontWeight.Semibold
+                Height: =Parent.Height
+                HoverBorderColor: =App.Theme.Colors.Darker10
+                HoverColor: =App.Theme.Colors.PrimaryForeground
+                HoverFill: =App.Theme.Colors.Darker10
+                OnSelect: |-
+                    =Set(
+                        varBestätigungscode,
+                        Text(
+                            Rand() * 1000000,
+                            "[$-de-DE]000000"
+                        )
+                    );
+                    
+                    If(
+                        EndsWith(
+                            txtEMailNewPW.Value,
+                            "thm.de"
+                        ),
+                        // Weiter, wenn die E-Mail-Adresse mit "thm.de" endet
+                        If(
+                            !IsBlank(
+                                LookUp(
+                                    'BPP - Registrierung',
+                                    Lower(Trim(E_x002d_Mail)) = Lower(Trim(txtEMailNewPW.Value))
+                                )
+                            ),
+                            // E-Mail-Adresse ist vorhanden
+                            Passwordzurücksetzen.Run(
+                                varBestätigungscode,
+                                txtEMailNewPW.Value,
+                                "https://apps.powerapps.com/play/e/default-637bef63-ba15-4c8a-a0c1-94724dff9f51/a/dbc7acf9-6628-4876-a988-44a7e245a03a?tenantId=637bef63-ba15-4c8a-a0c1-94724dff9f51&sourcetime=1724611577531&screen=ScreenNewPassword&email=" & txtEMailNewPW.Value
+                            );
+                           Patch(
+                                'BPP - Registrierung',
+                                LookUp('BPP - Registrierung', Lower(Trim(E_x002d_Mail)) = Lower(Trim(txtEMailNewPW.Value))),
+                                {
+                                    Code: varBestätigungscode
+                                }
+                            );
+                            Notify(
+                                "Eine Mail zum Zurücksetzen des Passwortes wurde versendet",
+                                NotificationType.Success
+                            );
+                            Navigate(
+                                ScreenLogIn,
+                                ScreenTransition.Cover
+                            ),
+                            // E-Mail-Adresse ist nicht vorhanden
+                            Notify(
+                                "E-Mail-Adresse ist nicht vorhanden",
+                                NotificationType.Error
+                            )
+                        ),
+                        // Wenn die E-Mail-Adresse nicht mit "thm.de" endet
+                        Notify(
+                            "Bitte nutzen Sie Ihre THM-E-Mail-Adresse",
+                            NotificationType.Error
+                        )
+                    )
+                PressedBorderColor: =App.Theme.Colors.Darker40
+                PressedColor: =Self.Color
+                PressedFill: =App.Theme.Colors.Darker40
+                Size: =If(App.ActiveScreen.Size = ScreenSize.Small, 12, ScreenSize.Medium, 18, 20)
+                Text: ="Anmeldelink verschicken"
+                Width: =Parent.Width / 2 - 20
+                ZIndex: =2
+

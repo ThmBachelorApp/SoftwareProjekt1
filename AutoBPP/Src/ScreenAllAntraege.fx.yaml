@@ -1,0 +1,562 @@
+"ScreenAllAntraege As screen.'autoLayout_HeaderFooter_ver1.0'":
+    Fill: =Color.White
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+    OnVisible: =
+
+    cntAllAntraege As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(245, 245, 245, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =Parent.Width
+        ZIndex: =1
+
+        cntHeaderAllAntraege As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: |
+                =// Prüfe die Bildschirmorientierung und passe die Werte basierend auf der Bildschirmgröße an
+                If(
+                    App.Width < App.Height,  // Hochformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Geringerer Wert für Hochformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.075,  // Geringerer Wert für Hochformat bei mittlerem Bildschirm
+                        0.075   // Standardwert für Hochformat bei anderen Größen
+                    ),
+                    // Querformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Ursprünglicher Wert für Querformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.1,    // Ursprünglicher Wert für Querformat bei mittlerem Bildschirm
+                        0.1     // Standardwert für Querformat bei anderen Größen
+                    )
+                )
+            Height: =75
+            LayoutMinHeight: =35
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =1
+
+            icnBack_14 As icon.BackArrow:
+                BorderColor: =RGBA(128, 186, 36, 1)
+                Color: =RGBA(141, 198, 63, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                FillPortions: =0.125
+                Height: =Parent.Height
+                Icon: =Icon.BackArrow
+                OnSelect: =Navigate(returnScreen)
+                PaddingBottom: =5
+                PaddingLeft: =5
+                PaddingTop: =5
+                ZIndex: =2
+
+            imgLogo_14 As image:
+                BorderColor: =App.Theme.Colors.Darker40
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                FillPortions: =1
+                Height: =Parent.Height
+                Image: =THM_Logo_184x75
+                Width: =
+                ZIndex: =3
+
+        cntMainAllAntraege As groupContainer.verticalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =Parent.Height
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =4
+
+            cntContentAllAntraege As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Light
+                Height: =Parent.Height
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Width: =Parent.Width
+                ZIndex: =5
+
+                "GalleryAllAntraege As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+                    BorderColor: =App.Theme.Colors.Darker40
+                    DelayItemLoading: =true
+                    Height: =Parent.Height
+                    Items: |
+                        =If(currentUserRole = "Student",
+                        Filter('BPP Assistent - Antrag',Author.Email = User().Email),
+                        If(currentUserRole = "BPP",
+                        Filter(
+                            'BPP Assistent - Antrag',
+                            BetreuerID = LookUp(
+                                'BPP Assistent - Lehrende',
+                                E_x002d_Mail = varAktuelleEmail
+                            ).ID
+                        ), 'BPP Assistent - Antrag'))
+                    Layout: =Layout.Vertical
+                    LoadingSpinner: =LoadingSpinner.Data
+                    TemplateFill: |-
+                        =If(
+                            ThisItem.IsSelected,
+                            ColorValue("#f0f0f0"),  // Leicht hellgrau, z.B. #f0f0f0 oder ein anderer heller Grauton
+                            ColorValue("White")     // Standardwert, z.B. Weiß oder Transparent
+                        )
+                    TemplatePadding: =0
+                    TemplateSize: =Parent.Height
+                    Width: =Parent.Width
+                    ZIndex: =6
+
+                    Rectangle1_1 As rectangle:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Fill: =App.Theme.Colors.Darker30
+                        Height: =Parent.TemplateHeight - Separator2_1.Height
+                        OnSelect: =Select(Parent)
+                        Visible: =ThisItem.IsSelected
+                        Width: =1
+                        ZIndex: =7
+
+                    lblVortrag_1 As label:
+                        AutoHeight: =true
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(0, 0, 0, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        Font: =App.Theme.Font
+                        FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                        Height: =32
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Text: |-
+                            ="Antrag von:"
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =175
+                        X: =10
+                        Y: =20
+                        ZIndex: =8
+
+                    txtVortrag_1 As label:
+                        AutoHeight: =true
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(45, 128, 40, 1)
+                        DisabledColor: =RGBA(0, 0, 0, 1)
+                        Font: =App.Theme.Font
+                        FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                        Height: =23
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Text: =ThisItem.Author.DisplayName
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =Parent.Width * 0.55
+                        X: =lblVortrag_1.X + lblVortrag_1.Width + 5
+                        Y: =lblVortrag_1.Y
+                        ZIndex: =9
+
+                    lblVon_1 As label:
+                        AutoHeight: =true
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(0, 0, 0, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        Font: =App.Theme.Font
+                        FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                        Height: =32
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Text: |-
+                            ="Matrikelnummer:"
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =175
+                        X: =lblVortrag_1.X
+                        Y: =txtVortrag_1.Y + txtVortrag_1.Height + 5
+                        ZIndex: =11
+
+                    txtVon_1 As label:
+                        AutoHeight: =true
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(45, 128, 40, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        Font: =App.Theme.Font
+                        FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                        Height: =25
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Text: =ThisItem.Matrikelnummer
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =Parent.Width * 0.7
+                        X: =txtVortrag_1.X
+                        Y: =lblVon_1.Y
+                        ZIndex: =12
+
+                    lblWann_1 As label:
+                        AutoHeight: =true
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(0, 0, 0, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        Font: =App.Theme.Font
+                        FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                        Height: =32
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Text: |-
+                            ="BPP Stelle:"
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =100
+                        X: =lblVortrag_1.X
+                        Y: =txtVon_1.Y + txtVon_1.Height + 5
+                        ZIndex: =13
+
+                    txtWann_1 As label:
+                        AutoHeight: =true
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(0, 0, 0, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        Font: =App.Theme.Font
+                        FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                        Height: =Self.Size * 1.8
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =13
+                        Text: =ThisItem.BPPStelle_x002d_Name
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =txtVortrag_1.Width
+                        X: =txtVortrag_1.X
+                        Y: =lblWann_1.Y
+                        ZIndex: =14
+
+                    lblWo_1 As label:
+                        AutoHeight: =true
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(0, 0, 0, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        Font: =App.Theme.Font
+                        FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                        Height: =32
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Text: |-
+                            ="Beginn:"
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =85
+                        X: =lblVortrag_1.X
+                        Y: =txtWann_1.Y + txtWann_1.Height + 10
+                        ZIndex: =15
+
+                    txtWo_1 As label:
+                        AutoHeight: =true
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(0, 0, 0, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        Font: =App.Theme.Font
+                        FontWeight: =FontWeight.Semibold
+                        Height: =19
+                        OnSelect: =Select(Parent)
+                        Size: =13
+                        Text: =ThisItem.BeginnderBPP
+                        Width: =Parent.Width / 3
+                        X: =txtVortrag_1.X
+                        Y: =lblWo_1.Y
+                        ZIndex: =16
+
+                    NextArrow1_1 As icon.ChevronRight:
+                        AccessibleLabel: =Self.Tooltip
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(166, 166, 166, 1)
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        DisabledColor: =RGBA(244, 244, 244, 1)
+                        Height: =60
+                        Icon: =Icon.NextArrow
+                        OnSelect: |
+                            =Select(Parent);
+                            Set(antragsItem, ThisItem);
+                            Set(returnScreenAntrag, ScreenAllAntraege); // Speichert den Ursprungsscreen in returnScreen
+                            
+                            // Überprüfe die Rolle des Benutzers und setze den Modus des Formulars
+                            If(
+                                currentUserRole = "BPP" || currentUserRole = "Admin",
+                                ViewForm(frmAntrag), // Setzt das Formular in den Ansichtsmodus
+                                EditForm(frmAntrag)  // Setzt das Formular in den Bearbeitungsmodus für andere Rollen
+                            );
+                            
+                            Navigate(ScreenAntrag);
+                        PaddingBottom: =16
+                        PaddingLeft: =16
+                        PaddingRight: =16
+                        PaddingTop: =16
+                        Tooltip: ="Elementdetails anzeigen"
+                        Width: =60
+                        X: =Parent.TemplateWidth - Self.Width - 20
+                        Y: =50
+                        ZIndex: =18
+
+                    lblSignatur As Schaltfläche:
+                        Appearance: ='ButtonCanvas.Appearance'.Primary
+                        BasePaletteColor: =If(IsBlank(ThisItem.SignaturID_x002d_Studierende), RGBA(211, 211, 211, 1), RGBA(156, 220, 79, 1))  // Grau für "Nein", Grün für "Ja"
+                        DisplayMode: =DisplayMode.Edit
+                        Font: =Font.'Lato Black'
+                        Height: =80
+                        Icon: ="DocumentBulletList"
+                        IconStyle: ='ButtonCanvas.IconStyle'.Filled
+                        Layout: ='ButtonCanvas.Layout'.IconBefore
+                        OnSelect: |
+                            =// Schritt 1: Überprüfen, ob der Benutzer ein Betreuer ist (BPP-Verantwortlicher)
+                            If(
+                                currentUserRole = "Student",
+                                // Schritt 2: Setze den aktuellen Antrag (antragsItem) für die Unterschrift
+                                Set(antragsItem, ThisItem);
+                                // Schritt 3: Navigiere zur Unterschriftsseite für den Betreuer
+                                Navigate(ScreenSignatur, ScreenTransition.Fade)
+                            )
+                        Text: |-
+                            ="Unterschrift Studierende/r: "  & If(IsBlank(ThisItem.SignaturID_x002d_Studierende),"Nein","Ja")
+                        Visible: =true
+                        Width: =Max(Parent.Width /5,160)
+                        X: =lblVon_1.X
+                        Y: =lblDash.Y + lblDash.Height + 20
+                        ZIndex: =18
+
+                    lblInfo1 As Schaltfläche:
+                        Appearance: ='ButtonCanvas.Appearance'.Primary
+                        BasePaletteColor: =If(!IsBlank(infoVeranstaltung1), RGBA(156, 220, 79, 1), RGBA(211, 211, 211, 1))  // Grün für "Ja", Grau für "Nein"
+                        DisplayMode: =DisplayMode.Edit
+                        Font: =Font.'Lato Black'
+                        Height: =80
+                        Icon: ="AppsList"
+                        IconStyle: ='ButtonCanvas.IconStyle'.Filled
+                        Layout: ='ButtonCanvas.Layout'.IconBefore
+                        OnSelect: =Select(Parent)
+                        Text: |
+                            =If(!IsBlank(infoVeranstaltung1), "Teilnahme Info 1: Ja", "Teilnahme Info 1: Nein")
+                        VerticalAlign: =VerticalAlign.Middle
+                        Visible: =!(IsBlank(ThisItem.SignaturID_x002d_Studierende))
+                        Width: =Max(Parent.Width /5,160)
+                        X: =lblVon_1.X
+                        Y: =lblSignatur.Y + lblSignatur.Height + 10
+                        ZIndex: =19
+
+                    Separator2_1 As rectangle:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Fill: =RGBA(255, 255, 255, 1)
+                        Height: =8
+                        OnSelect: =Select(Parent)
+                        Width: =Parent.TemplateWidth
+                        Y: =Parent.TemplateHeight - Self.Height
+                        ZIndex: =20
+
+                    lblBPP As Schaltfläche:
+                        Appearance: ='ButtonCanvas.Appearance'.Primary
+                        BasePaletteColor: |
+                            =If(
+                                confirmationCount = 7, 
+                                RGBA(156, 220, 79, 1),  // Hellgrün, wenn 7 von 7 Vorträgen besucht wurden
+                                ColorValue("#000000")   // Schwarz für weniger als 7
+                            )
+                        DisplayMode: =DisplayMode.Edit
+                        Font: =Font.'Lato Black'
+                        Height: =80
+                        Icon: ="AppsList"
+                        IconStyle: ='ButtonCanvas.IconStyle'.Filled
+                        Layout: ='ButtonCanvas.Layout'.IconBefore
+                        OnSelect: =Select(Parent)
+                        Text: |-
+                            ="Besuchte BPP Vorträge: " & If(IsBlank(confirmationCount),0,confirmationCount) & " von 7" 
+                        VerticalAlign: =VerticalAlign.Middle
+                        Visible: =!(IsBlank(ThisItem.SignaturID_x002d_Studierende))
+                        Width: =Max(Parent.Width /5,160)
+                        X: =lblVon_1.X
+                        Y: =lblInfo1.Y + lblInfo1.Height + 10
+                        ZIndex: =20
+
+                    lblInfo2 As Schaltfläche:
+                        Appearance: ='ButtonCanvas.Appearance'.Primary
+                        BasePaletteColor: =If(!IsBlank(infoVeranstaltung2), RGBA(156, 220, 79, 1), RGBA(211, 211, 211, 1))  // Grün für "Ja", Grau für "Nein"
+                        DisplayMode: =DisplayMode.Edit
+                        Font: =Font.'Lato Black'
+                        Height: =80
+                        Icon: ="AppsList"
+                        IconStyle: ='ButtonCanvas.IconStyle'.Filled
+                        Layout: ='ButtonCanvas.Layout'.IconBefore
+                        OnSelect: =Select(Parent)
+                        Text: |
+                            =If(!IsBlank(infoVeranstaltung2), "Teilnahme Info 2: Ja", "Teilnahme Info 2: NEIN")
+                        VerticalAlign: =VerticalAlign.Middle
+                        Visible: =!(IsBlank(ThisItem.SignaturID_x002d_Studierende))
+                        Width: =Max(Parent.Width /5,160)
+                        X: =lblInfo1.X + lblInfo1.Width + 10
+                        Y: =lblSignatur.Y + lblSignatur.Height + 10
+                        ZIndex: =21
+
+                    lblUpload As Schaltfläche:
+                        Appearance: ='ButtonCanvas.Appearance'.Primary
+                        BasePaletteColor: |
+                            =If(
+                                !IsBlank(
+                                    LookUp(
+                                        'BPP Assistent - Dokumentenupload', 
+                                        Zugeh_x00f6_rigeID = ThisItem.StudierendeID && Dokumententyp.Value = "Arbeitsvertrag"
+                                    )
+                                ),
+                                RGBA(156, 220, 79, 1),  // Hellgrün für vorhandenen Arbeitsvertrag
+                                ColorValue("#D3D3D3")   // Hellgrau für nicht vorhandenen Arbeitsvertrag
+                            )
+                        DisplayMode: =DisplayMode.Edit
+                        Font: =Font.'Lato Black'
+                        Height: =80
+                        Icon: ="Document"
+                        IconStyle: ='ButtonCanvas.IconStyle'.Filled
+                        Layout: ='ButtonCanvas.Layout'.IconBefore
+                        OnSelect: =Select(Parent)
+                        Text: |
+                            =If(
+                                !IsBlank(
+                                    LookUp(
+                                        'BPP Assistent - Dokumentenupload', 
+                                        Zugeh_x00f6_rigeID = ThisItem.StudierendeID && Dokumententyp.Value = "Arbeitsvertrag"
+                                    )
+                                ),
+                                "Arbeitsvertrag vorhanden",
+                                "Arbeitsvertrag fehlt"
+                            )
+                        VerticalAlign: =VerticalAlign.Middle
+                        Visible: =!(IsBlank(ThisItem.SignaturID_x002d_Studierende))
+                        Width: =Max(Parent.Width /5,160)
+                        X: =lblInfo2.X
+                        Y: =lblInfo1.Y + lblInfo1.Height + 10
+                        ZIndex: =22
+
+                    lblSignatur_1 As Schaltfläche:
+                        Appearance: ='ButtonCanvas.Appearance'.Primary
+                        BasePaletteColor: =If(IsBlank(ThisItem.SignaturIDBetreuer), RGBA(211, 211, 211, 1), RGBA(156, 220, 79, 1))  // Grau für "Nein", Grün für "Ja"
+                        DisplayMode: =DisplayMode.Edit
+                        Font: =Font.'Lato Black'
+                        Height: =80
+                        Icon: ="DocumentBulletList"
+                        IconStyle: ='ButtonCanvas.IconStyle'.Filled
+                        Layout: ='ButtonCanvas.Layout'.IconBefore
+                        OnSelect: |
+                            =// Schritt 1: Überprüfen, ob der Benutzer ein Betreuer ist (BPP-Verantwortlicher)
+                            If(
+                                currentUserRole = "BPP",
+                                // Schritt 2: Setze den aktuellen Antrag (antragsItem) für die Unterschrift
+                                Set(antragsItem, ThisItem);
+                                // Schritt 3: Navigiere zur Unterschriftsseite für den Betreuer
+                                Navigate(ScreenSignatur, ScreenTransition.Fade)
+                            )
+                        Text: |-
+                            ="Unterschrift Betreuer/in: "  & If(IsBlank(ThisItem.SignaturIDBetreuer),"Nein","Ja")
+                        Visible: =!(IsBlank(ThisItem.SignaturID_x002d_Studierende))
+                        Width: =Max(Parent.Width /5,160)
+                        X: =lblInfo1.X + lblInfo1.Width + 10
+                        Y: =lblSignatur.Y
+                        ZIndex: =23
+
+                    lblDash As label:
+                        Align: =Align.Center
+                        AutoHeight: =true
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(0, 0, 0, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        Font: =App.Theme.Font
+                        FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                        Height: =32
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =10
+                        Size: =16
+                        Text: |-
+                            ="Übersicht:"
+                        Underline: =true
+                        VerticalAlign: =VerticalAlign.Top
+                        X: =lblSignatur.X + lblSignatur.Width - Self.Width / 2
+                        Y: =lblWo_1.Y + lblWo_1.Height + 5
+                        ZIndex: =24
+
+                    lblUpload_1 As Schaltfläche:
+                        Appearance: ='ButtonCanvas.Appearance'.Primary
+                        BasePaletteColor: |
+                            =If(
+                                !IsBlank(
+                                    LookUp(
+                                        'BPP Assistent - Dokumentenupload', 
+                                        Zugeh_x00f6_rigeID = ThisItem.StudierendeID && Dokumententyp.Value = "Präsentation"
+                                    )
+                                ),
+                                RGBA(156, 220, 79, 1),  // Hellgrün für vorhandenen Arbeitsvertrag
+                                ColorValue("#D3D3D3")   // Hellgrau für nicht vorhandenen Arbeitsvertrag
+                            )
+                        DisplayMode: =DisplayMode.Edit
+                        Font: =Font.'Lato Black'
+                        Height: =80
+                        Icon: ="Document"
+                        IconStyle: ='ButtonCanvas.IconStyle'.Filled
+                        Layout: ='ButtonCanvas.Layout'.IconBefore
+                        OnSelect: =Select(Parent)
+                        Text: |
+                            =If(
+                                !IsBlank(
+                                    LookUp(
+                                        'BPP Assistent - Dokumentenupload', 
+                                        Zugeh_x00f6_rigeID = userID && Dokumententyp.Value = "Präsentation"
+                                    )
+                                ),
+                                "Präsentation online",
+                                "Präsentation fehlt"
+                            )
+                        VerticalAlign: =VerticalAlign.Middle
+                        Visible: =!(IsBlank(ThisItem.SignaturID_x002d_Studierende))
+                        Width: =Max(Parent.Width /5,160)
+                        X: =lblBPP.X
+                        Y: =lblBPP.Y + lblBPP.Height + 10
+                        ZIndex: =25
+

@@ -1,0 +1,17 @@
+[
+  {
+    "ApiId": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+    "CdpRevision": {
+      "BaseUrl": "/",
+      "LastChangedTimeString": "2024-07-03T16:40:28.5730000Z",
+      "RevisionNumber": 1
+    },
+    "ConnectedDataSourceInfoNameMapping": {},
+    "DatasetName": "https://mndthmde.sharepoint.com/sites/zengin",
+    "EncodeDataset": true,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "Name": "BPP Assistent - Veranstaltungen",
+    "Type": "ConnectedDataSourceInfo"
+  }
+]

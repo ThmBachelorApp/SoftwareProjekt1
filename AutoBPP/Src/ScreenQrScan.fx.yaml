@@ -1,0 +1,396 @@
+"ScreenQrScan As screen.'autoLayout_HeaderFooter_ver1.0'":
+    Fill: =Color.White
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+
+    cntQrScan As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(245, 245, 245, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =Parent.Width
+        ZIndex: =1
+
+        cntHeaderQrScan As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: |
+                =// Prüfe die Bildschirmorientierung und passe die Werte basierend auf der Bildschirmgröße an
+                If(
+                    App.Width < App.Height,  // Hochformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Geringerer Wert für Hochformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.075,  // Geringerer Wert für Hochformat bei mittlerem Bildschirm
+                        0.075   // Standardwert für Hochformat bei anderen Größen
+                    ),
+                    // Querformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Ursprünglicher Wert für Querformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.1,    // Ursprünglicher Wert für Querformat bei mittlerem Bildschirm
+                        0.1     // Standardwert für Querformat bei anderen Größen
+                    )
+                )
+            Height: =75
+            LayoutMinHeight: =35
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =1
+
+            icnBack_8 As icon.BackArrow:
+                BorderColor: =RGBA(128, 186, 36, 1)
+                Color: =RGBA(141, 198, 63, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                FillPortions: =0.125
+                Height: =Parent.Height
+                Icon: =Icon.BackArrow
+                OnSelect: =Navigate(ScreenStudent)
+                PaddingBottom: =5
+                PaddingLeft: =5
+                PaddingTop: =5
+                ZIndex: =2
+
+            imgLogo_8 As image:
+                BorderColor: =App.Theme.Colors.Darker40
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                FillPortions: =1
+                Height: =Parent.Height
+                Image: =THM_Logo_184x75
+                PaddingRight: =50
+                Width: =
+                ZIndex: =3
+
+        cntMainQrScan As groupContainer.verticalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =Parent.Height
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =5
+
+            cntContentQrScan As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Light
+                Height: =Parent.Height
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Width: =Parent.Width
+                ZIndex: =6
+
+                brEventsReader As Barcodeleser:
+                    BorderFillColor: =RGBA(47, 81, 151, 1)
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledContentColor: =RGBA(166, 166, 166, 1)
+                    DisabledFillColor: =RGBA(244, 244, 244, 1)
+                    DisplayMode: =DisplayMode.Edit
+                    FillColor: =RGBA(152, 208, 70, 1)
+                    FontSize: =If(App.ActiveScreen.Size = ScreenSize.Small, 12, ScreenSize.Medium, 18, 20)
+                    Height: =70
+                    HoverBorderColor: =RGBA(88, 115, 171, 1)
+                    HoverContentColor: =RGBA(255, 255, 255, 1)
+                    HoverFillColor: =RGBA(47, 81, 151, 1)
+                    OnCancel: =false
+                    OnScan: |
+                        =// Speichere den gescannten Wert
+                        Set(
+                            scannedContent,
+                            First(brEventsReader.Barcodes).Value
+                        );
+                        // Teile den gescannten Inhalt in ID und Schlüssel
+                        Set(
+                            scannedEventID,
+                            Value(
+                                Mid(
+                                    scannedContent,
+                                    1,
+                                    Find(
+                                        "|",
+                                        scannedContent
+                                    ) - 1
+                                )
+                            )
+                        );
+                        Set(
+                            scannedKey,
+                            Mid(
+                                scannedContent,
+                                Find(
+                                    "|",
+                                    scannedContent
+                                ) + 1,
+                                Len(scannedContent)
+                            )
+                        );
+                        Set(
+                            eventInfoStatus,
+                            LookUp(
+                                'BPP Assistent - Veranstaltungen',
+                                ID = scannedEventID
+                            ).Info_x002d_Veranstaltung
+                        );
+                        // Verifiziere den Schlüssel
+                        If(
+                            scannedKey = "BPPSchlüssel12345",
+                            // Wenn der Schlüssel korrekt ist, den Status der Veranstaltung abrufen
+                            // Überprüfe, ob es sich um eine Info-Veranstaltung handelt
+                            Notify(
+                                "Verifizierung erfolgreich",
+                                NotificationType.Success
+                            ),
+                            // Wenn der Schlüssel falsch ist
+                            Notify(
+                                "Ungültiger QR-Code",
+                                NotificationType.Error
+                            )
+                        );
+                    PressedBorderColor: =RGBA(56, 96, 178, 1)
+                    PressedContentColor: =RGBA(56, 96, 178, 1)
+                    PressedFillColor: =RGBA(255, 255, 255, 1)
+                    ScanningMode: ='BarcodeReader.ScanningMode'.AutomaticallyScan
+                    Text: ="Teilnahme QR Code scannen"
+                    TextColor: =RGBA(255, 255, 255, 1)
+                    Width: =Parent.Width / 2
+                    X: =Parent.Width / 2 - Self.Width / 2 
+                    Y: =50
+                    ZIndex: =1
+
+                "GalleryQrScan As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+                    BorderColor: =App.Theme.Colors.Darker40
+                    DelayItemLoading: =true
+                    Height: =147
+                    Items: =Filter(BPP_Veranstaltungen, ID = scannedEventID)
+                    Layout: =Layout.Vertical
+                    LoadingSpinner: =LoadingSpinner.Data
+                    TemplatePadding: =0
+                    TemplateSize: =147
+                    Width: =Parent.Width
+                    Y: =237
+                    ZIndex: =2
+
+                    Title2 As label:
+                        AutoHeight: =true
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        Font: =App.Theme.Font
+                        FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                        Height: =Self.Size * 1.8
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =If(App.ActiveScreen.Size = ScreenSize.Small, 12, ScreenSize.Medium, 18, 20)
+                        Text: =ThisItem.Title
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =Parent.TemplateWidth - 40
+                        X: =20
+                        Y: =(Parent.TemplateHeight - (Self.Size * 1.8 + Subtitle2.Size * 1.8)) / 2
+                        ZIndex: =2
+
+                    Subtitle2 As label:
+                        Color: =RGBA(0, 0, 0, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        Font: =App.Theme.Font
+                        FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                        Height: =Self.Size * 1.8
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =If(App.ActiveScreen.Size = ScreenSize.Small, 12, ScreenSize.Medium, 18, 20)
+                        Text: =ThisItem.DatumundUhrzeit
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =Title2.Width
+                        X: =Title2.X
+                        Y: =Title2.Y + Title2.Height
+                        ZIndex: =3
+
+                    Separator3 As rectangle:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Fill: =RGBA(255, 255, 255, 1)
+                        Height: =8
+                        OnSelect: =Select(Parent)
+                        Width: =Parent.TemplateWidth
+                        Y: =Parent.TemplateHeight - Self.Height
+                        ZIndex: =5
+
+                    Rectangle2 As rectangle:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Fill: =App.Theme.Colors.Darker30
+                        Height: =Parent.TemplateHeight - Separator3.Height
+                        OnSelect: =Select(Parent)
+                        Visible: =ThisItem.IsSelected
+                        Width: =4
+                        ZIndex: =6
+
+        cntFooterTemplate_2 As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: |
+                =// Prüfe die Bildschirmorientierung und passe die Werte basierend auf der Bildschirmgröße an
+                If(
+                    App.Width < App.Height,  // Hochformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Geringerer Wert für Hochformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.075,  // Geringerer Wert für Hochformat bei mittlerem Bildschirm
+                        0.075   // Standardwert für Hochformat bei anderen Größen
+                    ),
+                    // Querformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Ursprünglicher Wert für Querformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.1,    // Ursprünglicher Wert für Querformat bei mittlerem Bildschirm
+                        0.1     // Standardwert für Querformat bei anderen Größen
+                    )
+                )
+            Height: =75
+            LayoutGap: =5
+            LayoutMinHeight: =40
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =7
+
+            btnSave_3 As button:
+                BorderColor: =App.Theme.Colors.Primary
+                BorderThickness: =0
+                Color: =App.Theme.Colors.PrimaryForeground
+                DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Fill: =RGBA(128, 186, 36, 1)
+                FillPortions: =1
+                Font: =App.Theme.Font
+                FontWeight: =FontWeight.Semibold
+                Height: =Parent.Height
+                HoverBorderColor: =App.Theme.Colors.Darker10
+                HoverColor: =App.Theme.Colors.PrimaryForeground
+                HoverFill: =App.Theme.Colors.Darker10
+                OnSelect: |-
+                    =// Überprüfen, ob der Studierende in der Liste vorhanden ist
+                    If(
+                        IsBlank(
+                            LookUp(
+                                'BPP Assistent - Studierende',
+                                THME_x002d_Mail = User().Email
+                            )
+                        ),
+                        // Wenn der Studierende nicht gefunden wird
+                        Notify(
+                            "Sie sind nicht registriert. Bitte registrieren Sie sich zuerst.",
+                            NotificationType.Error
+                        );
+                        Navigate(
+                            ScreenLogIn,
+                            ScreenTransition.Fade
+                        ),
+                        // Wenn der Studierende gefunden wird, überprüfen, ob ein QR-Code gescannt wurde
+                        If(
+                            IsBlank(scannedEventID),
+                            // Wenn die scannedEventID leer ist, zeige eine Fehlermeldung an
+                            Notify(
+                                "Bitte scannen Sie zuerst den QR-Code, um Ihre Teilnahme zu bestätigen.",
+                                NotificationType.Error
+                            ),
+                            // Wenn scannedEventID gesetzt ist, Teilnahme bestätigen
+                            If(
+                                IsBlank(
+                                    LookUp(
+                                        'BPP Assistent - Teilnahmebestätigung',
+                                        StudierendeID = LookUp(
+                                            'BPP Assistent - Studierende',
+                                            THME_x002d_Mail = User().Email
+                                        ).ID && VeranstaltungID = Value(scannedEventID)
+                                    )
+                                ),
+                                // Füge einen neuen Eintrag hinzu, wenn kein passender Datensatz gefunden wurde
+                                Patch(
+                                    'BPP Assistent - Teilnahmebestätigung',
+                                    Defaults('BPP Assistent - Teilnahmebestätigung'),
+                                    {
+                                        StudierendeID: LookUp(
+                                            'BPP Assistent - Studierende',
+                                            THME_x002d_Mail = User().Email
+                                        ).ID,
+                                        VeranstaltungID: Value(scannedEventID),
+                                        Teilnahmebest_x00e4_tigung: true,
+                                        // Patch für InfoVeranstaltung, wenn eventInfoStatus true ist
+                                        Info_x002d_Veranstaltung: If(
+                                            eventInfoStatus,
+                                            true,
+                                            false
+                                        ),
+                                        // Patch für die Auswahl "BitteInfoveranstaltungauswählen"
+                                        BitteInfoveranstaltungausw_x00e4: LookUp(
+                                            'BPP Assistent - Veranstaltungen',
+                                            ID = scannedEventID
+                                        ).BitteInfo_x002d_Veranstaltungaus
+                                    }
+                                )
+                            );
+                            // Erfolgsmeldung anzeigen
+                    Notify(
+                                "Teilnahme erfolgreich bestätigt!",
+                                NotificationType.Success
+                            );
+                            // Setze den QR-Code auf leer
+                    Set(
+                                varQRCodeData,
+                                Blank()
+                            );
+                            Set(
+                                scannedEventID,
+                                Blank()
+                            );
+                            // Navigiere zurück zum Student-Screen
+                    Navigate(ScreenStudent);
+                        )
+                    )
+                PressedBorderColor: =App.Theme.Colors.Darker40
+                PressedColor: =Self.Color
+                PressedFill: =App.Theme.Colors.Darker40
+                Size: =If(ScreenQrScan.Size = ScreenSize.Small, 12, ScreenSize.Medium, 18, 20)
+                Text: ="Teilnahme bestätigen"
+                ZIndex: =8
+

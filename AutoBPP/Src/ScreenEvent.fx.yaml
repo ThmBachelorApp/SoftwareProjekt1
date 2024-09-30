@@ -1,0 +1,1273 @@
+"ScreenEvent As screen.'autoLayout_HeaderFooter_ver1.0'":
+    Fill: =Color.White
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+    OnVisible: =Set(varStudent,LookUp('BPP Assistent - Studierende', currentUser = THME_x002d_Mail))
+
+    cntEvent As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(245, 245, 245, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =Parent.Width
+        ZIndex: =1
+
+        cntHeaderEvent As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: |
+                =// Prüfe die Bildschirmorientierung und passe die Werte basierend auf der Bildschirmgröße an
+                If(
+                    App.Width < App.Height,  // Hochformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Geringerer Wert für Hochformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.075,  // Geringerer Wert für Hochformat bei mittlerem Bildschirm
+                        0.075   // Standardwert für Hochformat bei anderen Größen
+                    ),
+                    // Querformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Ursprünglicher Wert für Querformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.1,    // Ursprünglicher Wert für Querformat bei mittlerem Bildschirm
+                        0.1     // Standardwert für Querformat bei anderen Größen
+                    )
+                )
+            Height: =75
+            LayoutMinHeight: =35
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =2
+
+            icnBack_6 As icon.BackArrow:
+                BorderColor: =RGBA(128, 186, 36, 1)
+                Color: =RGBA(141, 198, 63, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                FillPortions: =0.1
+                Height: =Parent.Height
+                Icon: =Icon.BackArrow
+                LayoutMinWidth: =50
+                OnSelect: =Navigate(returnScreen)
+                PaddingBottom: =5
+                PaddingLeft: =5
+                PaddingTop: =5
+                ZIndex: =1
+
+            imgLogo_6 As image:
+                BorderColor: =App.Theme.Colors.Darker40
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                FillPortions: =1
+                Height: =Parent.Height
+                Image: =THM_Logo_184x75
+                PaddingRight: =64
+                Width: =
+                ZIndex: =2
+
+        cntMainEvent As groupContainer.verticalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =Parent.Height
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =5
+            PaddingLeft: =5
+            PaddingRight: =5
+            PaddingTop: =5
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =3
+
+            btnEvent As button:
+                BorderColor: =App.Theme.Colors.Primary
+                BorderThickness: =0
+                Color: =App.Theme.Colors.PrimaryForeground
+                DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(128, 186, 36, 1)
+                FillPortions: =0.075
+                Font: =App.Theme.Font
+                FontWeight: =FontWeight.Semibold
+                Height: =Parent.Height
+                HoverBorderColor: =App.Theme.Colors.Darker10
+                HoverColor: =App.Theme.Colors.PrimaryForeground
+                HoverFill: =App.Theme.Colors.Darker10
+                LayoutMinHeight: =30
+                PressedBorderColor: =App.Theme.Colors.Darker40
+                PressedColor: =Self.Color
+                PressedFill: =App.Theme.Colors.Darker40
+                Size: =If(ScreenEvent.Size = ScreenSize.Small, 12, ScreenSize.Medium, 18, 20)
+                Text: ="Veranstaltung anlegen"
+                Width: =Parent.Width - 10
+                ZIndex: =1
+
+            cntContentEvent As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Light
+                Height: =Parent.Height
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Width: =Parent.Width
+                ZIndex: =2
+
+                cntfrmEvent As groupContainer.verticalAutoLayoutContainer:
+                    DropShadow: =DropShadow.Light
+                    Height: =Parent.Height
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutMode: =LayoutMode.Auto
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    Width: =Parent.Width
+                    X: =
+                    Y: =
+                    ZIndex: =2
+
+                    frmNewEvent As form.PowerApps_CoreControls_Form:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        DataSource: ='BPP Assistent - Veranstaltungen'
+                        DefaultMode: |
+                            =FormMode.New
+                        Height: =Parent.Height
+                        LayoutMinHeight: =250
+                        LayoutMinWidth: =200
+                        NumberOfColumns: =2
+                        OnFailure: =Notify("Es ist ein Fehler aufgetreten",NotificationType.Error);
+                        OnSuccess: |
+                            =// Erfolgsmeldung anzeigen
+                            Notify("Veranstaltung wurde erfolgreich erstellt", NotificationType.Success);
+                            
+                            // Spalte "InfoVeranstaltung" setzen, wenn isInfo true ist
+                            If(
+                                isInfo = true,
+                                Patch(
+                                    'BPP Assistent - Veranstaltungen',
+                                    frmNewEvent.LastSubmit,
+                                    { Info_x002d_Veranstaltung: true }
+                                )
+                            );
+                            
+                            // Zurück zur ScreenBPP navigieren
+                            Navigate(ScreenBPP, ScreenTransition.None);
+                        UseFluentV9Cards: =true
+                        Width: =Parent.Width
+                        ZIndex: =2
+
+                        "'Info Veranstaltung_DataCard1' As typedDataCard.fluentV9ToggleEditCard":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="InfoVeranstaltung"
+                            Default: =ThisItem.Info_x002d_Veranstaltung
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Veranstaltungen'],DataSourceInfo.DisplayName,Info_x002d_Veranstaltung)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =70
+                            Required: =false
+                            Update: =DataCardValue24.Checked
+                            Visible: =If(currentUser = "Admin",true,false)
+                            Width: =Titel_DataCard2.Width
+                            WidthFit: =Titel_DataCard2.WidthFit
+                            X: =1
+                            Y: =0
+                            ZIndex: =1
+
+                            DataCardKey24 As Text:
+                                DisplayMode: =DisplayMode.Edit
+                                Height: =22
+                                Size: =DataCardKey25.Size
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue24 As Umschalten:
+                                AccessibleLabel: =If(Parent.Required, Substitute("{0}. Erforderlich.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                                Checked: =Parent.Default
+                                DisplayMode: =Parent.DisplayMode
+                                Height: =32
+                                Label: =""
+                                OnCheck: =false
+                                OnUncheck: =false
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey24.Y + DataCardKey24.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage24 As Text:
+                                DisplayMode: =DisplayMode.Edit
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue24.Y + DataCardValue24.Height
+                                ZIndex: =3
+
+                            StarVisible24 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                DisplayMode: =DisplayMode.Edit
+                                Height: =30
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey24.Y
+                                ZIndex: =4
+
+                        "'Bitte Info-Veranstaltung auswählen_DataCard1' As typedDataCard.fluentV9ComboBoxEditCard":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="BitteInfo_x002d_Veranstaltungaus"
+                            Default: =ThisItem.BitteInfo_x002d_Veranstaltungaus
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Veranstaltungen'],DataSourceInfo.DisplayName,BitteInfo_x002d_Veranstaltungaus)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =70
+                            Required: =false
+                            Update: =DataCardValue39.Selected
+                            Visible: =isInfo
+                            Width: =Titel_DataCard2.Width
+                            WidthFit: =Titel_DataCard2.WidthFit
+                            X: =2
+                            Y: =0
+                            ZIndex: =1
+
+                            DataCardKey41 As Text:
+                                DisplayMode: =DisplayMode.Edit
+                                Height: =22
+                                Size: =15
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue39 As Combobox.pcfdataset:
+                                AccessibleLabel: =If(Parent.Required, Substitute("{0}. Erforderlich.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                                DefaultSelectedItems: =[Parent.Default]
+                                DisplayMode: =Parent.DisplayMode
+                                Height: =32
+                                InputTextPlaceholder: ="Info 1 oder 2"
+                                Items: =Choices([@'BPP Assistent - Veranstaltungen'].BitteInfo_x002d_Veranstaltungaus)
+                                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey41.Y + DataCardKey41.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage41 As Text:
+                                DisplayMode: =DisplayMode.Edit
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue39.Y + DataCardValue39.Height
+                                ZIndex: =3
+
+                            StarVisible41 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                DisplayMode: =DisplayMode.Edit
+                                Height: =20
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey41.Y
+                                ZIndex: =4
+
+                        "'Kontakt E-Mail_DataCard1' As typedDataCard.fluentV9TextualEditCard":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="KontaktE_x002d_Mail"
+                            Default: =ThisItem.KontaktE_x002d_Mail
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Veranstaltungen'],DataSourceInfo.DisplayName,KontaktE_x002d_Mail)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =70
+                            MaxLength: =DataSourceInfo([@'BPP Assistent - Veranstaltungen'], DataSourceInfo.MaxLength, KontaktE_x002d_Mail)
+                            Required: =true
+                            Update: =DataCardValue1.Value
+                            Width: =Titel_DataCard2.Width
+                            WidthFit: =Titel_DataCard2.WidthFit
+                            X: =0
+                            Y: =5
+                            ZIndex: =1
+
+                            DataCardKey1 As Text:
+                                AutoHeight: =true
+                                DisplayMode: =DisplayMode.Edit
+                                Height: =22
+                                Size: =DataCardKey25.Size
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue1 As Texteingabe:
+                                AccessibleLabel: =Parent.DisplayName
+                                DisplayMode: =Parent.DisplayMode
+                                Height: =32
+                                Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                                Required: =Parent.Required
+                                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                                Value: =Parent.Default
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey1.Y + DataCardKey1.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage1 As Text:
+                                DisplayMode: =DisplayMode.Edit
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue1.Y + DataCardValue1.Height
+                                ZIndex: =3
+
+                            StarVisible1 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                DisplayMode: =DisplayMode.Edit
+                                Height: =30
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey1.Y
+                                ZIndex: =4
+
+                        Titel_DataCard2 As typedDataCard.fluentV9TextualEditCard:
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="Title"
+                            Default: =ThisItem.Title
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Veranstaltungen'],DataSourceInfo.DisplayName,Title)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =70
+                            MaxLength: =DataSourceInfo([@'BPP Assistent - Veranstaltungen'], DataSourceInfo.MaxLength, Title)
+                            Required: =true
+                            Update: =DataCardValue25.Value
+                            Width: =If(ScreenEvent.Size = 1,Parent.Width,Parent.Width/2)
+                            WidthFit: =If(ScreenEvent.Size = 1,true,false)
+                            X: =0
+                            Y: =0
+                            ZIndex: =3
+
+                            DataCardKey25 As Text:
+                                AutoHeight: =true
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =22
+                                Size: =15
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue25 As Texteingabe:
+                                AccessibleLabel: =Parent.DisplayName
+                                BasePaletteColor: =
+                                BorderColor: =
+                                DisplayMode: =Parent.DisplayMode
+                                Fill: =
+                                FontColor: =
+                                Height: =32
+                                Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                                Required: =Parent.Required
+                                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                                Value: =Parent.Default
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey25.Y + DataCardKey25.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage25 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue25.Y + DataCardValue25.Height
+                                ZIndex: =3
+
+                            StarVisible25 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey25.Y
+                                ZIndex: =4
+
+                        "'Datum und Uhrzeit_DataCard1' As typedDataCard.fluentV9DateTimeEditCard":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="DatumundUhrzeit"
+                            Default: =ThisItem.DatumundUhrzeit
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Veranstaltungen'],DataSourceInfo.DisplayName,DatumundUhrzeit)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =80
+                            Required: =true
+                            Update: =If(Not IsBlank(DateValue1.SelectedDate), DateTime(Year(DateValue1.SelectedDate), Month(DateValue1.SelectedDate), Day(DateValue1.SelectedDate), Value(HourValue1.Selected.Value), Value(MinuteValue1.Selected.Value), Second(DateValue1.SelectedDate)))
+                            Width: =Titel_DataCard2.Width
+                            WidthFit: =Titel_DataCard2.WidthFit
+                            X: =0
+                            Y: =1
+                            ZIndex: =3
+
+                            DataCardKey26 As Text:
+                                AutoHeight: =true
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =22
+                                Size: =DataCardKey25.Size
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DateValue1 As Datumsauswahl:
+                                AccessibleLabel: =If(Parent.Required, Substitute("{0}. Erforderlich.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                                BasePaletteColor: =
+                                BorderColor: =
+                                DisplayMode: =Parent.DisplayMode
+                                Fill: =
+                                FontColor: =
+                                Height: =32
+                                SelectedDate: =Parent.Default
+                                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                                Width: =(Parent.Width - 48) / 2
+                                X: =24
+                                Y: =DataCardKey26.Y + DataCardKey26.Height + 4
+                                ZIndex: =2
+
+                            HourValue1 As Dropdownmenü.pcfdataset:
+                                DefaultSelectedItems: =[Text(Hour(Parent.Default),"00")]
+                                DisplayMode: =Parent.DisplayMode
+                                Height: =28
+                                Items: =["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23"]
+                                Required: =true
+                                Width: =DateValue1.Width / 2 - 10
+                                X: |-
+                                    =If(
+                                        ScreenEvent.Size = 1,
+                                        DateValue1.X,
+                                        DateValue1.X + DateValue1.Width + 10
+                                    )
+                                Y: |
+                                    =
+                                    If(ScreenEvent.Size = 1, DateValue1.Y + DateValue1.Height + 5,
+                                    DateValue1.Y + 1 )
+                                ZIndex: =3
+
+                            Separator1 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =HourValue1.Height
+                                Text: |-
+                                    =":"
+                                Width: =10
+                                X: =HourValue1.X + HourValue1.Width
+                                Y: =HourValue1.Y
+                                ZIndex: =4
+
+                            MinuteValue1 As Dropdownmenü.pcfdataset:
+                                DefaultSelectedItems: =[Text(Minute(Parent.Default),"00")]
+                                DisplayMode: =Parent.DisplayMode
+                                Height: =28
+                                Items: =["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59"]
+                                Width: =HourValue1.Width
+                                X: =HourValue1.X + HourValue1.Width + Separator1.Width
+                                Y: =HourValue1.Y + 1
+                                ZIndex: =5
+
+                            ErrorMessage26 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DateValue1.Y + DateValue1.Height
+                                ZIndex: =6
+
+                            StarVisible26 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =20
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey26.Y
+                                ZIndex: =7
+
+                        "'Raum oder Ort der Veranstaltung_DataCard1' As typedDataCard.fluentV9TextualEditCard":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="RaumoderOrtderVeranstaltung"
+                            Default: =ThisItem.RaumoderOrtderVeranstaltung
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Veranstaltungen'],DataSourceInfo.DisplayName,RaumoderOrtderVeranstaltung)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =70
+                            MaxLength: =DataSourceInfo([@'BPP Assistent - Veranstaltungen'], DataSourceInfo.MaxLength, RaumoderOrtderVeranstaltung)
+                            Required: =true
+                            Update: =DataCardValue26.Value
+                            Width: =Titel_DataCard2.Width
+                            WidthFit: =Titel_DataCard2.WidthFit
+                            X: =1
+                            Y: =1
+                            ZIndex: =3
+
+                            DataCardKey27 As Text:
+                                AutoHeight: =true
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =22
+                                Size: =DataCardKey25.Size
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue26 As Texteingabe:
+                                AccessibleLabel: =Parent.DisplayName
+                                BasePaletteColor: =
+                                BorderColor: =
+                                DisplayMode: =Parent.DisplayMode
+                                Fill: =
+                                FontColor: =
+                                Height: =32
+                                Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                                Required: =Parent.Required
+                                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                                Value: =Parent.Default
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey27.Y + DataCardKey27.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage27 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue26.Y + DataCardValue26.Height
+                                ZIndex: =3
+
+                            StarVisible27 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey27.Y
+                                ZIndex: =4
+
+                        "'Zoom-Meeting_DataCard1' As typedDataCard.fluentV9ToggleEditCard":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="Zoom_x002d_Meeting"
+                            Default: =ThisItem.Zoom_x002d_Meeting
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Veranstaltungen'],DataSourceInfo.DisplayName,Zoom_x002d_Meeting)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =80
+                            Required: =false
+                            Update: =DataCardValue27.Checked
+                            Width: =Titel_DataCard2.Width
+                            WidthFit: =Titel_DataCard2.WidthFit
+                            X: =2
+                            Y: =1
+                            ZIndex: =3
+
+                            DataCardKey28 As Text:
+                                AutoHeight: =true
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =22
+                                Size: =DataCardKey25.Size
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue27 As Umschalten:
+                                AccessibleLabel: =If(Parent.Required, Substitute("{0}. Erforderlich.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                                BasePaletteColor: =
+                                Checked: =Parent.Default
+                                DisplayMode: =Parent.DisplayMode
+                                FontColor: =
+                                Height: =32
+                                Label: =""
+                                OnCheck: =false
+                                OnUncheck: =false
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey28.Y + DataCardKey28.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage28 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue27.Y + DataCardValue27.Height
+                                ZIndex: =3
+
+                            StarVisible28 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey28.Y
+                                ZIndex: =4
+
+                        "'Zoom-Link_DataCard1' As typedDataCard.fluentV9UrlEditCard":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="Zoom_x002d_Link"
+                            Default: =ThisItem.Zoom_x002d_Link
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Veranstaltungen'],DataSourceInfo.DisplayName,Zoom_x002d_Link)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =70
+                            Required: =DataCardValue27.Checked
+                            Update: =DataCardValue28.Value
+                            Visible: |
+                                =DataCardValue27.Checked
+                            Width: =Titel_DataCard2.Width
+                            WidthFit: =Titel_DataCard2.WidthFit
+                            X: =1
+                            Y: =2
+                            ZIndex: =3
+
+                            DataCardKey29 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =22
+                                Size: =DataCardKey25.Size
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue28 As Texteingabe:
+                                AccessibleLabel: =Parent.DisplayName
+                                BasePaletteColor: =
+                                BorderColor: =
+                                DisplayMode: =Parent.DisplayMode
+                                Fill: =
+                                FontColor: =
+                                Height: =32
+                                Mode: ='TextInputCanvas.Mode'.SingleLine
+                                Required: =Parent.Required
+                                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                                Value: =Parent.Default
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey29.Y + DataCardKey29.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage29 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue28.Y + DataCardValue28.Height
+                                ZIndex: =3
+
+                            StarVisible29 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =20
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey29.Y
+                                ZIndex: =4
+
+                        "'Meeting-ID_DataCard1' As typedDataCard.fluentV9TextualEditCard":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="Meeting_x002d_ID"
+                            Default: =ThisItem.Meeting_x002d_ID
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Veranstaltungen'],DataSourceInfo.DisplayName,Meeting_x002d_ID)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =70
+                            MaxLength: =DataSourceInfo([@'BPP Assistent - Veranstaltungen'], DataSourceInfo.MaxLength, Meeting_x002d_ID)
+                            Required: =false
+                            Update: =DataCardValue29.Value
+                            Visible: |
+                                =DataCardValue27.Checked
+                            Width: =Titel_DataCard2.Width
+                            WidthFit: =Titel_DataCard2.WidthFit
+                            X: =0
+                            Y: =3
+                            ZIndex: =3
+
+                            DataCardKey30 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =22
+                                Size: =DataCardKey25.Size
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue29 As Texteingabe:
+                                AccessibleLabel: =Parent.DisplayName
+                                BasePaletteColor: =
+                                BorderColor: =
+                                DisplayMode: =Parent.DisplayMode
+                                Fill: =
+                                FontColor: =
+                                Height: =32
+                                Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                                Required: =Parent.Required
+                                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                                Value: =Parent.Default
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey30.Y + DataCardKey30.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage30 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue29.Y + DataCardValue29.Height
+                                ZIndex: =3
+
+                            StarVisible30 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey30.Y
+                                ZIndex: =4
+
+                        "'Kenncode _DataCard1' As typedDataCard.fluentV9TextualEditCard":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="Kenncode"
+                            Default: =ThisItem.Kenncode
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Veranstaltungen'],DataSourceInfo.DisplayName,Kenncode)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =70
+                            MaxLength: =DataSourceInfo([@'BPP Assistent - Veranstaltungen'], DataSourceInfo.MaxLength, Kenncode)
+                            Required: =DataCardValue27.Checked
+                            Update: =DataCardValue30.Value
+                            Visible: |
+                                =DataCardValue27.Checked
+                            Width: =Titel_DataCard2.Width
+                            WidthFit: =Titel_DataCard2.WidthFit
+                            X: =1
+                            Y: =3
+                            ZIndex: =3
+
+                            DataCardKey31 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =22
+                                Size: =DataCardKey25.Size
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue30 As Texteingabe:
+                                AccessibleLabel: =Parent.DisplayName
+                                BasePaletteColor: =
+                                BorderColor: =
+                                DisplayMode: =Parent.DisplayMode
+                                Fill: =
+                                FontColor: =
+                                Height: =32
+                                Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                                Required: =Parent.Required
+                                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                                Value: =Parent.Default
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey31.Y + DataCardKey31.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage31 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue30.Y + DataCardValue30.Height
+                                ZIndex: =3
+
+                            StarVisible31 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey31.Y
+                                ZIndex: =4
+
+                        "'Referent _DataCard1' As typedDataCard.fluentV9TextualEditCard":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="Referent"
+                            Default: =ThisItem.Referent
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Veranstaltungen'],DataSourceInfo.DisplayName,Referent)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =80
+                            MaxLength: =DataSourceInfo([@'BPP Assistent - Veranstaltungen'], DataSourceInfo.MaxLength, Referent)
+                            Required: =true
+                            Update: =DataCardValue31.Value
+                            Width: =Titel_DataCard2.Width
+                            WidthFit: =Titel_DataCard2.WidthFit
+                            X: =0
+                            Y: =4
+                            ZIndex: =3
+
+                            DataCardKey32 As Text:
+                                AutoHeight: =true
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =22
+                                Size: =DataCardKey25.Size
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue31 As Texteingabe:
+                                AccessibleLabel: =Parent.DisplayName
+                                BasePaletteColor: =
+                                BorderColor: =
+                                DisplayMode: =Parent.DisplayMode
+                                Fill: =
+                                FontColor: =
+                                Height: =32
+                                Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                                Required: =Parent.Required
+                                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                                Value: =Parent.Default
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey32.Y + DataCardKey32.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage32 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue31.Y + DataCardValue31.Height
+                                ZIndex: =3
+
+                            StarVisible32 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey32.Y
+                                ZIndex: =4
+
+                        "'Kontakt für Teilnahmebestätigung_DataCard1' As typedDataCard.fluentV9TextualEditCard":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="Kontaktf_x00fc_rTeilnahmebest_x0"
+                            Default: =ThisItem.Kontaktf_x00fc_rTeilnahmebest_x0
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Veranstaltungen'],DataSourceInfo.DisplayName,Kontaktf_x00fc_rTeilnahmebest_x0)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =80
+                            MaxLength: =DataSourceInfo([@'BPP Assistent - Veranstaltungen'], DataSourceInfo.MaxLength, Kontaktf_x00fc_rTeilnahmebest_x0)
+                            Required: =true
+                            Update: =DataCardValue33.Value
+                            Width: =Titel_DataCard2.Width
+                            WidthFit: =Titel_DataCard2.WidthFit
+                            X: =0
+                            Y: =5
+                            ZIndex: =3
+
+                            DataCardKey34 As Text:
+                                AutoHeight: =true
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =22
+                                Size: =DataCardKey25.Size
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue33 As Texteingabe:
+                                AccessibleLabel: =Parent.DisplayName
+                                BasePaletteColor: =
+                                BorderColor: =
+                                DisplayMode: =Parent.DisplayMode
+                                Fill: =
+                                FontColor: =
+                                Height: =32
+                                Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                                Required: =Parent.Required
+                                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                                Value: =Parent.Default
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey34.Y + DataCardKey34.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage34 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue33.Y + DataCardValue33.Height
+                                ZIndex: =3
+
+                            StarVisible34 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey34.Y
+                                ZIndex: =4
+
+                        "'Beschreibung _DataCard1' As typedDataCard.fluentV9TextualEditCard":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="Beschreibung"
+                            Default: =ThisItem.Beschreibung
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Veranstaltungen'],DataSourceInfo.DisplayName,Beschreibung)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =70
+                            MaxLength: =DataSourceInfo([@'BPP Assistent - Veranstaltungen'], DataSourceInfo.MaxLength, Beschreibung)
+                            Required: =false
+                            Update: =DataCardValue32.Value
+                            Width: =Titel_DataCard2.Width
+                            WidthFit: =true
+                            X: =1
+                            Y: =5
+                            ZIndex: =3
+
+                            DataCardKey33 As Text:
+                                AutoHeight: =true
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =22
+                                Size: =DataCardKey25.Size
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue32 As Texteingabe:
+                                AccessibleLabel: =Parent.DisplayName
+                                BasePaletteColor: =
+                                BorderColor: =
+                                DisplayMode: =Parent.DisplayMode
+                                Fill: =
+                                FontColor: =
+                                Height: =150
+                                Mode: ='TextInputCanvas.Mode'.Multiline
+                                Required: =Parent.Required
+                                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                                Value: =Parent.Default
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey33.Y + DataCardKey33.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage33 As Text:
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue32.Y + DataCardValue32.Height
+                                ZIndex: =3
+
+                            StarVisible33 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                BorderColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                Fill: =
+                                FontColor: =
+                                Height: =30
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey33.Y
+                                ZIndex: =4
+
+        cntFooterEvent As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: |
+                =// Prüfe die Bildschirmorientierung und passe die Werte basierend auf der Bildschirmgröße an
+                If(
+                    App.Width < App.Height,  // Hochformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Geringerer Wert für Hochformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.075,  // Geringerer Wert für Hochformat bei mittlerem Bildschirm
+                        0.075   // Standardwert für Hochformat bei anderen Größen
+                    ),
+                    // Querformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Ursprünglicher Wert für Querformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.1,    // Ursprünglicher Wert für Querformat bei mittlerem Bildschirm
+                        0.1     // Standardwert für Querformat bei anderen Größen
+                    )
+                )
+            Height: =75
+            LayoutGap: =5
+            LayoutMinHeight: =40
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =4
+
+            btnContinue_1 As button:
+                BorderColor: =App.Theme.Colors.Primary
+                BorderThickness: =0
+                Color: =App.Theme.Colors.PrimaryForeground
+                DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Fill: =RGBA(128, 186, 36, 1)
+                FillPortions: =1
+                Font: =App.Theme.Font
+                FontWeight: =FontWeight.Semibold
+                Height: =Parent.Height
+                HoverBorderColor: =App.Theme.Colors.Darker10
+                HoverColor: =App.Theme.Colors.PrimaryForeground
+                HoverFill: =App.Theme.Colors.Darker10
+                OnSelect: |+
+                    =
+                    SubmitForm(frmNewEvent);
+                    
+                PressedBorderColor: =App.Theme.Colors.Darker40
+                PressedColor: =Self.Color
+                PressedFill: =App.Theme.Colors.Darker40
+                Size: =If(ScreenEvent.Size = ScreenSize.Small, 12, ScreenSize.Medium, 18, 20)
+                Text: ="Veranstaltung anlegen"
+                ZIndex: =1
+

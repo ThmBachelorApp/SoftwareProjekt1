@@ -1,0 +1,426 @@
+"ScreenDashboard As screen.'autoLayout_HeaderFooter_ver1.0'":
+    Fill: =Color.White
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+    OnVisible: |
+        =// Schritt 1: Holen der Studierenden-ID basierend auf der Benutzer-E-Mail
+        Set(studentID, LookUp('BPP Assistent - Studierende', THME_x002d_Mail = User().Email).ID);
+        
+        // Schritt 2: Filtern der Teilnahmebestätigung basierend auf der Studierenden-ID
+        Set(confirmationList, Filter('BPP Assistent - Teilnahmebestätigung', StudierendeID = studentID && Info_x002d_Veranstaltung = false));
+        
+        // Schritt 3: Zählen der Teilnahmebestätigungen
+        Set(confirmationCount, CountRows(confirmationList))
+
+    cntDashboard As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(245, 245, 245, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =Parent.Width
+        ZIndex: =1
+
+        cntHeaderDashboard As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: |
+                =// Prüfe die Bildschirmorientierung und passe die Werte basierend auf der Bildschirmgröße an
+                If(
+                    App.Width < App.Height,  // Hochformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Geringerer Wert für Hochformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.075,  // Geringerer Wert für Hochformat bei mittlerem Bildschirm
+                        0.075   // Standardwert für Hochformat bei anderen Größen
+                    ),
+                    // Querformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Ursprünglicher Wert für Querformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.1,    // Ursprünglicher Wert für Querformat bei mittlerem Bildschirm
+                        0.1     // Standardwert für Querformat bei anderen Größen
+                    )
+                )
+            Height: =75
+            LayoutMinHeight: =35
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =1
+
+            icnBack_11 As icon.BackArrow:
+                BorderColor: =RGBA(128, 186, 36, 1)
+                Color: =RGBA(141, 198, 63, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                FillPortions: =0.125
+                Height: =Parent.Height
+                Icon: =Icon.BackArrow
+                PaddingBottom: =5
+                PaddingLeft: =5
+                PaddingTop: =5
+                ZIndex: =2
+
+            imgLogo_11 As image:
+                BorderColor: =App.Theme.Colors.Darker40
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                FillPortions: =1
+                Height: =Parent.Height
+                Image: =THM_Logo_184x75
+                Width: =
+                ZIndex: =3
+
+            icnForword_1 As icon.NextArrow:
+                BorderColor: =RGBA(128, 186, 36, 1)
+                Color: =RGBA(141, 198, 63, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                FillPortions: =0.125
+                Height: =Parent.Height
+                Icon: =Icon.NextArrow
+                LayoutMinWidth: =50
+                PaddingBottom: =5
+                PaddingRight: =5
+                PaddingTop: =5
+                ZIndex: =4
+
+        cntMainDashboard As groupContainer.verticalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =Parent.Height
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =5
+
+            cntContentDashboard As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Light
+                Height: =Parent.Height
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Width: =Parent.Width
+                ZIndex: =6
+
+                cntLayoutDashboard As groupContainer.horizontalAutoLayoutContainer:
+                    DropShadow: =DropShadow.Light
+                    Height: =Parent.Height
+                    LayoutMode: =LayoutMode.Auto
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    Width: =Parent.Width
+                    ZIndex: =1
+
+                    cntBtnDashboard As groupContainer.verticalAutoLayoutContainer:
+                        DropShadow: =DropShadow.Light
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutMinHeight: =100
+                        LayoutMinWidth: =250
+                        LayoutMode: =LayoutMode.Auto
+                        RadiusBottomLeft: =4
+                        RadiusBottomRight: =4
+                        RadiusTopLeft: =4
+                        RadiusTopRight: =4
+                        ZIndex: =1
+
+                        Container1 As groupContainer.manualLayoutContainer:
+                            DropShadow: =DropShadow.Light
+                            LayoutMinHeight: =100
+                            LayoutMinWidth: =250
+                            RadiusBottomLeft: =4
+                            RadiusBottomRight: =4
+                            RadiusTopLeft: =4
+                            RadiusTopRight: =4
+                            ZIndex: =3
+
+                            Label1_1 As label:
+                                Align: =Align.Center
+                                BorderColor: =App.Theme.Colors.Darker40
+                                Color: =RGBA(0, 0, 0, 1)
+                                DisabledColor: =RGBA(166, 166, 166, 1)
+                                Font: =App.Theme.Font
+                                FontWeight: =FontWeight.Semibold
+                                Height: =61
+                                Size: =If(App.ActiveScreen.Size = ScreenSize.Small, 12, ScreenSize.Medium, 16, 18)
+                                Text: ="Info-Veranstaltung 1 besucht"
+                                Width: =341
+                                Y: =63
+                                ZIndex: =1
+
+                            Label1 As label:
+                                Align: =Align.Center
+                                AutoHeight: =true
+                                BorderColor: =App.Theme.Colors.Darker40
+                                Color: =RGBA(0, 0, 0, 1)
+                                DisabledColor: =RGBA(166, 166, 166, 1)
+                                Font: =App.Theme.Font
+                                FontWeight: =FontWeight.Semibold
+                                Size: =If(App.ActiveScreen.Size = ScreenSize.Small, 12, ScreenSize.Medium, 16, 18)
+                                Text: =
+                                Width: =Parent.Width
+                                Y: =227
+                                ZIndex: =3
+
+                            Label1_2 As label:
+                                Align: =Align.Center
+                                BorderColor: =App.Theme.Colors.Darker40
+                                Color: =RGBA(0, 0, 0, 1)
+                                DisabledColor: =RGBA(166, 166, 166, 1)
+                                Font: =App.Theme.Font
+                                FontWeight: =FontWeight.Semibold
+                                Height: =61
+                                Size: =If(App.ActiveScreen.Size = ScreenSize.Small, 12, ScreenSize.Medium, 16, 18)
+                                Text: ="Info-Veranstaltung 2 besucht"
+                                Width: =341
+                                Y: =135
+                                ZIndex: =4
+
+                            Icon1 As icon.Check:
+                                BorderColor: =App.Theme.Colors.Darker40
+                                Color: =App.Theme.Colors.Darker30
+                                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                                DisabledColor: =RGBA(244, 244, 244, 1)
+                                Icon: =Icon.Check
+                                X: =376
+                                Y: =60
+                                ZIndex: =5
+
+                            Icon1_1 As icon.Check:
+                                BorderColor: =App.Theme.Colors.Darker40
+                                Color: =App.Theme.Colors.Darker30
+                                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                                DisabledColor: =RGBA(244, 244, 244, 1)
+                                Icon: =Icon.Check
+                                X: =376
+                                Y: =124
+                                ZIndex: =6
+
+                    cntBtnDashboard_2 As groupContainer.verticalAutoLayoutContainer:
+                        DropShadow: =DropShadow.Light
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutMinHeight: =100
+                        LayoutMinWidth: =250
+                        LayoutMode: =LayoutMode.Auto
+                        RadiusBottomLeft: =4
+                        RadiusBottomRight: =4
+                        RadiusTopLeft: =4
+                        RadiusTopRight: =4
+                        ZIndex: =3
+
+                        Container1_1 As groupContainer.manualLayoutContainer:
+                            DropShadow: =DropShadow.Light
+                            LayoutMinHeight: =100
+                            LayoutMinWidth: =250
+                            RadiusBottomLeft: =4
+                            RadiusBottomRight: =4
+                            RadiusTopLeft: =4
+                            RadiusTopRight: =4
+                            ZIndex: =1
+
+                            Label1_3 As label:
+                                Align: =Align.Center
+                                BorderColor: =App.Theme.Colors.Darker40
+                                Color: =RGBA(0, 0, 0, 1)
+                                DisabledColor: =RGBA(166, 166, 166, 1)
+                                Font: =App.Theme.Font
+                                FontWeight: =FontWeight.Semibold
+                                Height: =61
+                                Size: =If(App.ActiveScreen.Size = ScreenSize.Small, 12, ScreenSize.Medium, 16, 18)
+                                Text: ="Antrag ausfüllt"
+                                Width: =341
+                                Y: =71
+                                ZIndex: =1
+
+                            Label1_5 As label:
+                                Align: =Align.Center
+                                BorderColor: =App.Theme.Colors.Darker40
+                                Color: =RGBA(0, 0, 0, 1)
+                                DisabledColor: =RGBA(166, 166, 166, 1)
+                                Font: =App.Theme.Font
+                                FontWeight: =FontWeight.Semibold
+                                Height: =61
+                                Size: =If(App.ActiveScreen.Size = ScreenSize.Small, 12, ScreenSize.Medium, 16, 18)
+                                Text: ="Arbeitsvertrag hochgeladen"
+                                Width: =341
+                                Y: =260
+                                ZIndex: =4
+
+                            Icon1_2 As icon.Check:
+                                BorderColor: =App.Theme.Colors.Darker40
+                                Color: =App.Theme.Colors.Darker30
+                                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                                DisabledColor: =RGBA(244, 244, 244, 1)
+                                Icon: =Icon.Check
+                                X: =376
+                                Y: =68
+                                ZIndex: =5
+
+                            Icon1_3 As icon.Check:
+                                BorderColor: =App.Theme.Colors.Darker40
+                                Color: =App.Theme.Colors.Darker30
+                                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                                DisabledColor: =RGBA(244, 244, 244, 1)
+                                Icon: =Icon.Check
+                                X: =376
+                                Y: =132
+                                ZIndex: =6
+
+                            Label1_6 As label:
+                                Align: =Align.Center
+                                BorderColor: =App.Theme.Colors.Darker40
+                                Color: =RGBA(0, 0, 0, 1)
+                                DisabledColor: =RGBA(166, 166, 166, 1)
+                                Font: =App.Theme.Font
+                                FontWeight: =FontWeight.Semibold
+                                Height: =61
+                                Size: =If(App.ActiveScreen.Size = ScreenSize.Small, 12, ScreenSize.Medium, 16, 18)
+                                Text: ="Antrag unterschrieben"
+                                Width: =341
+                                Y: =135
+                                ZIndex: =7
+
+                            Icon1_4 As icon.Check:
+                                BorderColor: =App.Theme.Colors.Darker40
+                                Color: =App.Theme.Colors.Darker30
+                                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                                DisabledColor: =RGBA(244, 244, 244, 1)
+                                Icon: =Icon.Check
+                                X: =376
+                                Y: =260
+                                ZIndex: =8
+
+                            Label1_7 As label:
+                                Align: =Align.Center
+                                BorderColor: =App.Theme.Colors.Darker40
+                                Color: =RGBA(0, 0, 0, 1)
+                                DisabledColor: =RGBA(166, 166, 166, 1)
+                                Font: =App.Theme.Font
+                                FontWeight: =FontWeight.Semibold
+                                Height: =61
+                                Size: =If(App.ActiveScreen.Size = ScreenSize.Small, 12, ScreenSize.Medium, 16, 18)
+                                Text: ="Unterschrift Betreuer/in"
+                                Width: =341
+                                X: =15
+                                Y: =199
+                                ZIndex: =9
+
+                            Icon1_5 As icon.Check:
+                                BorderColor: =App.Theme.Colors.Darker40
+                                Color: =App.Theme.Colors.Darker30
+                                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                                DisabledColor: =RGBA(244, 244, 244, 1)
+                                Icon: =Icon.Check
+                                X: =376
+                                Y: =196
+                                ZIndex: =10
+
+        cntFooterDashboard As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: |
+                =// Prüfe die Bildschirmorientierung und passe die Werte basierend auf der Bildschirmgröße an
+                If(
+                    App.Width < App.Height,  // Hochformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Geringerer Wert für Hochformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.075,  // Geringerer Wert für Hochformat bei mittlerem Bildschirm
+                        0.075   // Standardwert für Hochformat bei anderen Größen
+                    ),
+                    // Querformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Ursprünglicher Wert für Querformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.1,    // Ursprünglicher Wert für Querformat bei mittlerem Bildschirm
+                        0.1     // Standardwert für Querformat bei anderen Größen
+                    )
+                )
+            Height: =75
+            LayoutGap: =5
+            LayoutMinHeight: =40
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =7
+
+            btnSave_5 As button:
+                BorderColor: =App.Theme.Colors.Primary
+                BorderThickness: =0
+                Color: =App.Theme.Colors.PrimaryForeground
+                DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Fill: =RGBA(128, 186, 36, 1)
+                FillPortions: =1
+                Font: =App.Theme.Font
+                FontWeight: =FontWeight.Semibold
+                Height: =Parent.Height
+                HoverBorderColor: =App.Theme.Colors.Darker10
+                HoverColor: =App.Theme.Colors.PrimaryForeground
+                HoverFill: =App.Theme.Colors.Darker10
+                PressedBorderColor: =App.Theme.Colors.Darker40
+                PressedColor: =Self.Color
+                PressedFill: =App.Theme.Colors.Darker40
+                Size: =If(App.ActiveScreen.Size = ScreenSize.Small, 12, ScreenSize.Medium, 18, 20)
+                Text: ="Schaltfläche"
+                ZIndex: =8
+
+            btnSubmit_1 As button:
+                BorderColor: =App.Theme.Colors.Primary
+                BorderThickness: =0
+                Color: =App.Theme.Colors.PrimaryForeground
+                DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Fill: =btnSave_5.Fill
+                FillPortions: =1
+                Font: =App.Theme.Font
+                FontWeight: =FontWeight.Semibold
+                Height: =Parent.Height
+                HoverBorderColor: =App.Theme.Colors.Darker10
+                HoverColor: =App.Theme.Colors.PrimaryForeground
+                HoverFill: =App.Theme.Colors.Darker10
+                PressedBorderColor: =App.Theme.Colors.Darker40
+                PressedColor: =Self.Color
+                PressedFill: =App.Theme.Colors.Darker40
+                Size: =btnSave_5.Size
+                Text: ="Schaltfläche"
+                ZIndex: =9
+

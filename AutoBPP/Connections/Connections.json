@@ -1,0 +1,352 @@
+{
+  "504f9439-7727-4576-9c98-6d575a91a118": {
+    "appActions": [
+      "Run"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Logik-Flows",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1697/1.0.1697.3784/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "8f3d1931-38d7-4e17-801a-d338a963b28f": {
+          "value": "shared_sendmail"
+        },
+        "workflowDisplayName": {
+          "value": "E-MailCodeBestätigung"
+        },
+        "workflowEntityId": {},
+        "workflowName": {
+          "value": "e12472da-1204-4184-a745-9151bc1b9b22"
+        }
+      },
+      "parameterHintsV2": {
+        "shared_sendmail": {
+          "value": "8f3d1931-38d7-4e17-801a-d338a963b28f"
+        },
+        "workflowDisplayName": {
+          "value": "E-MailCodeBestätigung"
+        },
+        "workflowEntityId": {},
+        "workflowName": {
+          "value": "e12472da-1204-4184-a745-9151bc1b9b22"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "E-MailCodeBestätigung"
+    ],
+    "dependencies": {
+      "shared_sendmail": "8f3d1931-38d7-4e17-801a-d338a963b28f"
+    },
+    "dependents": [],
+    "id": "504f9439-7727-4576-9c98-6d575a91a118"
+  },
+  "71b17294-b94e-42be-bffe-2685ecfc034d": {
+    "appActions": [],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Encodian",
+      "executionRestrictions": {
+        "apiId": "unknown",
+        "appVer": "3.24092.17",
+        "modifiedOn": "2024-09-30 16:55:20",
+        "policy": "{\"type\":\"invalid\"}",
+        "version": 1
+      },
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1704/1.0.1704.3830/encodiandocumentmanager/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_encodiandocumentmanager",
+      "parameterHints": {},
+      "parameterHintsV2": {},
+      "sharedConnectionId": "/providers/microsoft.powerapps/apis/shared_encodiandocumentmanager/connections/shared-encodiandocum-4e278d74-279b-495b-ada8-78bfe3551d25"
+    },
+    "datasets": {},
+    "dataSources": [],
+    "dependencies": {},
+    "dependents": [
+      "7aed2e9b-2545-4418-b544-13a6c7f737fa"
+    ],
+    "id": "71b17294-b94e-42be-bffe-2685ecfc034d"
+  },
+  "7aed2e9b-2545-4418-b544-13a6c7f737fa": {
+    "appActions": [
+      "Run"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Logik-Flows",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1697/1.0.1697.3784/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "71b17294-b94e-42be-bffe-2685ecfc034d": {
+          "value": "shared_encodiandocumentmanager_1"
+        },
+        "workflowDisplayName": {
+          "value": "BPP Assistent - Passwort Hash"
+        },
+        "workflowEntityId": {},
+        "workflowName": {
+          "value": "17785fb4-271d-40ac-b6bb-960917dd9df3"
+        }
+      },
+      "parameterHintsV2": {
+        "shared_encodiandocumentmanager_1": {
+          "value": "71b17294-b94e-42be-bffe-2685ecfc034d"
+        },
+        "workflowDisplayName": {
+          "value": "BPP Assistent - Passwort Hash"
+        },
+        "workflowEntityId": {},
+        "workflowName": {
+          "value": "17785fb4-271d-40ac-b6bb-960917dd9df3"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "BPPAssistent-PasswortHash"
+    ],
+    "dependencies": {
+      "shared_encodiandocumentmanager_1": "71b17294-b94e-42be-bffe-2685ecfc034d"
+    },
+    "dependents": [],
+    "id": "7aed2e9b-2545-4418-b544-13a6c7f737fa"
+  },
+  "80c3cf95-c17f-42d9-951f-c1be68b761d0": {
+    "appActions": [],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Logik-Flows",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1697/1.0.1697.3784/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "ec77aaff-927e-416f-9d25-7bc7448f8b4d": {
+          "value": "shared_encodiandocumentmanager"
+        },
+        "workflowDisplayName": {
+          "value": "GenerateHash"
+        },
+        "workflowEntityId": {},
+        "workflowName": {
+          "value": "7627f7be-4320-4514-9384-fed8e3cbd5ec"
+        }
+      },
+      "parameterHintsV2": {
+        "shared_encodiandocumentmanager": {
+          "value": "ec77aaff-927e-416f-9d25-7bc7448f8b4d"
+        },
+        "workflowDisplayName": {
+          "value": "GenerateHash"
+        },
+        "workflowEntityId": {},
+        "workflowName": {
+          "value": "7627f7be-4320-4514-9384-fed8e3cbd5ec"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "GenerateHash"
+    ],
+    "dependencies": {
+      "shared_encodiandocumentmanager": "ec77aaff-927e-416f-9d25-7bc7448f8b4d"
+    },
+    "dependents": [],
+    "id": "80c3cf95-c17f-42d9-951f-c1be68b761d0"
+  },
+  "8f3d1931-38d7-4e17-801a-d338a963b28f": {
+    "appActions": [],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Mail",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1714/1.0.1714.3897/sendmail/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sendmail",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [],
+    "dependencies": {},
+    "dependents": [
+      "e5876c8b-394a-4b76-9aac-767aa9ebe43c",
+      "504f9439-7727-4576-9c98-6d575a91a118"
+    ],
+    "id": "8f3d1931-38d7-4e17-801a-d338a963b28f"
+  },
+  "c74369c1-8a95-4345-b02f-e97d38e1eaf6": {
+    "appActions": [
+      "Run"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Logik-Flows",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1697/1.0.1697.3784/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "workflowDisplayName": {
+          "value": "Genehmigungsprozess BPP"
+        },
+        "workflowEntityId": {},
+        "workflowName": {
+          "value": "6199d584-d103-474d-90ac-d0ef7ba40d38"
+        }
+      },
+      "parameterHintsV2": {
+        "workflowDisplayName": {
+          "value": "Genehmigungsprozess BPP"
+        },
+        "workflowEntityId": {},
+        "workflowName": {
+          "value": "6199d584-d103-474d-90ac-d0ef7ba40d38"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "GenehmigungsprozessBPP"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "c74369c1-8a95-4345-b02f-e97d38e1eaf6"
+  },
+  "dd05f6e3-b3c3-4d10-b6ca-fd464d408ee8": {
+    "appActions": [
+      "providers/PowerPlatform.Governance/Operations/Read",
+      "providers/PowerPlatform.Governance/Operations/Write"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/jayawan/releases/v1.0.1697/1.0.1697.3786/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "https://mndthmde.sharepoint.com/sites/zengin": {
+        "dataSources": {
+          "BPP - Registrierung": {
+            "tableName": "9fa001a5-a51d-48b9-803c-ebb7a989891b"
+          },
+          "BPP Assistent - Antrag": {
+            "tableName": "0b153196-37bf-471c-a71a-0955852f0564"
+          },
+          "BPP Assistent - Dokumentenupload": {
+            "tableName": "eebc89a4-fc53-46bd-8b09-f63546cfd062"
+          },
+          "BPP Assistent - Lehrende": {
+            "tableName": "25e1519b-f57c-471f-ae57-5c1c74e033b5"
+          },
+          "BPP Assistent - Signatur": {
+            "tableName": "5851b6b6-5541-402c-8921-1215c1def387"
+          },
+          "BPP Assistent - Studierende": {
+            "tableName": "781a5324-6b5f-4eab-94e2-2f172092e68d"
+          },
+          "BPP Assistent - Studierende_1": {
+            "tableName": "781a5324-6b5f-4eab-94e2-2f172092e68d"
+          },
+          "BPP Assistent - Studierende_2": {
+            "tableName": "781a5324-6b5f-4eab-94e2-2f172092e68d"
+          },
+          "BPP Assistent - Teilnahmebestätigung": {
+            "tableName": "47b2a896-768b-41cc-85c6-d8394f0cbeb2"
+          },
+          "BPP Assistent - Teilnehmerliste": {
+            "tableName": "9537f24b-98eb-4852-8fbf-ddb946ff0138"
+          },
+          "BPP Assistent - Veranstaltungen": {
+            "tableName": "1636e201-5950-4a6f-ab7c-6cdd601efc99"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "BPP - Registrierung",
+      "BPP Assistent - Antrag",
+      "BPP Assistent - Studierende",
+      "BPP Assistent - Studierende_1",
+      "BPP Assistent - Veranstaltungen",
+      "BPP Assistent - Teilnahmebestätigung",
+      "BPP Assistent - Signatur",
+      "BPP Assistent - Lehrende",
+      "BPP Assistent - Dokumentenupload",
+      "BPP Assistent - Studierende_2",
+      "BPP Assistent - Teilnehmerliste"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "dd05f6e3-b3c3-4d10-b6ca-fd464d408ee8"
+  },
+  "e5876c8b-394a-4b76-9aac-767aa9ebe43c": {
+    "appActions": [
+      "Run"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Logik-Flows",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1697/1.0.1697.3784/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "8f3d1931-38d7-4e17-801a-d338a963b28f": {
+          "value": "shared_sendmail"
+        },
+        "workflowDisplayName": {
+          "value": "Password zurück setzen"
+        },
+        "workflowEntityId": {},
+        "workflowName": {
+          "value": "bb2fec16-8f69-44c6-928c-ddd8624e03d9"
+        }
+      },
+      "parameterHintsV2": {
+        "shared_sendmail": {
+          "value": "8f3d1931-38d7-4e17-801a-d338a963b28f"
+        },
+        "workflowDisplayName": {
+          "value": "Password zurück setzen"
+        },
+        "workflowEntityId": {},
+        "workflowName": {
+          "value": "bb2fec16-8f69-44c6-928c-ddd8624e03d9"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "Passwordzurücksetzen"
+    ],
+    "dependencies": {
+      "shared_sendmail": "8f3d1931-38d7-4e17-801a-d338a963b28f"
+    },
+    "dependents": [],
+    "id": "e5876c8b-394a-4b76-9aac-767aa9ebe43c"
+  },
+  "ec77aaff-927e-416f-9d25-7bc7448f8b4d": {
+    "appActions": [],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Encodian",
+      "executionRestrictions": {
+        "apiId": "unknown",
+        "appVer": "3.24092.17",
+        "modifiedOn": "2024-09-30 16:55:20",
+        "policy": "{\"type\":\"invalid\"}",
+        "version": 1
+      },
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1704/1.0.1704.3830/encodiandocumentmanager/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_encodiandocumentmanager",
+      "parameterHints": {},
+      "parameterHintsV2": {},
+      "sharedConnectionId": "/providers/microsoft.powerapps/apis/shared_encodiandocumentmanager/connections/73dc1c073f1c4f81a6260df5ee955583"
+    },
+    "datasets": {},
+    "dataSources": [],
+    "dependencies": {},
+    "dependents": [
+      "80c3cf95-c17f-42d9-951f-c1be68b761d0"
+    ],
+    "id": "ec77aaff-927e-416f-9d25-7bc7448f8b4d"
+  }
+}

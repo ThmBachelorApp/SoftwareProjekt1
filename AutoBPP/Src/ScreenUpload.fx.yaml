@@ -1,0 +1,431 @@
+"ScreenUpload As screen.'autoLayout_HeaderFooter_ver1.0'":
+    Fill: =Color.White
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+
+    cntUpload As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(245, 245, 245, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =Parent.Width
+        ZIndex: =1
+
+        cntHeaderUpload As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: |
+                =// Prüfe die Bildschirmorientierung und passe die Werte basierend auf der Bildschirmgröße an
+                If(
+                    App.Width < App.Height,  // Hochformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Geringerer Wert für Hochformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.075,  // Geringerer Wert für Hochformat bei mittlerem Bildschirm
+                        0.075   // Standardwert für Hochformat bei anderen Größen
+                    ),
+                    // Querformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Ursprünglicher Wert für Querformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.1,    // Ursprünglicher Wert für Querformat bei mittlerem Bildschirm
+                        0.1     // Standardwert für Querformat bei anderen Größen
+                    )
+                )
+            Height: =75
+            LayoutMinHeight: =35
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =1
+
+            icnBack_15 As icon.BackArrow:
+                BorderColor: =RGBA(128, 186, 36, 1)
+                Color: =RGBA(141, 198, 63, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                FillPortions: =0.125
+                Height: =Parent.Height
+                Icon: =Icon.BackArrow
+                OnSelect: =Navigate(returnScreen)
+                PaddingBottom: =5
+                PaddingLeft: =5
+                PaddingTop: =5
+                ZIndex: =2
+
+            imgLogo_15 As image:
+                BorderColor: =App.Theme.Colors.Darker40
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                FillPortions: =1
+                Height: =Parent.Height
+                Image: =THM_Logo_184x75
+                PaddingRight: =65
+                Width: =
+                ZIndex: =3
+
+        cntMainUpload As groupContainer.verticalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =Parent.Height
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =5
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =5
+
+            btnBPPInfo_1 As button:
+                BorderColor: =App.Theme.Colors.Primary
+                BorderThickness: =0
+                Color: =App.Theme.Colors.PrimaryForeground
+                DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(128, 186, 36, 1)
+                FillPortions: =0.075
+                Font: =App.Theme.Font
+                FontWeight: =FontWeight.Semibold
+                Height: =Parent.Height
+                HoverBorderColor: =App.Theme.Colors.Darker10
+                HoverColor: =App.Theme.Colors.PrimaryForeground
+                HoverFill: =App.Theme.Colors.Darker10
+                LayoutMinHeight: =30
+                PressedBorderColor: =App.Theme.Colors.Darker40
+                PressedColor: =Self.Color
+                PressedFill: =App.Theme.Colors.Darker40
+                Size: =If(App.ActiveScreen.Size = ScreenSize.Small, 12, ScreenSize.Medium, 18, 20)
+                Text: ="Dokumentenupload"
+                Width: =Parent.Width
+                ZIndex: =1
+
+            frmUpload As form.PowerApps_CoreControls_Form:
+                BorderColor: =App.Theme.Colors.Darker40
+                DataSource: ='BPP Assistent - Dokumentenupload'
+                Height: =Parent.Height
+                LayoutMinHeight: =250
+                LayoutMinWidth: =400
+                NumberOfColumns: =1
+                OnFailure: =Notify("Bitte Eingaben überprüfen",NotificationType.Error)
+                OnSuccess: |-
+                    =Notify("Upload erfolgreich",NotificationType.Success);
+                    ResetForm(frmUpload);
+                    Navigate(returnScreen)
+                UseFluentV9Cards: =true
+                Width: =Parent.Width
+                ZIndex: =2
+
+                Titel_DataCard3 As typedDataCard.fluentV9TextualEditCard:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="Title"
+                    Default: =ThisItem.Title
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@'BPP Assistent - Dokumentenupload'],DataSourceInfo.DisplayName,Title)
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =70
+                    MaxLength: =DataSourceInfo([@'BPP Assistent - Dokumentenupload'], DataSourceInfo.MaxLength, Title)
+                    Required: =false
+                    Update: =DataCardValue40.Value
+                    Width: =Parent.Width
+                    WidthFit: =true
+                    X: =0
+                    Y: =0
+                    ZIndex: =3
+
+                    DataCardKey42 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =22
+                        Text: =Parent.DisplayName
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =(Parent.Width - 48) * 0.4
+                        Wrap: =false
+                        X: =24
+                        Y: =4 + (DataCardValue40.Height / 2) - (Self.Height / 2)
+                        ZIndex: =1
+
+                    DataCardValue40 As Texteingabe:
+                        AccessibleLabel: =Parent.DisplayName
+                        DisplayMode: =Parent.DisplayMode
+                        Height: =32
+                        Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                        Required: =Parent.Required
+                        ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                        Value: =Parent.Default
+                        Width: =(Parent.Width - 48) * 0.4
+                        X: =DataCardKey42.X + DataCardKey42.Width
+                        Y: =10
+                        ZIndex: =2
+
+                    ErrorMessage42 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =DataCardValue40.Y + DataCardValue40.Height
+                        ZIndex: =3
+
+                    StarVisible42 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        X: =0
+                        Y: =DataCardKey42.Y
+                        ZIndex: =4
+
+                Dokumententyp_DataCard1 As typedDataCard.fluentV9ComboBoxEditCard:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="Dokumententyp"
+                    Default: =ThisItem.Dokumententyp
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@'BPP Assistent - Dokumentenupload'],DataSourceInfo.DisplayName,Dokumententyp)
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =70
+                    Required: =true
+                    Update: =DataCardValue41.Selected
+                    Width: =Parent.Width
+                    WidthFit: =true
+                    X: =0
+                    Y: =1
+                    ZIndex: =3
+
+                    DataCardKey43 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =22
+                        Text: =Parent.DisplayName
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =(Parent.Width - 48) * 0.4
+                        Wrap: =false
+                        X: =24
+                        Y: =4 + (DataCardValue41.Height / 2) - (Self.Height / 2)
+                        ZIndex: =1
+
+                    DataCardValue41 As Combobox.pcfdataset:
+                        AccessibleLabel: =If(Parent.Required, Substitute("{0}. Erforderlich.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                        DefaultSelectedItems: =[Parent.Default]
+                        DisplayMode: =Parent.DisplayMode
+                        Height: =32
+                        InputTextPlaceholder: ="Dokumentenart auswählen"
+                        Items: =Choices([@'BPP Assistent - Dokumentenupload'].Dokumententyp)
+                        ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                        Width: =(Parent.Width - 48) * 0.4
+                        X: =DataCardKey43.X + DataCardKey43.Width
+                        Y: =10
+                        ZIndex: =2
+
+                    ErrorMessage43 As Text:
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =30
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        Wrap: =true
+                        X: =24
+                        Y: =DataCardValue41.Y + DataCardValue41.Height
+                        ZIndex: =3
+
+                    StarVisible43 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =20
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        X: =0
+                        Y: =DataCardKey43.Y
+                        ZIndex: =4
+
+                Anlagen_DataCard1 As typedDataCard.attachmentsEditCard:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="{Attachments}"
+                    Default: =ThisItem.'{Attachments}'
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@'BPP Assistent - Dokumentenupload'],DataSourceInfo.DisplayName,'{Attachments}')
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =212
+                    Required: =false
+                    Update: =DataCardValue42.Attachments
+                    Width: =Parent.Width
+                    WidthFit: =true
+                    X: =0
+                    Y: =2
+                    ZIndex: =3
+
+                    DataCardKey44 As label:
+                        AutoHeight: =true
+                        Color: =App.Theme.Colors.Darker30
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        Font: =App.Theme.Font
+                        Height: =34
+                        Size: =13
+                        Text: =Parent.DisplayName
+                        Width: =(Parent.Width - 60) * 0.4
+                        Wrap: =false
+                        X: =30
+                        Y: =10 + (DataCardValue42.Height / 2) - (Self.Height / 2)
+                        ZIndex: =1
+
+                    DataCardValue42 As attachments:
+                        BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                        BorderThickness: =2
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        DisabledFill: =RGBA(244, 244, 244, 1)
+                        DisplayMode: =Parent.DisplayMode
+                        FocusedBorderThickness: =4
+                        Font: =App.Theme.Font
+                        Height: =150
+                        HoverColor: =RGBA(0, 0, 0, 1)
+                        HoverFill: =App.Theme.Colors.Lighter70
+                        IsInDataCard: =true
+                        ItemColor: =App.Theme.Colors.PrimaryForeground
+                        ItemFill: =App.Theme.Colors.Primary
+                        ItemHoverColor: =RGBA(0, 0, 0, 1)
+                        ItemHoverFill: =App.Theme.Colors.Lighter70
+                        Items: =Parent.Default
+                        PaddingBottom: =5
+                        PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                        PaddingRight: =5
+                        PaddingTop: =5
+                        PressedColor: =App.Theme.Colors.PrimaryForeground
+                        PressedFill: =App.Theme.Colors.Darker30
+                        Tooltip: =Parent.DisplayName
+                        Width: =(Parent.Width - 60) * 0.5
+                        X: =DataCardKey44.X + DataCardKey44.Width
+                        Y: =10
+                        ZIndex: =2
+
+                    ErrorMessage44 As label:
+                        AutoHeight: =true
+                        Color: =RGBA(168, 0, 0, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        Font: =App.Theme.Font
+                        FontWeight: =FontWeight.Semibold
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =DataCardValue42.Y + DataCardValue42.Height
+                        ZIndex: =3
+
+                    StarVisible44 As label:
+                        Align: =Align.Center
+                        Color: =App.Theme.Colors.Darker30
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        Font: =App.Theme.Font
+                        Height: =DataCardKey44.Height
+                        Size: =13
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =DataCardKey44.Y
+                        ZIndex: =4
+
+        cntFooterUpload As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: |
+                =// Prüfe die Bildschirmorientierung und passe die Werte basierend auf der Bildschirmgröße an
+                If(
+                    App.Width < App.Height,  // Hochformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Geringerer Wert für Hochformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.075,  // Geringerer Wert für Hochformat bei mittlerem Bildschirm
+                        0.075   // Standardwert für Hochformat bei anderen Größen
+                    ),
+                    // Querformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Ursprünglicher Wert für Querformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.1,    // Ursprünglicher Wert für Querformat bei mittlerem Bildschirm
+                        0.1     // Standardwert für Querformat bei anderen Größen
+                    )
+                )
+            Height: =75
+            LayoutGap: =5
+            LayoutMinHeight: =40
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =7
+
+            btnSave_8 As button:
+                BorderColor: =App.Theme.Colors.Primary
+                BorderThickness: =0
+                Color: =App.Theme.Colors.PrimaryForeground
+                DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Fill: =RGBA(128, 186, 36, 1)
+                FillPortions: =1
+                Font: =App.Theme.Font
+                FontWeight: =FontWeight.Semibold
+                Height: =Parent.Height
+                HoverBorderColor: =App.Theme.Colors.Darker10
+                HoverColor: =App.Theme.Colors.PrimaryForeground
+                HoverFill: =App.Theme.Colors.Darker10
+                OnSelect: |
+                    =SubmitForm(frmUpload);
+                    
+                    // Patch, um die ID in die Spalte 'ZugehörigeID' der Liste 'BPP Assistent - Dokumentenupload' zu speichern
+                    Patch(
+                        'BPP Assistent - Dokumentenupload',
+                        frmUpload.LastSubmit,
+                        {
+                            Zugeh_x00f6_rigeID: userID
+                        }
+                    );
+                PressedBorderColor: =App.Theme.Colors.Darker40
+                PressedColor: =Self.Color
+                PressedFill: =App.Theme.Colors.Darker40
+                Size: =If(ScreenUpload.Size = ScreenSize.Small, 12, ScreenSize.Medium, 18, 20)
+                Text: ="Formular abschicken"
+                ZIndex: =8
+

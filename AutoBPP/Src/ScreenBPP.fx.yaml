@@ -1,0 +1,442 @@
+"ScreenBPP As screen.'autoLayout_HeaderFooter_ver1.0'":
+    Fill: =Color.White
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+    OnVisible: |-
+        =Set(antragsItem, Blank());
+        Refresh('BPP Assistent - Veranstaltungen')
+
+    cntBPP As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(245, 245, 245, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =Parent.Width
+        ZIndex: =1
+
+        cntHeaderBPP As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: |
+                =// Prüfe die Bildschirmorientierung und passe die Werte basierend auf der Bildschirmgröße an
+                If(
+                    App.Width < App.Height,  // Hochformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Geringerer Wert für Hochformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.075,  // Geringerer Wert für Hochformat bei mittlerem Bildschirm
+                        0.075   // Standardwert für Hochformat bei anderen Größen
+                    ),
+                    // Querformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Ursprünglicher Wert für Querformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.1,    // Ursprünglicher Wert für Querformat bei mittlerem Bildschirm
+                        0.1     // Standardwert für Querformat bei anderen Größen
+                    )
+                )
+            Height: =75
+            LayoutMinHeight: =35
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =2
+
+            icnBackBPP As icon.BackArrow:
+                BorderColor: =RGBA(128, 186, 36, 1)
+                Color: =RGBA(141, 198, 63, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                Height: =Parent.Height
+                Icon: =Icon.Support
+                PaddingBottom: =5
+                PaddingLeft: =5
+                PaddingTop: =5
+                ZIndex: =1
+
+            imgLogoBPP As image:
+                BorderColor: =App.Theme.Colors.Darker40
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                FillPortions: =1
+                Height: =Parent.Height
+                Image: =THM_Logo_184x75
+                Width: =
+                ZIndex: =2
+
+            icnInfoBPP As icon.NextArrow:
+                BorderColor: =RGBA(128, 186, 36, 1)
+                Color: =RGBA(141, 198, 63, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                FillPortions: =0.125
+                Height: =Parent.Height
+                Icon: =Icon.CancelBadge
+                LayoutMinWidth: =50
+                OnSelect: |
+                    =// Setze alle benutzerbezogenen Variablen auf Blank(), um die Sitzung zu beenden
+                    Set(varLogin, Blank());
+                    Set(currentUserRole, Blank());
+                    Set(varAktuelleEmail, Blank());
+                    Set(returnScreen, Blank());
+                    Set(userID, Blank());
+                    Set(antragsItem, Blank());
+                    Set(varSignaturID, Blank());
+                    Set(confirmationCount, Blank());
+                    Set(infoVeranstaltung1, Blank());
+                    Set(infoVeranstaltung2, Blank());
+                    Set(confirmationList, Blank());
+                    Set(infoList, Blank());
+                    
+                    // Setze die Eingabefelder zurück (optional)
+                    Reset(txtUsername);
+                    Reset(txtPassword);
+                    
+                    // Navigiere zurück zum Login-Screen
+                    Navigate(ScreenLogIn, ScreenTransition.Fade);
+                    
+                    // Benachrichtigung anzeigen, dass der Benutzer abgemeldet wurde
+                    Notify("Sie wurden erfolgreich abgemeldet.", NotificationType.Success);
+                PaddingBottom: =5
+                PaddingRight: =5
+                PaddingTop: =5
+                ZIndex: =3
+
+        cntMainBPP As groupContainer.verticalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =Parent.Height
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =3
+
+            cntContentBPP As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                DropShadow: =DropShadow.Light
+                Height: =Parent.Height
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Width: =Parent.Width
+                ZIndex: =1
+
+                cntMenuBPP As groupContainer.verticalAutoLayoutContainer:
+                    Height: =Parent.Height
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutGap: =50
+                    LayoutMode: =LayoutMode.Auto
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    Width: =Parent.Width    
+                    ZIndex: =1
+
+                    lblHeadlineBPP As label:
+                        Align: =Align.Center
+                        AutoHeight: =true
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(45, 128, 40, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        FillPortions: |
+                            =If(
+                                App.Width < App.Height,
+                                If(
+                                    ScreenBPP.Size = ScreenSize.Small,
+                                    0.1,  // Geringerer Wert für Hochformat bei kleinem Bildschirm
+                                    ScreenBPP.Size = ScreenSize.Medium,
+                                    0.1, // Geringerer Wert für Hochformat bei mittlerem Bildschirm
+                                    0.1  // Standardwert für Hochformat bei anderen Größen
+                                ),
+                                If(
+                                    ScreenBPP.Size = ScreenSize.Small,
+                                    0.1, // Ursprünglicher Wert für Querformat bei kleinem Bildschirm
+                                    ScreenBPP.Size = ScreenSize.Medium,
+                                    0.125,   // Ursprünglicher Wert für Querformat bei mittlerem Bildschirm
+                                    0.125    // Standardwert für Querformat bei anderen Größen
+                                )
+                            )
+                        Font: =App.Theme.Font
+                        FontWeight: =FontWeight.Bold
+                        LayoutMinHeight: =60
+                        PaddingTop: =25
+                        Size: =If(App.ActiveScreen.Size = ScreenSize.Small, 14, ScreenSize.Medium, 22, 24)
+                        Text: ="Dein BPP Assistent"
+                        Width: =Parent.Width
+                        ZIndex: =1
+
+                    cntButtonsBPP As groupContainer.horizontalAutoLayoutContainer:
+                        FillPortions: |
+                            =If(
+                                App.Width < App.Height,
+                                If(
+                                    ScreenBPP.Size = ScreenSize.Small,
+                                    0.5,  // Geringerer Wert für Hochformat bei kleinem Bildschirm
+                                    ScreenBPP.Size = ScreenSize.Medium,
+                                    0.4, // Geringerer Wert für Hochformat bei mittlerem Bildschirm
+                                    0.4  // Standardwert für Hochformat bei anderen Größen
+                                ),
+                                If(
+                                    ScreenBPP.Size = ScreenSize.Small,
+                                    0.4, // Ursprünglicher Wert für Querformat bei kleinem Bildschirm
+                                    ScreenBPP.Size = ScreenSize.Medium,
+                                    0.5,   // Ursprünglicher Wert für Querformat bei mittlerem Bildschirm
+                                    0.5    // Standardwert für Querformat bei anderen Größen
+                                )
+                            )
+                        LayoutDirection: =If(ScreenBPP.Size = ScreenSize.Small, LayoutDirection.Vertical, LayoutDirection.Horizontal)
+                        LayoutGap: =10
+                        LayoutMinHeight: =150
+                        LayoutMinWidth: =200
+                        LayoutMode: =LayoutMode.Auto
+                        PaddingLeft: =5
+                        PaddingRight: =5
+                        RadiusBottomLeft: =4
+                        RadiusBottomRight: =4
+                        RadiusTopLeft: =4
+                        RadiusTopRight: =4
+                        Width: =Parent.Width
+                        ZIndex: =2
+
+                        cntButtonsLeft_2 As groupContainer.verticalAutoLayoutContainer:
+                            AlignInContainer: =AlignInContainer.SetByContainer
+                            Height: =Parent.Height
+                            LayoutDirection: =LayoutDirection.Vertical
+                            LayoutGap: =5
+                            LayoutMinHeight: =100
+                            LayoutMinWidth: =200
+                            LayoutMode: =LayoutMode.Auto
+                            RadiusBottomLeft: =4
+                            RadiusBottomRight: =4
+                            RadiusTopLeft: =4
+                            RadiusTopRight: =4
+                            Width: =Parent.Width - cntButtonsBPP.LayoutGap
+                            ZIndex: =1
+
+                            btn1_2 As button:
+                                BorderColor: =App.Theme.Colors.Primary
+                                BorderThickness: =0
+                                Color: =App.Theme.Colors.PrimaryForeground
+                                DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                                DisabledColor: =RGBA(166, 166, 166, 1)
+                                DisabledFill: =RGBA(244, 244, 244, 1)
+                                Fill: =RGBA(128, 186, 36, 1)
+                                FillPortions: =1
+                                Font: =App.Theme.Font
+                                FontWeight: =FontWeight.Semibold
+                                Height: =Parent.Height
+                                HoverBorderColor: =App.Theme.Colors.Darker10
+                                HoverColor: =App.Theme.Colors.PrimaryForeground
+                                HoverFill: =App.Theme.Colors.Darker10
+                                OnSelect: |
+                                    =// Button für BPP-Verantwortliche
+                                    
+                                    // Schritt 1: Holen der Betreuer-ID basierend auf der Benutzer-E-Mail
+                                    Set(betreuungID, LookUp('BPP Assistent - Lehrende', E_x002d_Mail = varAktuelleEmail).ID);
+                                    
+                                    // Schritt 2: Filtern der Anträge basierend auf der Betreuer-ID
+                                    Set(betreuungAntraege, Filter('BPP Assistent - Antrag', BetreuerID = betreuungID));
+                                    
+                                    // Schritt 3: Holen der Studierenden-IDs direkt aus der Spalte "StudierendeID" in den Anträgen des Betreuers
+                                    Set(studierendeIDs, ForAll(betreuungAntraege, StudierendeID));
+                                    
+                                    // Schritt 4: Filtern der Teilnahmebestätigung basierend auf den Studierenden-IDs, die dem Betreuer zugeordnet sind
+                                    Set(confirmationList, Filter('BPP Assistent - Teilnahmebestätigung', StudierendeID in studierendeIDs && Info_x002d_Veranstaltung = false));
+                                    Set(infoList, Filter('BPP Assistent - Teilnahmebestätigung', StudierendeID in studierendeIDs && Info_x002d_Veranstaltung = true));
+                                    
+                                    // Schritt 5: Spezifische Teilnahmebestätigung für Info-Veranstaltungen (Info 1 und Info 2)
+                                    Set(infoVeranstaltung1, LookUp(infoList, BitteInfoveranstaltungausw_x00e4.Value = "Info 1"));
+                                    Set(infoVeranstaltung2, LookUp(infoList, BitteInfoveranstaltungausw_x00e4.Value = "Info 2"));
+                                    Set(confirmationCount, CountRows(confirmationList));
+                                    Navigate(ScreenAllAntraege)
+                                PressedBorderColor: =App.Theme.Colors.Darker40
+                                PressedColor: =Self.Color
+                                PressedFill: =App.Theme.Colors.Darker40
+                                Size: =If(App.ActiveScreen.Size = ScreenSize.Small, 12, ScreenSize.Medium, 18, 20)
+                                Text: ="Anträge verwalten"
+                                Width: =Parent.Width - cntButtonsLeft_2.PaddingLeft
+                                ZIndex: =2
+
+                            btn2_2 As button:
+                                BorderColor: =App.Theme.Colors.Primary
+                                BorderThickness: =0
+                                Color: =App.Theme.Colors.PrimaryForeground
+                                DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                                DisabledColor: =RGBA(166, 166, 166, 1)
+                                DisabledFill: =RGBA(244, 244, 244, 1)
+                                Fill: =RGBA(128, 186, 36, 1)
+                                FillPortions: =1
+                                Font: =App.Theme.Font
+                                FontWeight: =FontWeight.Semibold
+                                Height: =Parent.Height
+                                HoverBorderColor: =App.Theme.Colors.Darker10
+                                HoverColor: =App.Theme.Colors.PrimaryForeground
+                                HoverFill: =App.Theme.Colors.Darker10
+                                OnSelect: =
+                                PressedBorderColor: =App.Theme.Colors.Darker40
+                                PressedColor: =Self.Color
+                                PressedFill: =App.Theme.Colors.Darker40
+                                Size: =If(App.ActiveScreen.Size = ScreenSize.Small, 12, ScreenSize.Medium, 18, 20)
+                                Text: ="Dashboard"
+                                Width: =btn1_2.Width  
+                                ZIndex: =3
+
+                            btn3_2 As button:
+                                BorderColor: =App.Theme.Colors.Primary
+                                BorderThickness: =0
+                                Color: =App.Theme.Colors.PrimaryForeground
+                                DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                                DisabledColor: =RGBA(166, 166, 166, 1)
+                                DisabledFill: =RGBA(244, 244, 244, 1)
+                                Fill: =RGBA(128, 186, 36, 1)
+                                FillPortions: =1
+                                Font: =App.Theme.Font
+                                FontWeight: =FontWeight.Semibold
+                                Height: =Parent.Height
+                                HoverBorderColor: =App.Theme.Colors.Darker10
+                                HoverColor: =App.Theme.Colors.PrimaryForeground
+                                HoverFill: =App.Theme.Colors.Darker10
+                                OnSelect: |-
+                                    =Navigate(ScreenUpload);
+                                    NewForm(frmUpload);
+                                    // Für BPP-Verantwortliche: Bestimme die ID aus der 'BPP Assistent - Lehrende' Liste
+                                    Set(
+                                        userID,
+                                        LookUp(
+                                            'BPP Assistent - Lehrende',
+                                            E_x002d_Mail = varAktuelleEmail
+                                        ).ID
+                                    )
+                                PressedBorderColor: =App.Theme.Colors.Darker40
+                                PressedColor: =Self.Color
+                                PressedFill: =App.Theme.Colors.Darker40
+                                Size: =If(App.ActiveScreen.Size = ScreenSize.Small, 12, ScreenSize.Medium, 18, 20)
+                                Text: ="Dokumenten Upload"
+                                Width: =btn1_2.Width  
+                                ZIndex: =4
+
+                        cntButtonsRight_2 As groupContainer.verticalAutoLayoutContainer:
+                            AlignInContainer: =AlignInContainer.SetByContainer
+                            Height: =Parent.Height
+                            LayoutDirection: =LayoutDirection.Vertical
+                            LayoutGap: =5
+                            LayoutMinHeight: =100
+                            LayoutMinWidth: =200
+                            LayoutMode: =LayoutMode.Auto
+                            RadiusBottomLeft: =4
+                            RadiusBottomRight: =4
+                            RadiusTopLeft: =4
+                            RadiusTopRight: =4
+                            Width: =Parent.Width - cntButtonsBPP.LayoutGap
+                            ZIndex: =2
+
+                            btn4_2 As button:
+                                BorderColor: =App.Theme.Colors.Primary
+                                BorderThickness: =0
+                                Color: =App.Theme.Colors.PrimaryForeground
+                                DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                                DisabledColor: =RGBA(166, 166, 166, 1)
+                                DisabledFill: =RGBA(244, 244, 244, 1)
+                                Fill: =RGBA(128, 186, 36, 1)
+                                FillPortions: =1
+                                Font: =App.Theme.Font
+                                FontWeight: =FontWeight.Semibold
+                                Height: =Parent.Height
+                                HoverBorderColor: =App.Theme.Colors.Darker10
+                                HoverColor: =App.Theme.Colors.PrimaryForeground
+                                HoverFill: =App.Theme.Colors.Darker10
+                                OnSelect: |-
+                                    =Navigate(ScreenEvent);
+                                    NewForm(frmNewEvent);
+                                    Set(eventItem,Blank())
+                                PressedBorderColor: =App.Theme.Colors.Darker40
+                                PressedColor: =Self.Color
+                                PressedFill: =App.Theme.Colors.Darker40
+                                Size: =If(App.ActiveScreen.Size = ScreenSize.Small, 12, ScreenSize.Medium, 18, 20)
+                                Text: ="Veranstaltungen erstellen"
+                                Width: =Parent.Width - cntButtonsRight_2.PaddingRight
+                                ZIndex: =1
+
+                            btn5_2 As button:
+                                BorderColor: =App.Theme.Colors.Primary
+                                BorderThickness: =0
+                                Color: =App.Theme.Colors.PrimaryForeground
+                                DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                                DisabledColor: =RGBA(166, 166, 166, 1)
+                                DisabledFill: =RGBA(244, 244, 244, 1)
+                                Fill: =RGBA(128, 186, 36, 1)
+                                FillPortions: =1
+                                Font: =App.Theme.Font
+                                FontWeight: =FontWeight.Semibold
+                                Height: =Parent.Height
+                                HoverBorderColor: =App.Theme.Colors.Darker10
+                                HoverColor: =App.Theme.Colors.PrimaryForeground
+                                HoverFill: =App.Theme.Colors.Darker10
+                                OnSelect: |+
+                                    =Navigate(ScreenEditEvent);
+                                    Set(viewEvent,false);
+                                    Set(isInfo,false);
+                                    
+                                PressedBorderColor: =App.Theme.Colors.Darker40
+                                PressedColor: =Self.Color
+                                PressedFill: =App.Theme.Colors.Darker40
+                                Size: =If(App.ActiveScreen.Size = ScreenSize.Small, 12, ScreenSize.Medium, 18, 20)
+                                Text: ="BPP Vorträge verwalten"
+                                Width: =btn4_2.Width
+                                ZIndex: =2
+
+                            btn6_2 As button:
+                                BorderColor: =App.Theme.Colors.Primary
+                                BorderThickness: =0
+                                Color: =App.Theme.Colors.PrimaryForeground
+                                DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                                DisabledColor: =RGBA(166, 166, 166, 1)
+                                DisabledFill: =RGBA(244, 244, 244, 1)
+                                Fill: =RGBA(128, 186, 36, 1)
+                                FillPortions: =1
+                                Font: =App.Theme.Font
+                                FontWeight: =FontWeight.Semibold
+                                Height: =Parent.Height
+                                HoverBorderColor: =App.Theme.Colors.Darker10
+                                HoverColor: =App.Theme.Colors.PrimaryForeground
+                                HoverFill: =App.Theme.Colors.Darker10
+                                OnSelect: |
+                                    =Navigate(ScreenEditEvent);
+                                    Set(viewEvent,false);
+                                    Set(isInfo,true);
+                                PressedBorderColor: =App.Theme.Colors.Darker40
+                                PressedColor: =Self.Color
+                                PressedFill: =App.Theme.Colors.Darker40
+                                Size: =If(App.ActiveScreen.Size = ScreenSize.Small, 12, ScreenSize.Medium, 18, 20)
+                                Text: ="Info-Veranstaltungen ansehen"
+                                Width: =btn4_2.Width
+                                ZIndex: =3
+

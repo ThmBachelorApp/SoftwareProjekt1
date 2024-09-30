@@ -1,0 +1,441 @@
+"ScreenBPPInfo As screen.'autoLayout_HeaderFooter_ver1.0'":
+    Fill: =Color.White
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+    OnVisible: =
+
+    cntBPPInfo As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(245, 245, 245, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =Parent.Width
+        ZIndex: =1
+
+        cntHeaderBPPInfo As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: |
+                =// Prüfe die Bildschirmorientierung und passe die Werte basierend auf der Bildschirmgröße an
+                If(
+                    App.Width < App.Height,  // Hochformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Geringerer Wert für Hochformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.075,  // Geringerer Wert für Hochformat bei mittlerem Bildschirm
+                        0.075   // Standardwert für Hochformat bei anderen Größen
+                    ),
+                    // Querformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Ursprünglicher Wert für Querformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.1,    // Ursprünglicher Wert für Querformat bei mittlerem Bildschirm
+                        0.1     // Standardwert für Querformat bei anderen Größen
+                    )
+                )
+            Height: =75
+            LayoutMinHeight: =35
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =1
+
+            icnBack_13 As icon.BackArrow:
+                BorderColor: =RGBA(128, 186, 36, 1)
+                Color: =RGBA(141, 198, 63, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                FillPortions: =0.1
+                Height: =Parent.Height
+                Icon: =Icon.BackArrow
+                LayoutMinWidth: =50
+                OnSelect: =Navigate(ScreenStudent)
+                PaddingBottom: =5
+                PaddingLeft: =5
+                PaddingTop: =5
+                ZIndex: =2
+
+            imgLogo_13 As image:
+                BorderColor: =App.Theme.Colors.Darker40
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                FillPortions: =1
+                Height: =Parent.Height
+                Image: =THM_Logo_184x75
+                PaddingRight: =64
+                Width: =
+                ZIndex: =3
+
+        cntMainBPPInfo As groupContainer.verticalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =Parent.Height
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =4
+
+            btnBPPInfo As button:
+                BorderColor: =App.Theme.Colors.Primary
+                BorderThickness: =0
+                Color: =App.Theme.Colors.PrimaryForeground
+                DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(128, 186, 36, 1)
+                FillPortions: =0.075
+                Font: =App.Theme.Font
+                FontWeight: =FontWeight.Semibold
+                Height: =Parent.Height
+                HoverBorderColor: =App.Theme.Colors.Darker10
+                HoverColor: =App.Theme.Colors.PrimaryForeground
+                HoverFill: =App.Theme.Colors.Darker10
+                LayoutMinHeight: =30
+                PressedBorderColor: =App.Theme.Colors.Darker40
+                PressedColor: =Self.Color
+                PressedFill: =App.Theme.Colors.Darker40
+                Size: =If(ScreenBPPInfo.Size = ScreenSize.Small, 12, ScreenSize.Medium, 18, 20)
+                Text: ="Persönliche Daten eingeben"
+                Width: =Parent.Width
+                ZIndex: =5
+
+            cntContentBPPInfo As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Light
+                Height: =Parent.Height
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Width: =Parent.Width
+                ZIndex: =6
+
+                cntfrmStudent_1 As groupContainer.verticalAutoLayoutContainer:
+                    DropShadow: =DropShadow.Light
+                    Height: =Parent.Height
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutMode: =LayoutMode.Auto
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    Width: =Parent.Width
+                    X: =
+                    Y: =
+                    ZIndex: =7
+
+                    frmBPP As form.PowerApps_CoreControls_Form:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        DataSource: ='BPP Assistent - Lehrende'
+                        DefaultMode: =FormMode.New
+                        Height: =Parent.Height
+                        Item: |
+                            =
+                        LayoutMinHeight: =250
+                        LayoutMinWidth: =200
+                        NumberOfColumns: =1
+                        OnFailure: =Notify("Bitte Pflichtfelder ausfüllen",NotificationType.Error)
+                        OnSuccess: |-
+                            =Patch('BPP - Registrierung',LookUp('BPP - Registrierung',E_x002d_Mail = varAktuelleEmail),
+                            {NeueRegistrierung: false});
+                            
+                            
+                            Notify("Erfolgreich gespeichert",NotificationType.Success);
+                            Navigate(ScreenBPP)
+                        UseFluentV9Cards: =true
+                        Width: =Parent.Width
+                        ZIndex: =8
+
+                        "'E-Mail_DataCard1' As typedDataCard.fluentV9TextualEditCard":
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="E_x002d_Mail"
+                            Default: =varAktuelleEmail
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Lehrende'],DataSourceInfo.DisplayName,E_x002d_Mail)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =70
+                            MaxLength: =DataSourceInfo([@'BPP Assistent - Lehrende'], DataSourceInfo.MaxLength, E_x002d_Mail)
+                            Required: =true
+                            Update: =DataCardValue36.Value
+                            Width: =992
+                            WidthFit: =true
+                            X: =0
+                            Y: =0
+                            ZIndex: =9
+
+                            DataCardKey38 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                AutoHeight: =true
+                                DisplayMode: =DisplayMode.Edit
+                                Height: =22
+                                Size: |
+                                    =Switch(
+                                        App.ActiveScreen.Size,
+                                        1, 12, // Kleine Bildschirme, Schriftgröße 12
+                                        2, 14, // Mittlere Bildschirme, Schriftgröße 14
+                                        3, 16, // Große Bildschirme, Schriftgröße 16
+                                        4, 18  // Extra große Bildschirme, Schriftgröße 18
+                                    )
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue36 As Texteingabe:
+                                AccessibleLabel: =Parent.DisplayName
+                                DisplayMode: =Parent.DisplayMode
+                                Height: =32
+                                Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                                Required: =Parent.Required
+                                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                                Value: =Parent.Default
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey38.Y + DataCardKey38.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage38 As Text:
+                                DisplayMode: =DisplayMode.Edit
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue36.Y + DataCardValue36.Height
+                                ZIndex: =3
+
+                            StarVisible38 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                DisplayMode: =DisplayMode.Edit
+                                Height: =30
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey38.Y
+                                ZIndex: =4
+
+                        Vorname_DataCard2 As typedDataCard.fluentV9TextualEditCard:
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="Vorname"
+                            Default: =ThisItem.Vorname
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Lehrende'],DataSourceInfo.DisplayName,Vorname)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =70
+                            MaxLength: =DataSourceInfo([@'BPP Assistent - Lehrende'], DataSourceInfo.MaxLength, Vorname)
+                            Required: =true
+                            Update: =DataCardValue37.Value
+                            Width: =992
+                            WidthFit: =true
+                            X: =0
+                            Y: =1
+                            ZIndex: =9
+
+                            DataCardKey39 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                AutoHeight: =true
+                                DisplayMode: =DisplayMode.Edit
+                                Height: =22
+                                Size: =DataCardKey38.Size
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue37 As Texteingabe:
+                                AccessibleLabel: =Parent.DisplayName
+                                DisplayMode: =Parent.DisplayMode
+                                Height: =32
+                                Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                                Required: =Parent.Required
+                                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                                Value: =Parent.Default
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey39.Y + DataCardKey39.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage39 As Text:
+                                DisplayMode: =DisplayMode.Edit
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue37.Y + DataCardValue37.Height
+                                ZIndex: =3
+
+                            StarVisible39 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                DisplayMode: =DisplayMode.Edit
+                                Height: =30
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey39.Y
+                                ZIndex: =4
+
+                        Name_DataCard2 As typedDataCard.fluentV9TextualEditCard:
+                            BorderColor: =App.Theme.Colors.Darker40
+                            BorderStyle: =BorderStyle.Solid
+                            DataField: ="Name"
+                            Default: =ThisItem.Name
+                            DisplayMode: =Parent.DisplayMode
+                            DisplayName: =DataSourceInfo([@'BPP Assistent - Lehrende'],DataSourceInfo.DisplayName,Name)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Height: =70
+                            MaxLength: =DataSourceInfo([@'BPP Assistent - Lehrende'], DataSourceInfo.MaxLength, Name)
+                            Required: =true
+                            Update: =DataCardValue38.Value
+                            Width: =992
+                            WidthFit: =true
+                            X: =0
+                            Y: =2
+                            ZIndex: =9
+
+                            DataCardKey40 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                AutoHeight: =true
+                                DisplayMode: =DisplayMode.Edit
+                                Height: =22
+                                Size: =DataCardKey38.Size
+                                Text: =Parent.DisplayName
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width - 48
+                                Wrap: =false
+                                X: =24
+                                Y: =10
+                                ZIndex: =1
+
+                            DataCardValue38 As Texteingabe:
+                                AccessibleLabel: =Parent.DisplayName
+                                DisplayMode: =Parent.DisplayMode
+                                Height: =32
+                                Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                                Required: =Parent.Required
+                                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                                Value: =Parent.Default
+                                Width: =Parent.Width - 48
+                                X: =24
+                                Y: =DataCardKey40.Y + DataCardKey40.Height + 4
+                                ZIndex: =2
+
+                            ErrorMessage40 As Text:
+                                DisplayMode: =DisplayMode.Edit
+                                Height: =30
+                                Text: =Parent.Error
+                                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =Parent.Width - 48
+                                Wrap: =true
+                                X: =24
+                                Y: =DataCardValue38.Y + DataCardValue38.Height
+                                ZIndex: =3
+
+                            StarVisible40 As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                DisplayMode: =DisplayMode.Edit
+                                Height: =30
+                                Text: ="*"
+                                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                                Width: =30
+                                X: =0
+                                Y: =DataCardKey40.Y
+                                ZIndex: =4
+
+        cntFooterBPPInfo As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: |
+                =// Prüfe die Bildschirmorientierung und passe die Werte basierend auf der Bildschirmgröße an
+                If(
+                    App.Width < App.Height,  // Hochformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Geringerer Wert für Hochformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.075,  // Geringerer Wert für Hochformat bei mittlerem Bildschirm
+                        0.075   // Standardwert für Hochformat bei anderen Größen
+                    ),
+                    // Querformat
+                    If(
+                        App.ActiveScreen.Size = ScreenSize.Small,
+                        0.050,  // Ursprünglicher Wert für Querformat bei kleinem Bildschirm
+                        App.ActiveScreen.Size = ScreenSize.Medium,
+                        0.1,    // Ursprünglicher Wert für Querformat bei mittlerem Bildschirm
+                        0.1     // Standardwert für Querformat bei anderen Größen
+                    )
+                )
+            Height: =75
+            LayoutGap: =5
+            LayoutMinHeight: =40
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width
+            ZIndex: =44
+
+            btnContinue_2 As button:
+                BorderColor: =App.Theme.Colors.Primary
+                BorderThickness: =0
+                Color: =App.Theme.Colors.PrimaryForeground
+                DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Fill: =RGBA(128, 186, 36, 1)
+                FillPortions: =1
+                Font: =App.Theme.Font
+                FontWeight: =FontWeight.Semibold
+                Height: =Parent.Height
+                HoverBorderColor: =App.Theme.Colors.Darker10
+                HoverColor: =App.Theme.Colors.PrimaryForeground
+                HoverFill: =App.Theme.Colors.Darker10
+                OnSelect: =SubmitForm(frmBPP)
+                PressedBorderColor: =App.Theme.Colors.Darker40
+                PressedColor: =Self.Color
+                PressedFill: =App.Theme.Colors.Darker40
+                Size: =If(ScreenBPPInfo.Size = ScreenSize.Small, 12, ScreenSize.Medium, 18, 20)
+                Text: ="Abschicken"
+                ZIndex: =45
+
