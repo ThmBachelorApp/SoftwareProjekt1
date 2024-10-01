@@ -221,7 +221,8 @@
                         OnSelect: |
                             =Select(Parent);
                             Navigate(ScreenEvent);
-                            Set(eventItem,ThisItem)
+                            Set(eventItem,ThisItem);
+                            EditForm(frmNewEvent)
                         PaddingBottom: =16
                         PaddingLeft: =16
                         PaddingRight: =16

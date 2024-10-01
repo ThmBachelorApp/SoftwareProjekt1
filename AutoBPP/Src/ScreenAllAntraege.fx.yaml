@@ -454,7 +454,25 @@
                         Icon: ="Document"
                         IconStyle: ='ButtonCanvas.IconStyle'.Filled
                         Layout: ='ButtonCanvas.Layout'.IconBefore
-                        OnSelect: =Select(Parent)
+                        OnSelect: |
+                            =// Suche den Eintrag in der Dokumentenliste, der die passende Zugehörige ID hat und bei dem DokumentenTyp "Arbeitsvertrag" ist
+                            Set(
+                                selectedDocument,
+                                LookUp(
+                                    'BPP Assistent - Dokumentenupload',
+                                    Zugeh_x00f6_rigeID = ThisItem.StudierendeID && Dokumententyp.Value = "Arbeitsvertrag"
+                                )
+                            );
+                            
+                            // Wenn ein Dokument gefunden wurde, lade den Anhang herunter
+                            If(
+                                !IsBlank(selectedDocument),
+                                ForAll(
+                                    selectedDocument.'{Attachments}', // Durchlaufe alle Attachments des gefilterten Eintrags
+                                    Download(ThisRecord.AbsoluteUri) // Lade das angehängte Dokument herunter
+                                ),
+                                Notify("Kein Arbeitsvertrag zum Herunterladen gefunden.", NotificationType.Error)
+                            );
                         Text: |
                             =If(
                                 !IsBlank(
@@ -541,7 +559,25 @@
                         Icon: ="Document"
                         IconStyle: ='ButtonCanvas.IconStyle'.Filled
                         Layout: ='ButtonCanvas.Layout'.IconBefore
-                        OnSelect: =Select(Parent)
+                        OnSelect: |
+                            =// Suche den Eintrag in der Dokumentenliste, der die passende Zugehörige ID hat und bei dem DokumentenTyp "Arbeitsvertrag" ist
+                            Set(
+                                selectedDocument,
+                                LookUp(
+                                    'BPP Assistent - Dokumentenupload',
+                                    Zugeh_x00f6_rigeID = ThisItem.StudierendeID && Dokumententyp.Value = "Präsentation"
+                                )
+                            );
+                            
+                            // Wenn ein Dokument gefunden wurde, lade den Anhang herunter
+                            If(
+                                !IsBlank(selectedDocument),
+                                ForAll(
+                                    selectedDocument.'{Attachments}', // Durchlaufe alle Attachments des gefilterten Eintrags
+                                    Download(ThisRecord.AbsoluteUri) // Lade das angehängte Dokument herunter
+                                ),
+                                Notify("Keine Präsentation zum Herunterladen gefunden.", NotificationType.Error)
+                            );
                         Text: |
                             =If(
                                 !IsBlank(

@@ -2737,7 +2737,7 @@
       "MetaDataIDKey": "%FieldName.ID%",
       "Name": "DataCardKey26",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 4,
+      "ParentIndex": 1,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -5602,7 +5602,7 @@
       "MetaDataIDKey": "%DateFieldValue.ID%",
       "Name": "DateValue1",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 5,
+      "ParentIndex": 2,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -7264,7 +7264,14 @@
           "IsLockable": false,
           "NameMapSourceSchema": "?"
         },
-        "Item",
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "",
+          "InvariantPropertyName": "Item",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        },
         {
           "AFDDataSourceName": "",
           "AutoRuleBindingEnabled": false,
@@ -7491,7 +7498,7 @@
       "MetaDataIDKey": "%HourFieldValue.ID%",
       "Name": "HourValue1",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 0,
+      "ParentIndex": 3,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -9093,7 +9100,7 @@
       "MetaDataIDKey": "%MinuteFieldValue.ID%",
       "Name": "MinuteValue1",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 2,
+      "ParentIndex": 5,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -9624,7 +9631,7 @@
       "MetaDataIDKey": "%HourMinuteSeparator.ID%",
       "Name": "Separator1",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 1,
+      "ParentIndex": 4,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -10015,7 +10022,7 @@
       "MetaDataIDKey": "%FieldRequired.ID%",
       "Name": "StarVisible26",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 3,
+      "ParentIndex": 0,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {

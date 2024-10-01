@@ -160,6 +160,7 @@
                         DefaultMode: |
                             =FormMode.New
                         Height: =Parent.Height
+                        Item: =eventItem
                         LayoutMinHeight: =250
                         LayoutMinWidth: =200
                         NumberOfColumns: =2
