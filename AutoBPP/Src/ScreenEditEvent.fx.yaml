@@ -497,7 +497,8 @@
                                             ID = ThisItem.ID
                                         ),
                                         {AktuelleTeilnehmerAnzahl: aktuelleTeilnehmerzahl}
-                                    ),
+                                    );
+                                    Refresh('BPP Assistent - Veranstaltungen'),
                                 // Warnung anzeigen, wenn der Benutzer bereits registriert ist
                                     Notify(
                                         "Sie sind bereits für diese Veranstaltung registriert.",
@@ -511,8 +512,10 @@
                                 )
                             );
                             Refresh('BPP Assistent - Veranstaltungen');
-                            
-                            ClearCollect(BPP_Veranstaltungen, 'BPP Assistent - Veranstaltungen');
+                            ClearCollect(
+                                BPP_Veranstaltungen,
+                                'BPP Assistent - Veranstaltungen'
+                            );
                         Visible: |-
                             =If(
                                 currentUserRole = "Student",
