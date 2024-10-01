@@ -52,24 +52,13 @@
             LayoutMinHeight: =35
             LayoutMinWidth: =250
             LayoutMode: =LayoutMode.Auto
+            PaddingLeft: =64
             RadiusBottomLeft: =4
             RadiusBottomRight: =4
             RadiusTopLeft: =4
             RadiusTopRight: =4
             Width: =Parent.Width
             ZIndex: =2
-
-            icnBackBPP As icon.BackArrow:
-                BorderColor: =RGBA(128, 186, 36, 1)
-                Color: =RGBA(141, 198, 63, 1)
-                DisabledBorderColor: =RGBA(166, 166, 166, 1)
-                DisabledColor: =RGBA(244, 244, 244, 1)
-                Height: =Parent.Height
-                Icon: =Icon.Support
-                PaddingBottom: =5
-                PaddingLeft: =5
-                PaddingTop: =5
-                ZIndex: =1
 
             imgLogoBPP As image:
                 BorderColor: =App.Theme.Colors.Darker40

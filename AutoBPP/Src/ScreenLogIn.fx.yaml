@@ -62,20 +62,6 @@
             Width: =Parent.Width
             ZIndex: =2
 
-            icnSupport As icon.BackArrow:
-                BorderColor: =RGBA(128, 186, 36, 1)
-                Color: =RGBA(141, 198, 63, 1)
-                DisabledBorderColor: =RGBA(166, 166, 166, 1)
-                DisabledColor: =RGBA(244, 244, 244, 1)
-                FillPortions: =0.1
-                Height: =Parent.Height
-                Icon: =Icon.Support
-                LayoutMinWidth: =50
-                PaddingBottom: =5
-                PaddingLeft: =5
-                PaddingTop: =5
-                ZIndex: =1
-
             imgLogoLogin As image:
                 BorderColor: =App.Theme.Colors.Darker40
                 DisabledBorderColor: =RGBA(166, 166, 166, 1)
