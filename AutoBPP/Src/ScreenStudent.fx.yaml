@@ -247,7 +247,7 @@
                                 HoverBorderColor: =App.Theme.Colors.Darker10
                                 HoverColor: =App.Theme.Colors.PrimaryForeground
                                 HoverFill: =App.Theme.Colors.Darker10
-                                OnSelect: |+
+                                OnSelect: |-
                                     =// Abrufen der Matrikelnummer des aktuellen Benutzers anhand der E-Mail-Adresse
                                     Set(
                                         varMatrikelnummer,
@@ -265,20 +265,34 @@
                                             )
                                         ),
                                         // Wenn kein Antrag existiert, Formular öffnen und zur Seite navigieren
-                                        Navigate(ScreenStudenInfo);
-                                        NewForm(frmAntrag);
-                                        Set(antragsItem, Blank()),
+                                        If(
+                                            IsBlank(varMatrikelnummer),
+                                            Navigate(ScreenStudenInfo);
+                                            NewForm(frmAntrag);
+                                            Set(
+                                                antragsItem,
+                                                Blank()
+                                            ),
+                                            Set(
+                                                studenItem,
+                                                LookUp(
+                                                    'BPP Assistent - Studierende',
+                                                    Matrikelnummer = varMatrikelnummer
+                                                )
+                                            );
+                                            Navigate(ScreenStudenInfo);
+                                            EditForm(frmStudent)
+                                        ),
                                         // Wenn ein Antrag bereits existiert, Meldung anzeigen
                                         Notify(
                                             "Sie haben bereits einen Antrag ausgefüllt.",
                                             NotificationType.Error
                                         )
                                     );
-                                    
-                                    Set(antragsItem,Blank())
-                                    
-                                    
-                                    
+                                    Set(
+                                        antragsItem,
+                                        Blank()
+                                    )
                                 PressedBorderColor: =App.Theme.Colors.Darker40
                                 PressedColor: =Self.Color
                                 PressedFill: =App.Theme.Colors.Darker40
