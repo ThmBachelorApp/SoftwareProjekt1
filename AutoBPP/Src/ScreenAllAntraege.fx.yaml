@@ -351,9 +351,22 @@
                             =// Schritt 1: Überprüfen, ob der Benutzer ein Betreuer ist (BPP-Verantwortlicher)
                             If(
                                 currentUserRole = "Student",
+                                
                                 // Schritt 2: Setze den aktuellen Antrag (antragsItem) für die Unterschrift
                                 Set(antragsItem, ThisItem);
-                                // Schritt 3: Navigiere zur Unterschriftsseite für den Betreuer
+                                Set(signaturItem,LookUp('BPP Assistent - Signatur', Zugeh_x00f6_rigeID = antragsItem.StudierendeID));
+                                // Schritt 3: Überprüfen, ob das Unterschrifts-Item bereits vorhanden ist
+                                If(
+                                    IsBlank(signaturItem),
+                                    
+                                    // Wenn kein Eintrag vorhanden ist, öffne das Formular im NewForm-Modus
+                                    NewForm(frmSignatur),
+                                    
+                                    // Wenn bereits ein Eintrag vorhanden ist, öffne das Formular im EditForm-Modus
+                                    EditForm(frmSignatur)
+                                );
+                                
+                                // Schritt 4: Navigiere zur Unterschriftsseite für den Betreuer
                                 Navigate(ScreenSignatur, ScreenTransition.Fade)
                             )
                         Text: |-
@@ -504,9 +517,22 @@
                             =// Schritt 1: Überprüfen, ob der Benutzer ein Betreuer ist (BPP-Verantwortlicher)
                             If(
                                 currentUserRole = "BPP",
+                                
                                 // Schritt 2: Setze den aktuellen Antrag (antragsItem) für die Unterschrift
                                 Set(antragsItem, ThisItem);
-                                // Schritt 3: Navigiere zur Unterschriftsseite für den Betreuer
+                                Set(signaturItem,LookUp('BPP Assistent - Signatur', Zugeh_x00f6_rigeID = antragsItem.BetreuerID));
+                                // Schritt 3: Überprüfen, ob das Unterschrifts-Item bereits vorhanden ist
+                                If(
+                                    IsBlank(signaturItem),
+                                    
+                                    // Wenn kein Eintrag vorhanden ist, öffne das Formular im NewForm-Modus
+                                    NewForm(frmSignatur),
+                                    
+                                    // Wenn bereits ein Eintrag vorhanden ist, öffne das Formular im EditForm-Modus
+                                    EditForm(frmSignatur)
+                                );
+                                
+                                // Schritt 4: Navigiere zur Unterschriftsseite für den Betreuer
                                 Navigate(ScreenSignatur, ScreenTransition.Fade)
                             )
                         Text: |-

@@ -203,6 +203,7 @@
                             DataSource: ='BPP Assistent - Signatur'
                             DefaultMode: =FormMode.New
                             Height: =345
+                            Item: =signaturItem
                             NumberOfColumns: =1
                             OnSuccess: =
                             UseFluentV9Cards: =true
