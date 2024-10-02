@@ -265,6 +265,7 @@
                                     Set(infoVeranstaltung1, LookUp(infoList, BitteInfoveranstaltungausw_x00e4.Value = "Info 1"));
                                     Set(infoVeranstaltung2, LookUp(infoList, BitteInfoveranstaltungausw_x00e4.Value = "Info 2"));
                                     Set(confirmationCount, CountRows(confirmationList));
+                                    Refresh('BPP Assistent - Antrag');
                                     Navigate(ScreenAllAntraege)
                                 PressedBorderColor: =App.Theme.Colors.Darker40
                                 PressedColor: =Self.Color

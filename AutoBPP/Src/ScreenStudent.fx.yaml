@@ -332,6 +332,7 @@
                                     
                                     // Schritt 4: Zählen der Teilnahmebestätigungen für die Studierenden
                                     Set(confirmationCount, CountRows(confirmationList));
+                                    Refresh('BPP Assistent - Antrag');
                                     Navigate(ScreenAllAntraege)
                                 PressedBorderColor: =App.Theme.Colors.Darker40
                                 PressedColor: =Self.Color

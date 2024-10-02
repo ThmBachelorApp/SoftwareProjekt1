@@ -263,7 +263,8 @@
                                     Set(confirmationCount, CountRows(confirmationList));
                                     
                                     // Navigation zu einem Screen, der alle Anträge anzeigt
-                                    Navigate(ScreenAllAntraege)
+                                    Navigate(ScreenAllAntraege);
+                                    Refresh('BPP Assistent - Antrag');
                                 PressedBorderColor: =App.Theme.Colors.Darker40
                                 PressedColor: =Self.Color
                                 PressedFill: =App.Theme.Colors.Darker40
